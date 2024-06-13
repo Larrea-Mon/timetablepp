@@ -1,5 +1,7 @@
 // ignore_for_file: unused_import
 
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Models/termperiod.dart';
 
 import 'dart:async';
@@ -18,4 +20,10 @@ class MainController {
 
   TermPeriod termPeriod =
       TermPeriod(start: DateTime.now(), end: DateTime.now());
+}
+
+void todoButton() {
+  Fluttertoast.showToast(
+      msg: '//TODO implementar esto', 
+      backgroundColor: Colors.grey);
 }
