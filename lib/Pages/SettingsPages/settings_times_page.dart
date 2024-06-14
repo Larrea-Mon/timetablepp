@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors, unused_import
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path/path.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 
 class SettingsTimesPage extends StatefulWidget {
@@ -37,6 +40,15 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
       },
     );
 
+    ListTile tileTitle = ListTile(
+      title: Text('Horas de inicio de las lecciones', 
+        style: TextStyle(
+          color: Colors.blue,
+        ),
+      ),
+
+    );
+
     Column mainColumn = Column(
       children: [
         tile0,
@@ -44,23 +56,17 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
         tile1,
         const Divider(),
         tile2,
-        const Divider(),
-        Container(
-          constraints: Bo,
-          color:Colors.green,
-          child:   Text(
-          'Horas de inicio de las lecciones',
-          textAlign: TextAlign.left,
-         ),
-        ),
-      
+        //const Divider(),
+        tileTitle,
       ],
     );
+    
     //TODO MainColumn.children.add(),
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: settingsTimesAppBar,
-      body: mainColumn,
+      body: SingleChildScrollView( child: mainColumn,), 
+      
     );
   }
 }
