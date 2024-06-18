@@ -1,7 +1,10 @@
 // ignore_for_file: unused_import
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/termperiod.dart';
 
 import 'dart:async';
@@ -17,13 +20,131 @@ class MainController {
   factory MainController() {
     return _instance;
   }
+  List<HolidayPeriod> holidays = List<HolidayPeriod>.empty(growable: true);
 
-  TermPeriod termPeriod =
-      TermPeriod(start: DateTime.now(), end: DateTime.now());
+  TermPeriod _termPeriod =
+      TermPeriod(start: null, end: null);
+
+  void debugHolidays() {
+    if (holidays.isNotEmpty) {
+      holidays = List<HolidayPeriod>.empty(growable: true);
+    }
+
+    holidays.add(HolidayPeriod(
+      DateTime.utc(2024, 01, 06),
+      DateTime.utc(2024, 01, 07), 
+      'Dia de Reyes Magos')
+    );
+    holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin1')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin2')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin3')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin4')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin5')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valenti6')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin7')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin8')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin9')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin10')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin11')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin12')
+    );
+     holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin13')
+    );
+    holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin14')
+    );
+    holidays.add(
+      HolidayPeriod(
+      DateTime.utc(2024, 02, 14),
+      DateTime.utc(2024, 02, 15), 
+      'Dia de san valentin15')
+    );
+    
+  }
+  
+  List<HolidayPeriod> getHolidays(){
+    return holidays;
+  }  
+
+  TermPeriod getTermPeriod(){
+    return _termPeriod;
+  }  
+  void setTermPeriodStart(DateTime start){
+    _termPeriod.start = start;
+  }
+  void setTermPeriodEnd(DateTime end){
+    _termPeriod.end = end;
+  }
+
 }
 
 void todoButton() {
   Fluttertoast.showToast(
-      msg: '//TODO implementar esto', 
-      backgroundColor: Colors.grey);
+      msg: '//TODO implementar esto', backgroundColor: Colors.grey);
 }

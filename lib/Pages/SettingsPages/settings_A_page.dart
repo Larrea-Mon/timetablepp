@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_automute_page.dart';
+import 'package:timetablepp/Pages/SettingsPages/settings_debug_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_general_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_notifications_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_privacy_page.dart';
@@ -81,6 +82,21 @@ class _SettingsPageState extends State<SettingsPage> {
                         builder: (context) => const SettingsPrivacyPage()));
               },
             ),
+            //AQUI LA TAB DE DEBUG
+            ListTile(
+              title: Text('DEBUG'),
+              enabled: true,
+              onTap: () {
+                print('DEBUG');
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingsDebugPage()));
+              },
+            ),
+
+
             /* POR AHORA NO HAY INFORMACION O SE PONE EN PRIVACIDAD
           ListTile(
             title: Text('Información'),

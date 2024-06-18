@@ -23,7 +23,11 @@ class MyApp extends StatelessWidget{
             elevation: 2,
             shadowColor: Colors.black,  
           ),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)
+          datePickerTheme: DatePickerThemeData(
+            
+            surfaceTintColor: Colors.white,
+          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber.shade400)
         ),
         home: HolderPage(),
       )
