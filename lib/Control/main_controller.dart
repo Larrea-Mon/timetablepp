@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, prefer_final_fields
 
 import 'dart:ffi';
 
@@ -147,4 +147,11 @@ class MainController {
 void todoButton() {
   Fluttertoast.showToast(
       msg: '//TODO implementar esto', backgroundColor: Colors.grey);
+}
+
+String dateToString(DateTime dateTime) {
+      String day = dateTime.day.toString();
+      String month = dateTime.month.toString();
+      String year = dateTime.year.toString();
+      return ("$day/$month/$year");
 }

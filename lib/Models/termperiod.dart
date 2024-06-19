@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:timetablepp/Control/main_controller.dart';
 
 class TermPeriod {
   DateTime? start;
@@ -24,11 +25,7 @@ class TermPeriod {
 
   String startDateToString() {
     if (start != null) {
-      String startday = start!.day.toString();
-      String startmonth = start!.month.toString();
-      String startyear = start!.year.toString();
-
-      return ("$startday/$startmonth/$startyear");
+      return dateToString(start!);
     } else {
       return ("-");
     }
@@ -36,10 +33,8 @@ class TermPeriod {
 
   String endDateToString() {
     if (end != null) {
-      String endday = end!.day.toString();
-      String endmonth = end!.month.toString();
-      String endyear = end!.year.toString();
-      return ("$endday/$endmonth/$endyear");
+
+      return dateToString(end!);
     } else {
       return ("-");
     }

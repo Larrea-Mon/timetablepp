@@ -9,6 +9,8 @@ import 'package:timetablepp/Pages/SettingsPages/settings_privacy_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_times_page.dart';
 
 class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
+
   @override
   State<SettingsPage> createState() => _SettingsPageState();
 }
@@ -25,7 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
               title: Text('General'),
               enabled: true,
               onTap: () {
-                print('General');
+                debugPrint('General');
 
                 Navigator.push(
                     context,
@@ -37,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
               title: Text('Notificaciones'),
               enabled: true,
               onTap: () {
-                print('Notifications');
+                debugPrint('Notifications');
 
                 Navigator.push(
                     context,
@@ -50,7 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
               title: Text('Autosilencio'),
               enabled: true,
               onTap: () {
-                print('Automute');
+                debugPrint('Automute');
 
                 Navigator.push(
                     context,
@@ -62,7 +64,7 @@ class _SettingsPageState extends State<SettingsPage> {
               title: Text('Horario'),
               enabled: true,
               onTap: () {
-                print('Horario');
+                debugPrint('Horario');
 
                 Navigator.push(
                     context,
@@ -74,7 +76,7 @@ class _SettingsPageState extends State<SettingsPage> {
               title: Text('Privacidad'),
               enabled: true,
               onTap: () {
-                print('Privacidad');
+                debugPrint('Privacidad');
 
                 Navigator.push(
                     context,
@@ -87,7 +89,7 @@ class _SettingsPageState extends State<SettingsPage> {
               title: Text('DEBUG'),
               enabled: true,
               onTap: () {
-                print('DEBUG');
+                debugPrint('DEBUG');
 
                 Navigator.push(
                     context,

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unnecessary_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,7 +26,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const AddHolidayPage()));
+                    builder: (context) => AddHolidayPage()));
           },
           icon: Icon(Icons.add_box),
         )

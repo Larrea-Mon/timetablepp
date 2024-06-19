@@ -1,6 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class TasksPage extends StatefulWidget {
+  const TasksPage({super.key});
+
   @override
   State<TasksPage> createState() => _TasksPageState();
 }

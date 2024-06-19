@@ -9,6 +9,8 @@ import 'package:timetablepp/Pages/TimetablePages/all_pages.dart';
 
 
 class HolderPage extends StatefulWidget{
+  const HolderPage({super.key});
+
   @override
   State<HolderPage> createState() => _HolderPageState();
 }

@@ -28,8 +28,8 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
 
                 List<HolidayPeriod> holidays = MainController().getHolidays();
                 for (var i = 0; i < holidays.length; i++) {
-                  print(i);
-                  print(holidays[i].toString());
+                  debugPrint('$i');
+                  debugPrint(holidays[i].toString());
                 }
 
                 Fluttertoast.showToast(
