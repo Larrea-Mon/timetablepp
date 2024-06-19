@@ -23,6 +23,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
       actions: <Widget>[
         IconButton(
           onPressed: () {
+            MainController().resetCurrentHoliday();
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -58,8 +59,8 @@ class _HolidaysPageState extends State<HolidaysPage> {
                 itemCount: holidays.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(holidays[index].name),
-                    subtitle: Text(holidays[index].start.toString()),
+                    title: Text(holidays[index].getName()),
+                    subtitle: Text(holidays[index].getStartAsString()),
                   );
                 },
               ),

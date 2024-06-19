@@ -2,15 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 
 class AddHolidayPage extends StatefulWidget {
-   AddHolidayPage({super.key});
-  
-
-    HolidayPeriod currentHP = HolidayPeriod(
-      DateTime.timestamp(), DateTime.timestamp().add(const Duration(days: 2)), "");
+  const AddHolidayPage({super.key});
 
   @override
   State<AddHolidayPage> createState() => _AddHolidayPageState();
@@ -18,15 +15,50 @@ class AddHolidayPage extends StatefulWidget {
 
 class _AddHolidayPageState extends State<AddHolidayPage> {
 
+  final myController = TextEditingController();
+  @override 
+  void dispose(){
+    myController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    TextField nameTF = TextField(
+      controller: myController,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.fromLTRB(12, 4, 12, 4),
+        hintStyle: TextStyle(color: Colors.grey[150]),
+        hintText: ('Nombre del festivo'),
+      ),
+    );
+
     AppBar holidayAddAppBar = AppBar(
       title: Text('Añadir Festivo'),
       backgroundColor: Colors.blue[100],
       actions: <Widget>[
         IconButton(
             onPressed: () {
-              debugPrint(AddHolidayPage().currentHP.toString());
+              if ((MainController().getCurrentHoliday().end != null) &&
+                  (MainController().getCurrentHoliday().start != null)) {
+                if (MainController()
+                    .getCurrentHoliday()
+                    .start!
+                    .isBefore(MainController().getCurrentHoliday().end!)) {
+                  MainController().pushCurrentHoliday(myController.text);
+                  Navigator.pop(context);
+                } else {
+                  Fluttertoast.showToast(
+                      msg:
+                          "La fecha inicial debe ser anterior a la fecha final",
+                      backgroundColor: Colors.grey);
+                }
+              } else {
+                Fluttertoast.showToast(
+                  msg: "El período festivo debe tener comienzo y final",
+                  backgroundColor: Colors.grey,
+                );
+              }
             },
             icon: Icon(Icons.save))
       ],
@@ -39,15 +71,7 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
             Wrap(
               alignment: WrapAlignment.center,
               spacing: 100,
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(12, 4, 12, 4),
-                    hintStyle: TextStyle(color: Colors.grey[150]),
-                    hintText: ('Nombre del festivo'),
-                  ),
-                ),
-              ],
+              children: [nameTF],
             ),
             HolidayDateStartPicker(),
             HolidayDateEndPicker(),
@@ -74,7 +98,7 @@ class HolidayDateStartPickerState extends State<HolidayDateStartPicker> {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.calendar_today),
-      title: Text(dateToString(AddHolidayPage().currentHP.start)),
+      title: Text(MainController().getCurrentHoliday().getStartAsString()),
       onTap: () async {
         DateTime? pickedDate = await showDatePicker(
             context: context,
@@ -82,13 +106,13 @@ class HolidayDateStartPickerState extends State<HolidayDateStartPicker> {
             lastDate: DateTime(2025));
 
         if (pickedDate != null) {
-          debugPrint(pickedDate.toString());
-          AddHolidayPage().currentHP.start = pickedDate;
+          //debugPrint(pickedDate.toString());
+          MainController().getCurrentHoliday().setStart(pickedDate);
           setState(() {});
         } else {
           debugPrint("not selected");
         }
-      }, //onTap
+      },
     );
   }
 }
@@ -111,7 +135,7 @@ class HolidayDateEndPickerState extends State<HolidayDateEndPicker> {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.calendar_month_outlined),
-      title: Text(dateToString(AddHolidayPage().currentHP.end)),
+      title: Text(MainController().getCurrentHoliday().getEndAsString()),
       onTap: () async {
         DateTime? pickedDate = await showDatePicker(
             context: context,
@@ -119,13 +143,13 @@ class HolidayDateEndPickerState extends State<HolidayDateEndPicker> {
             lastDate: DateTime(2025));
 
         if (pickedDate != null) {
-          debugPrint(pickedDate.toString());
-          AddHolidayPage().currentHP.end = pickedDate;
+          //debugPrint(pickedDate.toString());
+          MainController().getCurrentHoliday().setEnd(pickedDate);
           setState(() {});
         } else {
           debugPrint("not selected");
         }
-      }, //onTap
+      },
     );
   }
 }
