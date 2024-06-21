@@ -20,6 +20,7 @@ class MainController {
   factory MainController() {
     return _instance;
   }
+
   List<HolidayPeriod> holidays = List<HolidayPeriod>.empty(growable: true);
 
   TermPeriod _termPeriod = TermPeriod(start: null, end: null);
@@ -96,7 +97,7 @@ class MainController {
 
   void pushCurrentHoliday(String name) {
     _currentHolidayPeriod.setName(name);
-    holidays.add(_currentHolidayPeriod);
+    holidays.add(HolidayPeriod.clone(_currentHolidayPeriod));
   }
 }
 

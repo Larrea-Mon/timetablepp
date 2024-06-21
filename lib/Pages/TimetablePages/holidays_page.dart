@@ -24,10 +24,8 @@ class _HolidaysPageState extends State<HolidaysPage> {
         IconButton(
           onPressed: () {
             MainController().resetCurrentHoliday();
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => AddHolidayPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddHolidayPage()));
           },
           icon: Icon(Icons.add_box),
         )
@@ -50,17 +48,26 @@ class _HolidaysPageState extends State<HolidaysPage> {
             TopListTile(),
             const Divider(
               thickness: 2,
+              color: Colors.black,
             ),
             Flexible(
               child: ListView.separated(
                 scrollDirection: Axis.vertical,
-                separatorBuilder: (context, index) => Divider(),
+                separatorBuilder: (context, index) =>
+                    Divider(thickness: 1, color: Colors.black),
                 shrinkWrap: false,
                 itemCount: holidays.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(holidays[index].getName()),
-                    subtitle: Text(holidays[index].getStartAsString()),
+                    subtitle: Text(holidays[index].getStartAsString() +' - ' +holidays[index].getEndAsString()),
+                    onTap: () {
+                      MainController().setCurrentHoliday(holidays[index]);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddHolidayPage()));
+                    },
                   );
                 },
               ),

@@ -34,6 +34,8 @@ class HolidayPeriod {
     this.name = name;
   }
 
+  
+
   String getStartAsString() {
     if (start != null) {
       return dateToString(start!);
@@ -49,8 +51,9 @@ class HolidayPeriod {
       return '-';
     }
   }
-
+  
   HolidayPeriod(this.start, this.end, this.name);
+  HolidayPeriod.clone(HolidayPeriod holidayPeriod): this(holidayPeriod.start, holidayPeriod.end, holidayPeriod.name);
 
   @override
   String toString() {
