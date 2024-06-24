@@ -1,0 +1,154 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "2:2545113248978641425",
+      "lastPropertyId": "6:258324090967465752",
+      "name": "Event",
+      "properties": [
+        {
+          "id": "1:4310842985319946914",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3637776464582519531",
+          "name": "name",
+          "type": 4
+        },
+        {
+          "id": "3:1520117690305473185",
+          "name": "notes",
+          "type": 4
+        },
+        {
+          "id": "4:6965828538278559551",
+          "name": "type",
+          "type": 4
+        },
+        {
+          "id": "5:6342334289272328411",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "6:258324090967465752",
+          "name": "percentage",
+          "type": 7
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:6712300024642865997",
+      "lastPropertyId": "3:7628532944252634798",
+      "name": "TermPeriod",
+      "properties": [
+        {
+          "id": "1:3735083573369474155",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6810973221594398258",
+          "name": "start",
+          "type": 10
+        },
+        {
+          "id": "3:7628532944252634798",
+          "name": "end",
+          "type": 10
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:3033383584820465524",
+      "lastPropertyId": "4:651313185732812970",
+      "name": "HolidayPeriod",
+      "properties": [
+        {
+          "id": "1:3314223274298000639",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1800696407142293280",
+          "name": "start",
+          "type": 10
+        },
+        {
+          "id": "3:3066113653228354995",
+          "name": "end",
+          "type": 10
+        },
+        {
+          "id": "4:651313185732812970",
+          "name": "name",
+          "type": 4
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:7387174656048122430",
+      "lastPropertyId": "4:2707582517948775339",
+      "name": "Lesson",
+      "properties": [
+        {
+          "id": "1:1159009269193963203",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4812326025030964172",
+          "name": "hour",
+          "type": 5
+        },
+        {
+          "id": "3:7214797018055737408",
+          "name": "minute",
+          "type": 5
+        },
+        {
+          "id": "4:2707582517948775339",
+          "name": "subjectId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:1874221612835247666",
+          "relationTarget": "Subject"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "6:5641477025173493033",
+  "lastIndexId": "1:1874221612835247666",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    3550581915661698429,
+    5641477025173493033
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    4875495904651296124,
+    2495712168504459199,
+    6733068527520113198,
+    8853223232895115220,
+    8676671176066478731,
+    4136888799807000002,
+    5662718307907723849,
+    6181656001915519347
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

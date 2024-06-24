@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'Control/objectbox.dart';
 import 'Pages/holder_page.dart';
 import 'dart:async';
 import 'package:path/path.dart';
@@ -11,11 +12,12 @@ import 'package:sqflite/sqflite.dart';
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-  
+  objectbox = await ObjectBox.create();
 
 
   runApp(const MyApp());
 }
+late ObjectBox  objectbox;
 
 class MyApp extends StatelessWidget{
   const MyApp({super.key});

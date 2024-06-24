@@ -1,15 +1,21 @@
 // ignore_for_file: unused_import
 
 import 'dart:async';
-
+import 'package:objectbox/objectbox.dart';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:timetablepp/Control/main_controller.dart';
-
+@Entity()
 class HolidayPeriod {
+  @Id()
+  int id = 0;
+
+  @Property(type: PropertyType.date)
   DateTime? start;
+  @Property(type: PropertyType.date)
   DateTime? end;
+  @Property(type: PropertyType.char)
   String name;
 
   get getStart => start;

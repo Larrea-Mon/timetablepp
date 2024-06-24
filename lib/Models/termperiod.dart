@@ -3,16 +3,20 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:timetablepp/Control/main_controller.dart';
-
+@Entity()
 class TermPeriod {
+  @Id()
+  int id = 0;
+  @Property(type: PropertyType.date)
   DateTime? start;
+  @Property(type: PropertyType.date)
   DateTime? end;
 
 
-  //TODO Poner que cuando se introduce una fecha que sea coherente con la otra
   TermPeriod({
     required this.start,
     required this.end,
