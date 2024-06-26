@@ -1,7 +1,7 @@
 import 'package:objectbox/objectbox.dart';
 import 'package:timetablepp/Models/subject.dart';
 
-@Entity()
+//TODO poner @Entity()
 class Lesson {
   @Id()
   int id = 0;

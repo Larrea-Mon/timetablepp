@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Pages/TimetablePages/ExtraPages/addholiday_page.dart';
 
@@ -25,7 +26,8 @@ class _HolidaysPageState extends State<HolidaysPage> {
           onPressed: () {
             MainController().resetCurrentHoliday();
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AddHolidayPage()));
+                    MaterialPageRoute(builder: (context) => AddHolidayPage()))
+                .then((_) => setState(() {}));
           },
           icon: Icon(Icons.add_box),
         )
@@ -51,22 +53,24 @@ class _HolidaysPageState extends State<HolidaysPage> {
               color: Colors.black,
             ),
             Flexible(
-              child: ListView.separated(
+              child: ListView.builder(
                 scrollDirection: Axis.vertical,
-                separatorBuilder: (context, index) =>
-                    Divider(thickness: 1, color: Colors.black),
                 shrinkWrap: false,
                 itemCount: holidays.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(holidays[index].getName()),
-                    subtitle: Text(holidays[index].getStartAsString() +' - ' +holidays[index].getEndAsString()),
+                    subtitle: Text(holidays[index].getStartAsString() +
+                        ' - ' +
+                        holidays[index].getEndAsString()),
                     onTap: () {
                       MainController().setCurrentHoliday(holidays[index]);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AddHolidayPage()));
+                              builder: (context) => AddHolidayPage())).then(
+                        (_) => setState(() {}),
+                      );
                     },
                   );
                 },

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/main_controller.dart';
@@ -24,6 +25,7 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
 
   @override
   Widget build(BuildContext context) {
+    myController.text = MainController().getCurrentHoliday().name;
     TextField nameTF = TextField(
       controller: myController,
       decoration: InputDecoration(
@@ -32,7 +34,6 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
         hintText: ('Nombre del festivo'),
       ),
     );
-
     AppBar holidayAddAppBar = AppBar(
       title: Text('Añadir Festivo'),
       backgroundColor: Colors.blue[100],
@@ -41,10 +42,10 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
             onPressed: () {
               if ((MainController().getCurrentHoliday().end != null) &&
                   (MainController().getCurrentHoliday().start != null)) {
-                if (MainController()
+                if (!MainController()
                     .getCurrentHoliday()
                     .start!
-                    .isBefore(MainController().getCurrentHoliday().end!)) {
+                    .isAfter(MainController().getCurrentHoliday().end!)) {
                   MainController().pushCurrentHoliday(myController.text);
                   Navigator.pop(context);
                 } else {

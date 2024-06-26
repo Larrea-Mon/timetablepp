@@ -15,10 +15,16 @@ class HolidayPeriod {
   DateTime? start;
   @Property(type: PropertyType.date)
   DateTime? end;
-  @Property(type: PropertyType.char)
+  
   String name;
 
-  get getStart => start;
+  DateTime getStart(){
+    if (start != null) {
+      return start!;
+    } else {
+      return DateTime(1970);
+    }
+  }
 
   void setStart(DateTime start) {
     this.start = start;

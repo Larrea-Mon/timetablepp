@@ -4,6 +4,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:timetablepp/Control/objectbox.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/termperiod.dart';
 
@@ -13,6 +14,10 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../objectbox.g.dart';
+
+import '../main.dart';
+
 class MainController {
   MainController._privateConstructor();
 
@@ -21,64 +26,60 @@ class MainController {
     return _instance;
   }
 
-  List<HolidayPeriod> holidays = List<HolidayPeriod>.empty(growable: true);
+  final Box<HolidayPeriod> holidaysBox = objectbox.store.box<HolidayPeriod>();
+  final Box<TermPeriod> termPeriodBox = objectbox.store.box<TermPeriod>();
 
-  TermPeriod _termPeriod = TermPeriod(start: null, end: null);
+  Future<void> _addHoliday(HolidayPeriod holiday) async {
+    holidaysBox.put(holiday);
+  }
+
+  late TermPeriod _termPeriod;
   HolidayPeriod _currentHolidayPeriod = HolidayPeriod(null, null, '');
 
   void debugHolidays() {
-    if (holidays.isNotEmpty) {
-      holidays = List<HolidayPeriod>.empty(growable: true);
-    }
-
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 01, 06),
-        DateTime.utc(2024, 01, 07), 'Dia de Reyes Magos'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin1'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin2'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin3'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin4'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin5'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valenti6'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin7'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin8'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin9'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin10'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin11'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin12'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin13'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin14'));
-    holidays.add(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 15), 'Dia de san valentin15'));
+    _addHoliday(HolidayPeriod(DateTime.utc(2024, 12, 18),
+        DateTime.utc(2025, 01, 20), 'Vacaciones de Navidad'));
+    _addHoliday(HolidayPeriod(
+        DateTime.utc(2024, 01, 06), DateTime.utc(2024, 01, 07), 'Reyes Magos'));
+    _addHoliday(HolidayPeriod(
+        DateTime.utc(2024, 01, 01), DateTime.utc(2024, 01, 01), 'Año Nuevo'));
+    _addHoliday(HolidayPeriod(DateTime.utc(2024, 02, 14),
+        DateTime.utc(2024, 02, 14), 'San Valentin'));
+    _addHoliday(HolidayPeriod(DateTime.utc(2024, 03, 23),
+        DateTime.utc(2024, 03, 23), 'Viernes Santo'));
+    _addHoliday(HolidayPeriod(DateTime.utc(2024, 05, 01),
+        DateTime.utc(2024, 05, 01), 'Dia del trabajador'));
+    _addHoliday(HolidayPeriod(DateTime.utc(2024, 10, 12),
+        DateTime.utc(2024, 10, 12), 'Fiesta Nacional de españa'));
+    _addHoliday(HolidayPeriod(DateTime.utc(2024, 11, 14),
+        DateTime.utc(2024, 11, 15), 'Dia de la Constitución'));
   }
 
   List<HolidayPeriod> getHolidays() {
+    var holidays = holidaysBox.getAll();
+    holidays.sort((a, b) => a.getStart().compareTo(b.getStart()));
     return holidays;
   }
 
   TermPeriod getTermPeriod() {
-    return _termPeriod;
+    var result = termPeriodBox.get(1);
+    if (result != null) {
+      _termPeriod = result;
+      return _termPeriod;
+    } else {
+      _termPeriod = TermPeriod(start: null, end: null);
+      return _termPeriod;
+    }
   }
 
   void setTermPeriodStart(DateTime start) {
     _termPeriod.start = start;
+    termPeriodBox.put(_termPeriod);
   }
 
   void setTermPeriodEnd(DateTime end) {
     _termPeriod.end = end;
+    termPeriodBox.put(_termPeriod);
   }
 
   HolidayPeriod getCurrentHoliday() {
@@ -95,9 +96,13 @@ class MainController {
     _currentHolidayPeriod.name = '';
   }
 
+  int deleteHolidays() {
+    return holidaysBox.removeAll();
+  }
+
   void pushCurrentHoliday(String name) {
     _currentHolidayPeriod.setName(name);
-    holidays.add(HolidayPeriod.clone(_currentHolidayPeriod));
+    holidaysBox.put(getCurrentHoliday());
   }
 }
 

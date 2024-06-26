@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path/path.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 
@@ -20,8 +21,8 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
         body: ListView(
           children: <Widget>[
             ListTile(
-              title: Text('Tema de la aplicación'),
-              subtitle: Text('TODO Light'),
+              title: Text('Añade Vacaciones'),
+              //subtitle: Text('TODO Light'),
               enabled: true,
               onTap: () {
                 MainController().debugHolidays();
@@ -33,7 +34,20 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
                 }
 
                 Fluttertoast.showToast(
-                  msg: 'Reiciadas las Holidays',
+                  msg: 'Añadidas ',
+                  backgroundColor: Colors.grey,
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Borra todas las vacaciones'),
+              //subtitle: Text('TODO Light'),
+              enabled: true,
+              onTap: () {
+                int i = MainController().deleteHolidays();
+
+                Fluttertoast.showToast(
+                  msg: 'Eliminadas $i vacaciones',
                   backgroundColor: Colors.grey,
                 );
               },
