@@ -15,6 +15,7 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_sync_flutter_libs/objectbox_sync_flutter_libs.dart';
 
 import 'Models/holidayperiod.dart';
+import 'Models/subject.dart';
 import 'Models/termperiod.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
@@ -72,6 +73,45 @@ final _entities = <obx_int.ModelEntity>[
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(7, 7039596356983433900),
+      name: 'Subject',
+      lastPropertyId: const obx_int.IdUid(7, 8244514203172194503),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 577877316626608401),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 8193245059149668343),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 4789907192747017289),
+            name: 'abv',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 1407323447579881166),
+            name: 'teacher',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 5604493318830112940),
+            name: 'place',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 8244514203172194503),
+            name: 'color',
+            type: 9,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
 ];
 
@@ -110,7 +150,7 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(6, 5641477025173493033),
+      lastEntityId: const obx_int.IdUid(7, 7039596356983433900),
       lastIndexId: const obx_int.IdUid(1, 1874221612835247666),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
@@ -139,7 +179,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
         1520117690305473185,
         6965828538278559551,
         6342334289272328411,
-        258324090967465752
+        258324090967465752,
+        8555219835403082987
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -218,6 +259,49 @@ obx_int.ModelDefinition getObjectBoxModel() {
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
+        }),
+    Subject: obx_int.EntityDefinition<Subject>(
+        model: _entities[2],
+        toOneRelations: (Subject object) => [],
+        toManyRelations: (Subject object) => {},
+        getId: (Subject object) => object.id,
+        setId: (Subject object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Subject object, fb.Builder fbb) {
+          final nameOffset = fbb.writeString(object.name);
+          final abvOffset = fbb.writeString(object.abv);
+          final teacherOffset = fbb.writeString(object.teacher);
+          final placeOffset = fbb.writeString(object.place);
+          final colorOffset = fbb.writeString(object.color);
+          fbb.startTable(8);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(2, abvOffset);
+          fbb.addOffset(3, teacherOffset);
+          fbb.addOffset(4, placeOffset);
+          fbb.addOffset(6, colorOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final abvParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 8, '');
+          final teacherParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 10, '');
+          final placeParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 12, '');
+          final colorParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 16, '');
+          final object = Subject(
+              nameParam, abvParam, teacherParam, placeParam, colorParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+
+          return object;
         })
   };
 
@@ -256,4 +340,31 @@ class HolidayPeriod_ {
   /// See [HolidayPeriod.name].
   static final name =
       obx.QueryStringProperty<HolidayPeriod>(_entities[1].properties[3]);
+}
+
+/// [Subject] entity fields to define ObjectBox queries.
+class Subject_ {
+  /// See [Subject.id].
+  static final id =
+      obx.QueryIntegerProperty<Subject>(_entities[2].properties[0]);
+
+  /// See [Subject.name].
+  static final name =
+      obx.QueryStringProperty<Subject>(_entities[2].properties[1]);
+
+  /// See [Subject.abv].
+  static final abv =
+      obx.QueryStringProperty<Subject>(_entities[2].properties[2]);
+
+  /// See [Subject.teacher].
+  static final teacher =
+      obx.QueryStringProperty<Subject>(_entities[2].properties[3]);
+
+  /// See [Subject.place].
+  static final place =
+      obx.QueryStringProperty<Subject>(_entities[2].properties[4]);
+
+  /// See [Subject.color].
+  static final color =
+      obx.QueryStringProperty<Subject>(_entities[2].properties[5]);
 }

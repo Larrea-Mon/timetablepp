@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path/path.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 

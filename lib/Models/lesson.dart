@@ -9,7 +9,7 @@ class Lesson {
   int hour = 0;
   @Property(type: PropertyType.int)
   int minute = 0;
-  @Transient()//TODO esto
+
   late Days day;
   
   final subject = ToOne<Subject>();

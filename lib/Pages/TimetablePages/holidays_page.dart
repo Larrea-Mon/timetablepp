@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Pages/TimetablePages/ExtraPages/addholiday_page.dart';
 
@@ -15,6 +14,7 @@ class HolidaysPage extends StatefulWidget {
   State<HolidaysPage> createState() => _HolidaysPageState();
 }
 
+//TODO añadir funcionalidad de borrar una holiday.
 class _HolidaysPageState extends State<HolidaysPage> {
   @override
   Widget build(BuildContext context) {

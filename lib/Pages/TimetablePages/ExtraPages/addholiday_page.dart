@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/main_controller.dart';
@@ -15,10 +14,9 @@ class AddHolidayPage extends StatefulWidget {
 }
 
 class _AddHolidayPageState extends State<AddHolidayPage> {
-
   final myController = TextEditingController();
-  @override 
-  void dispose(){
+  @override
+  void dispose() {
     myController.dispose();
     super.dispose();
   }
@@ -46,8 +44,15 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
                     .getCurrentHoliday()
                     .start!
                     .isAfter(MainController().getCurrentHoliday().end!)) {
-                  MainController().pushCurrentHoliday(myController.text);
-                  Navigator.pop(context);
+                  if (myController.text.trim().isNotEmpty) {
+                    MainController().pushCurrentHoliday(myController.text);
+                    Navigator.pop(context);
+                  } else {
+                    Fluttertoast.showToast(
+                      msg:
+                          "El festivo debe tener nombre.",
+                      backgroundColor: Colors.grey);
+                  }
                 } else {
                   Fluttertoast.showToast(
                       msg:
