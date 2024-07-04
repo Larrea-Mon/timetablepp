@@ -6,6 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 
+import 'addholiday_appbar.dart';
+
 class AddHolidayPage extends StatefulWidget {
   const AddHolidayPage({super.key});
 
@@ -32,46 +34,66 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
         hintText: ('Nombre del festivo'),
       ),
     );
-    AppBar holidayAddAppBar = AppBar(
-      title: Text('Añadir Festivo'),
-      backgroundColor: Colors.blue[100],
-      actions: <Widget>[
-        IconButton(
-            onPressed: () {
-              if ((MainController().getCurrentHoliday().end != null) &&
-                  (MainController().getCurrentHoliday().start != null)) {
-                if (!MainController()
-                    .getCurrentHoliday()
-                    .start!
-                    .isAfter(MainController().getCurrentHoliday().end!)) {
-                  if (myController.text.trim().isNotEmpty) {
-                    MainController().pushCurrentHoliday(myController.text);
-                    Navigator.pop(context);
-                  } else {
-                    Fluttertoast.showToast(
-                      msg:
-                          "El festivo debe tener nombre.",
-                      backgroundColor: Colors.grey);
-                  }
-                } else {
-                  Fluttertoast.showToast(
-                      msg:
-                          "La fecha inicial debe ser anterior a la fecha final",
-                      backgroundColor: Colors.grey);
-                }
-              } else {
-                Fluttertoast.showToast(
-                  msg: "El período festivo debe tener comienzo y final",
-                  backgroundColor: Colors.grey,
-                );
-              }
-            },
-            icon: Icon(Icons.save))
-      ],
+
+    IconButton saveHolidayButton = IconButton(
+      icon: Icon(Icons.save),
+      onPressed: () {
+        if ((MainController().getCurrentHoliday().end != null) &&
+            (MainController().getCurrentHoliday().start != null)) {
+          if (!MainController()
+              .getCurrentHoliday()
+              .start!
+              .isAfter(MainController().getCurrentHoliday().end!)) {
+            if (myController.text.trim().isNotEmpty) {
+              MainController().pushCurrentHoliday(myController.text);
+              Navigator.pop(context);
+            } else {
+              Fluttertoast.showToast(
+                  msg: "El festivo debe tener nombre.",
+                  backgroundColor: Colors.grey);
+            }
+          } else {
+            Fluttertoast.showToast(
+                msg: "La fecha inicial debe ser anterior a la fecha final",
+                backgroundColor: Colors.grey);
+          }
+        } else {
+          Fluttertoast.showToast(
+            msg: "El período festivo debe tener comienzo y final",
+            backgroundColor: Colors.grey,
+          );
+        }
+      },
     );
 
+    buildHolidayAppBar() {
+
+      if(MainController().getCurrentHoliday().name == ''){
+      AppBar holidayAddAppBar = AppBar(
+        title: Text('Añadir Festivo'),
+        backgroundColor: Colors.blue[100],
+        actions: <Widget>[
+          helpButton(context),
+          saveHolidayButton,
+        ],
+      );
+      return holidayAddAppBar;
+      } else {
+        AppBar holidayAddAppBar = AppBar(
+        title: Text('Añadir Festivo'),
+        backgroundColor: Colors.blue[100],
+        actions: <Widget>[
+          helpButton(context),
+          deleteButton(context),
+          saveHolidayButton,
+        ],
+      );
+      return holidayAddAppBar;
+      }
+    }
+
     return Scaffold(
-        appBar: holidayAddAppBar,
+        appBar: buildHolidayAppBar(),
         body: Column(
           children: [
             Wrap(

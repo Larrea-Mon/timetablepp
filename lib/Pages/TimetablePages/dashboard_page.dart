@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors,unused_import
+// ignore_for_file: prefer_const_constructors,unused_import, unnecessary_import
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,18 +46,18 @@ class _DashboardPageState extends State<DashboardPage> {
             title: Text("Subjects"),
           ),
           SingleChildScrollView(
-            child: Column(
-              children: [
+            child: 
+
                 ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: 2,
+                    itemCount:12,
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text("TODO $index"),
                       );
                     })
-              ],
-            ),
+
           )
         ],
       ),
@@ -66,15 +66,18 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: dashboardAppBar,
-      body: Column(
-        children: [
-          Center(
-            child: upcomingCard,
-          ),
-          Center(
-            child: subjectsCard,
-          )
-        ],
+      body: SingleChildScrollView(
+        // Add a SingleChildScrollView to the body
+        child: Column(
+          children: [
+            Center(
+              child: upcomingCard,
+            ),
+            Center(
+              child: subjectsCard,
+            )
+          ],
+        ),
       ),
     );
   }

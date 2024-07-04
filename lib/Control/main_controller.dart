@@ -104,6 +104,10 @@ class MainController {
     _currentHolidayPeriod.setName(name);
     holidaysBox.put(getCurrentHoliday());
   }
+
+  void deleteCurrentHoliday() {
+    holidaysBox.remove(_currentHolidayPeriod.id);
+  }
 }
 
 void todoButton() {
