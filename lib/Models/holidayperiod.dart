@@ -72,3 +72,10 @@ class HolidayPeriod {
     return 'HolidayPeriod: Start:[$start], End:[$end], Name:[$name]';
   }
 }
+
+String dateToString(DateTime dateTime) {
+  String day = dateTime.day.toString();
+  String month = dateTime.month.toString();
+  String year = dateTime.year.toString();
+  return ("$day/$month/$year");
+}

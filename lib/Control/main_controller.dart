@@ -14,6 +14,7 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../Models/subject.dart';
 import '../objectbox.g.dart';
 
 import '../main.dart';
@@ -28,32 +29,10 @@ class MainController {
 
   final Box<HolidayPeriod> holidaysBox = objectbox.store.box<HolidayPeriod>();
   final Box<TermPeriod> termPeriodBox = objectbox.store.box<TermPeriod>();
-
-  Future<void> _addHoliday(HolidayPeriod holiday) async {
-    holidaysBox.put(holiday);
-  }
+  final Box<Subject> subjectBox = objectbox.store.box<Subject>();
 
   late TermPeriod _termPeriod;
   HolidayPeriod _currentHolidayPeriod = HolidayPeriod(null, null, '');
-
-  void debugHolidays() {
-    _addHoliday(HolidayPeriod(DateTime.utc(2024, 12, 18),
-        DateTime.utc(2025, 01, 20), 'Vacaciones de Navidad'));
-    _addHoliday(HolidayPeriod(
-        DateTime.utc(2024, 01, 06), DateTime.utc(2024, 01, 07), 'Reyes Magos'));
-    _addHoliday(HolidayPeriod(
-        DateTime.utc(2024, 01, 01), DateTime.utc(2024, 01, 01), 'Año Nuevo'));
-    _addHoliday(HolidayPeriod(DateTime.utc(2024, 02, 14),
-        DateTime.utc(2024, 02, 14), 'San Valentin'));
-    _addHoliday(HolidayPeriod(DateTime.utc(2024, 03, 23),
-        DateTime.utc(2024, 03, 23), 'Viernes Santo'));
-    _addHoliday(HolidayPeriod(DateTime.utc(2024, 05, 01),
-        DateTime.utc(2024, 05, 01), 'Dia del trabajador'));
-    _addHoliday(HolidayPeriod(DateTime.utc(2024, 10, 12),
-        DateTime.utc(2024, 10, 12), 'Fiesta Nacional de españa'));
-    _addHoliday(HolidayPeriod(DateTime.utc(2024, 11, 14),
-        DateTime.utc(2024, 11, 15), 'Dia de la Constitución'));
-  }
 
   List<HolidayPeriod> getHolidays() {
     var holidays = holidaysBox.getAll();
@@ -100,6 +79,10 @@ class MainController {
     return holidaysBox.removeAll();
   }
 
+  void addHoliday(HolidayPeriod holiday) async {
+    holidaysBox.put(holiday);
+  }
+
   void pushCurrentHoliday(String name) {
     _currentHolidayPeriod.setName(name);
     holidaysBox.put(getCurrentHoliday());
@@ -108,6 +91,22 @@ class MainController {
   void deleteCurrentHoliday() {
     holidaysBox.remove(_currentHolidayPeriod.id);
   }
+
+  void addSubject(Subject subject) async {
+    subjectBox.put(subject);
+  }
+
+  List<Subject> getAllSubjects() {
+    return subjectBox.getAll();
+  }
+
+  void deleteSubject(int id) {
+    subjectBox.remove(id);
+  }
+
+  int deleteAllSubjects() {
+    return subjectBox.removeAll();
+  }
 }
 
 void todoButton() {
@@ -115,9 +114,5 @@ void todoButton() {
       msg: '//TODO implementar esto', backgroundColor: Colors.grey);
 }
 
-String dateToString(DateTime dateTime) {
-  String day = dateTime.day.toString();
-  String month = dateTime.month.toString();
-  String year = dateTime.year.toString();
-  return ("$day/$month/$year");
-}
+
+

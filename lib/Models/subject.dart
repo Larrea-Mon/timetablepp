@@ -20,11 +20,17 @@ class Subject {
   @Id()
   int id = 0;
 
-  String name = '';
-  String abv = '';
-  String teacher = '';
-  String place = '';
-  String color = '';
+  String name;
+  String abv;
 
-  Subject(String name, String abv, String teacher, String place,String color);
+  String teacher;
+  String place;
+  String color;
+
+  Subject(this.name, this.abv, this.teacher, this.place, this.color);
+
+  @override
+  String toString() {
+    return 'Subject:$name,$abv,$teacher,$place,$color';
+  }
 }

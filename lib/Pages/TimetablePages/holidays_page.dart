@@ -14,7 +14,7 @@ class HolidaysPage extends StatefulWidget {
   State<HolidaysPage> createState() => _HolidaysPageState();
 }
 
-//TODO añadir funcionalidad de borrar una holiday.
+
 class _HolidaysPageState extends State<HolidaysPage> {
   @override
   Widget build(BuildContext context) {

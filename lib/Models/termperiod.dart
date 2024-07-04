@@ -7,6 +7,7 @@ import 'package:objectbox/objectbox.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:timetablepp/Control/main_controller.dart';
+import 'package:timetablepp/Models/holidayperiod.dart';
 @Entity()
 class TermPeriod {
   @Id()

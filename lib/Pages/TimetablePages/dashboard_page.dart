@@ -3,6 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:timetablepp/Control/main_controller.dart';
+import 'package:timetablepp/Models/subject.dart';
 import 'package:timetablepp/objectbox.g.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -15,13 +17,10 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
+    List<Subject> a;
     AppBar dashboardAppBar = AppBar(
       title: Text('Main Page'),
       backgroundColor: Colors.blue[100],
-
-      /*actions: <Widget>[
-    PopupMenuButton(itemBuilder: itemBuilder)
-  ],*/
     );
 
     Card upcomingCard = Card(
@@ -36,30 +35,45 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
 
-    Card subjectsCard = Card(
-      margin: const EdgeInsets.all(20.0),
-      color: Colors.white,
-      elevation: 2.0,
-      child: Column(
-        children: [
-          AppBar(
-            title: Text("Subjects"),
-          ),
-          SingleChildScrollView(
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 20,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text("TODO $index"),
-                );
-              },
+    buildSubjectsCard() {
+      var subjs = MainController().getAllSubjects();
+
+      Card subjectsCard = Card(
+        margin: const EdgeInsets.all(20.0),
+        color: Colors.white,
+        elevation: 2.0,
+        child: Column(
+          children: [
+            AppBar(
+              title: Text("Subjects"),
+              actions: <Widget>[IconButton(onPressed: () => {a = MainController().getAllSubjects(), debugPrint(a.toString())}, icon: Icon(Icons.book))],
             ),
-          )
-        ],
-      ),
-    );
+            SingleChildScrollView(
+              child: Column(children:[
+                for(int i = 0; i< subjs.length; i++)
+                  ListTile(
+                    title: Text('todo'),
+                    //subtitle: Text('todo'),
+                    subtitle: Text(subjs[i].name.toString()),
+                  )
+                
+              ])
+              /*child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: subjs.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text("TODO $index"),
+                  );
+                },
+              ),*/
+            )
+          ],
+        ),
+      );
+      return subjectsCard;
+    }
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
@@ -69,11 +83,11 @@ class _DashboardPageState extends State<DashboardPage> {
           Center(
             child: upcomingCard,
           ),
-          Expanded(
+         Expanded(
             child: Center(
-              child: subjectsCard,
+              child: buildSubjectsCard(),
             ),
-          )
+         ),
         ],
       ),
     );
