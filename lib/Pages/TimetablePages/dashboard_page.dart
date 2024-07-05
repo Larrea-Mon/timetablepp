@@ -23,17 +23,60 @@ class _DashboardPageState extends State<DashboardPage> {
       backgroundColor: Colors.blue[100],
     );
 
-    Card upcomingCard = Card(
-      margin: const EdgeInsets.all(20.0),
-      color: Colors.white,
-      elevation: 2.0,
-      child: ListTile(
-        isThreeLine: true,
-        title: Text("Upcoming"),
+    buildUpcomingCard() {
+      return Card(
+        margin: const EdgeInsets.all(20.0),
+        color: Colors.white,
+        elevation: 2.0,
+        child: ListTile(
+          isThreeLine: true,
+          title: Text("Upcoming"),
+          subtitle: Text(
+              "TODO overdue tasks, TODO due today, TODO due tomorrow\nTODO upcoming Tasks\nTODO upcoming exams"),
+        ),
+      );
+    }
+
+    buildSubjectsAppbar() {
+      return AppBar(
+        title: Text("Subjects"),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () => {
+                    a = MainController().getAllSubjects(),
+                    debugPrint(a.toString())
+                  },
+              icon: Icon(Icons.book))
+        ],
+      );
+    }
+
+    buildSubjectsTile(Subject subject) {
+      return ListTile(
+        title: Text(subject.name.toString()),
         subtitle: Text(
-            "TODO overdue tasks, TODO due today, TODO due tomorrow\nTODO upcoming Tasks\nTODO upcoming exams"),
-      ),
-    );
+          subject.place + ' - ' + subject.teacher,
+        ),
+      );
+    }
+
+    buildSubjectsRow(Subject subject) {
+      return Row(
+        children: [
+          SizedBox(
+            height: 88,
+            width: 30,
+            child: ColoredBox(
+              color: colorToColor(subject.color),
+            ),
+          ),
+          //Container(height: 88, width: 50, color: Colors.green,),
+          Expanded(
+            child: buildSubjectsTile(subject),
+          ),
+        ],
+      );
+    }
 
     buildSubjectsCard() {
       var subjs = MainController().getAllSubjects();
@@ -42,34 +85,18 @@ class _DashboardPageState extends State<DashboardPage> {
         margin: const EdgeInsets.all(20.0),
         color: Colors.white,
         elevation: 2.0,
-        child: Column(
-          children: [
-            AppBar(
-              title: Text("Subjects"),
-              actions: <Widget>[IconButton(onPressed: () => {a = MainController().getAllSubjects(), debugPrint(a.toString())}, icon: Icon(Icons.book))],
-            ),
-            SingleChildScrollView(
-              child: Column(children:[
-                for(int i = 0; i< subjs.length; i++)
-                  ListTile(
-                    title: Text('todo'),
-                    //subtitle: Text('todo'),
-                    subtitle: Text(subjs[i].name.toString()),
-                  )
-                
-              ])
-              /*child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: subjs.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text("TODO $index"),
-                  );
-                },
-              ),*/
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              buildSubjectsAppbar(),
+              Column(
+                children: [
+                  for (int i = 0; i < subjs.length; i++)
+                    buildSubjectsRow(subjs[i]),
+                ],
+              ),
+            ],
+          ),
         ),
       );
       return subjectsCard;
@@ -80,14 +107,10 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: dashboardAppBar,
       body: Column(
         children: [
-          Center(
-            child: upcomingCard,
+          buildUpcomingCard(),
+          Expanded(
+            child: buildSubjectsCard(),
           ),
-         Expanded(
-            child: Center(
-              child: buildSubjectsCard(),
-            ),
-         ),
         ],
       ),
     );

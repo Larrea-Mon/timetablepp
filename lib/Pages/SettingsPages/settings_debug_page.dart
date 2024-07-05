@@ -125,7 +125,7 @@ void debugAddSubjects() {
 
   MainController().addSubject(a);
   MainController().addSubject(Subject(
-      'Estadistica ', 'STA', 'Profe 1', "E301", SubjectColors.grass.name));
+      'Estadistica ', 'STA', 'Profe 2', "E302", SubjectColors.grass.name));
   MainController().addSubject(Subject(
-      'Programacion I', 'PRO', 'Profe 1', "E301", SubjectColors.forest.name));
+      'Programacion I', 'PRO', 'Profe 3', "E126", SubjectColors.forest.name));
 }
