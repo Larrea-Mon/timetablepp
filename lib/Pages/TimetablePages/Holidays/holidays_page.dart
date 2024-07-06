@@ -53,7 +53,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
                 itemCount: holidays.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(holidays[index].getName()),
+                    title: Text(holidays[index].getName()/* + ' DEBUG: ID: ' + holidays[index].id.toString()*/),
                     subtitle: Text('${holidays[index].getStartAsString()} - ${holidays[index].getEndAsString()}'),
                     onTap: () {
                       MainController().setCurrentHoliday(holidays[index]);

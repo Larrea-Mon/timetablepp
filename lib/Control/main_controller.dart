@@ -10,7 +10,6 @@ import 'package:timetablepp/Models/termperiod.dart';
 
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -88,12 +87,14 @@ class MainController {
   }
 
   void setCurrentSubject(Subject subject) {
-    this._currentSubject = subject;
+    debugPrint('[MainController] : SetcurrentSubject(Antes era $_currentSubject y ahora va a ser $subject)');
+    _currentSubject = subject;
+    debugPrint('[MainController] : SetcurrentSubject(TEST: _currentSubject es: $_currentSubject)');
   }
 
   void resetCurrentSubject() {
     _currentSubject =
-        new Subject('New Subject', '', '', '', SubjectColors.sky.name);
+        Subject('New Subject', '', '', '', SubjectColors.sky.name);
   }
 
   void pushCurrentSubject() {
@@ -129,8 +130,8 @@ class MainController {
     return subjectBox.getAll();
   }
 
-  void deleteSubject(int id) {
-    subjectBox.remove(id);
+  void deleteSubject(Subject subject) {
+    subjectBox.remove(subject.id);
   }
 
   int deleteAllSubjects() {

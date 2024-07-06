@@ -17,7 +17,7 @@ class Subject {
 
   @override
   String toString() {
-    return 'Subject:$name,$abv,$teacher,$place,$color';
+    return 'Subject:[ID:$id],$name,$abv,$teacher,$place,$color';
   }
 }
 

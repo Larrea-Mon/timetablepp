@@ -38,21 +38,25 @@ class _DashboardPageState extends State<DashboardPage> {
       );
     }
 
+    buildNewSubjectIconButton() {
+      return IconButton(
+          onPressed: () => {
+                MainController().resetCurrentSubject(),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddSubjectPage(),
+                  ),
+                ).then((_) => setState(() {}))
+              },
+          icon: Icon(Icons.book));
+    }
+
     buildSubjectsAppbar() {
       return AppBar(
         title: Text("Subjects"),
         actions: <Widget>[
-          IconButton(
-              onPressed: () => {
-                    MainController().resetCurrentSubject(),
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddSubjectPage(),
-                      ),
-                    ).then((_) => setState(() {}))
-                  },
-              icon: Icon(Icons.book))
+          buildNewSubjectIconButton(),
         ],
       );
     }
@@ -60,6 +64,7 @@ class _DashboardPageState extends State<DashboardPage> {
     buildSubjectsTile(Subject subject) {
       return ListTile(
         onTap: () {
+          debugPrint('Soy una Tile y mi Subject es [$subject]');
           MainController().setCurrentSubject(subject);
           Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AddSubjectPage()))

@@ -26,69 +26,80 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
   @override
   Widget build(BuildContext context) {
     myController.text = MainController().getCurrentHoliday().name;
-    TextField nameTF = TextField(
-      controller: myController,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(12, 4, 12, 4),
-        hintStyle: TextStyle(color: Colors.grey[150]),
-        hintText: ('Nombre del festivo'),
-      ),
-    );
 
-    IconButton saveHolidayButton = IconButton(
-      icon: Icon(Icons.save),
-      onPressed: () {
-        if ((MainController().getCurrentHoliday().end != null) &&
-            (MainController().getCurrentHoliday().start != null)) {
-          if (!MainController()
-              .getCurrentHoliday()
-              .start!
-              .isAfter(MainController().getCurrentHoliday().end!)) {
-            if (myController.text.trim().isNotEmpty) {
-              MainController().pushCurrentHoliday(myController.text);
-              Navigator.pop(context);
+    buildNameTextField() {
+      return TextField(
+        controller: myController,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(12, 4, 12, 4),
+          hintStyle: TextStyle(color: Colors.grey[150]),
+          hintText: ('Nombre del festivo'),
+        ),
+      );
+    }
+
+    buildSaveHolidayIcon() {
+      late Icon a;
+      if (MainController().getCurrentHoliday().start == null) {
+        a = Icon(Icons.save);
+      } else {
+        a = Icon(Icons.save_as);
+      }
+
+      return IconButton(
+        icon: a,
+        onPressed: () {
+          if ((MainController().getCurrentHoliday().end != null) &&
+              (MainController().getCurrentHoliday().start != null)) {
+            if (!MainController()
+                .getCurrentHoliday()
+                .start!
+                .isAfter(MainController().getCurrentHoliday().end!)) {
+              if (myController.text.trim().isNotEmpty) {
+                MainController().pushCurrentHoliday(myController.text);
+                Navigator.pop(context);
+              } else {
+                Fluttertoast.showToast(
+                    msg: "El festivo debe tener nombre.",
+                    backgroundColor: Colors.grey);
+              }
             } else {
               Fluttertoast.showToast(
-                  msg: "El festivo debe tener nombre.",
+                  msg: "La fecha inicial debe ser anterior a la fecha final",
                   backgroundColor: Colors.grey);
             }
           } else {
             Fluttertoast.showToast(
-                msg: "La fecha inicial debe ser anterior a la fecha final",
-                backgroundColor: Colors.grey);
+              msg: "El período festivo debe tener comienzo y final",
+              backgroundColor: Colors.grey,
+            );
           }
-        } else {
-          Fluttertoast.showToast(
-            msg: "El período festivo debe tener comienzo y final",
-            backgroundColor: Colors.grey,
-          );
-        }
-      },
-    );
+        },
+      );
+    }
 
     buildHolidayAppBar() {
-
-      if(MainController().getCurrentHoliday().name == ''){
-      AppBar holidayAddAppBar = AppBar(
-        title: Text('Añadir Festivo'),
-        backgroundColor: Colors.blue[100],
-        actions: <Widget>[
-          helpButton(context),
-          saveHolidayButton,
-        ],
-      );
-      return holidayAddAppBar;
+      if (MainController().getCurrentHoliday().name == '') {
+        AppBar holidayAddAppBar = AppBar(
+          title: Text('Añadir Festivo'),
+          backgroundColor: Colors.blue[100],
+          actions: <Widget>[
+            helpButton(context),
+            buildSaveHolidayIcon(),
+          ],
+        );
+        return holidayAddAppBar;
       } else {
         AppBar holidayAddAppBar = AppBar(
-        title: Text('Añadir Festivo'),
-        backgroundColor: Colors.blue[100],
-        actions: <Widget>[
-          helpButton(context),
-          deleteButton(context),
-          saveHolidayButton,
-        ],
-      );
-      return holidayAddAppBar;
+          title: Text('Añadir Festivo'),
+          backgroundColor: Colors.blue[100],
+          actions: <Widget>[
+            helpButton(context),
+            deleteButton(context),
+            buildSaveHolidayIcon(),
+          ],
+        );
+        return holidayAddAppBar;
       }
     }
 
@@ -99,7 +110,7 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
             Wrap(
               alignment: WrapAlignment.center,
               spacing: 100,
-              children: [nameTF],
+              children: [buildNameTextField()],
             ),
             HolidayDateStartPicker(),
             HolidayDateEndPicker(),

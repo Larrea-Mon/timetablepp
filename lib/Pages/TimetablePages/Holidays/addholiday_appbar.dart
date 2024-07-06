@@ -28,7 +28,12 @@ IconButton deleteButton(context) {
   var a = MainController().getCurrentHoliday().getName();
 
   return IconButton(
-      onPressed: () => {Fluttertoast.showToast(msg: "Deleted $a.", backgroundColor: Colors.grey),MainController().deleteCurrentHoliday(), Navigator.pop(context)},
+      onPressed: () => {
+            Fluttertoast.showToast(
+                msg: "Deleted $a.", backgroundColor: Colors.grey),
+            MainController().deleteCurrentHoliday(),
+            Navigator.pop(context)
+          },
       padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
       icon: Icon(Icons.delete));
 }
