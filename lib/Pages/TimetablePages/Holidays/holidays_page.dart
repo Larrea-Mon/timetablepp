@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_import, prefer_interpolation_to_compose_strings
-
+// ignore_for_file: prefer_const_constructors, unnecessary_import,
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:timetablepp/Control/main_controller.dart';
-import 'package:timetablepp/Pages/TimetablePages/ExtraPages/addholiday_page.dart';
+import 'package:timetablepp/Pages/TimetablePages/Holidays/addholiday_page.dart';
 
-import '../../Models/holidayperiod.dart';
+import '../../../Models/holidayperiod.dart';
 
 class HolidaysPage extends StatefulWidget {
   const HolidaysPage({super.key});
@@ -14,37 +13,32 @@ class HolidaysPage extends StatefulWidget {
   State<HolidaysPage> createState() => _HolidaysPageState();
 }
 
-
 class _HolidaysPageState extends State<HolidaysPage> {
   @override
   Widget build(BuildContext context) {
-    AppBar holidaysViewAppBar = AppBar(
-      title: Text('Vacaciones'),
-      backgroundColor: Colors.blue[100],
-      actions: <Widget>[
-        IconButton(
-          onPressed: () {
-            MainController().resetCurrentHoliday();
-            Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddHolidayPage()))
-                .then((_) => setState(() {}));
-          },
-          icon: Icon(Icons.add_box),
-        )
-      ],
-      /*actions: <Widget>[
-    PopupMenuButton(itemBuilder: itemBuilder)
-  ],*/
-    );
+    buildHolidaysAppBar() {
+      return AppBar(
+        title: Text('Vacaciones'),
+        backgroundColor: Colors.blue[100],
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              MainController().resetCurrentHoliday();
+              Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddHolidayPage()))
+                  .then((_) => setState(() {}));
+            },
+            icon: Icon(Icons.add_box),
+          )
+        ],
+      );
+    }
 
     List<HolidayPeriod> holidays = MainController().getHolidays();
-    /*for (var i = 0; i < holidays.length; i++) {
-      print(holidays[i].toString());
-    }*/
 
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: holidaysViewAppBar,
+        appBar: buildHolidaysAppBar(),
         body: Column(
           children: [
             TopListTile(),
@@ -60,9 +54,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(holidays[index].getName()),
-                    subtitle: Text(holidays[index].getStartAsString() +
-                        ' - ' +
-                        holidays[index].getEndAsString()),
+                    subtitle: Text('${holidays[index].getStartAsString()} - ${holidays[index].getEndAsString()}'),
                     onTap: () {
                       MainController().setCurrentHoliday(holidays[index]);
                       Navigator.push(

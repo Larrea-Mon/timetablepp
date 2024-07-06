@@ -33,13 +33,10 @@ class MainController {
 
   late TermPeriod _termPeriod;
   HolidayPeriod _currentHolidayPeriod = HolidayPeriod(null, null, '');
-
-  List<HolidayPeriod> getHolidays() {
-    var holidays = holidaysBox.getAll();
-    holidays.sort((a, b) => a.getStart().compareTo(b.getStart()));
-    return holidays;
-  }
-
+  Subject _currentSubject =
+      Subject('New Subject', '', '', '', SubjectColors.sky.name);
+      
+  // TERM PERIODS -
   TermPeriod getTermPeriod() {
     var result = termPeriodBox.get(1);
     if (result != null) {
@@ -59,8 +56,9 @@ class MainController {
   void setTermPeriodEnd(DateTime end) {
     _termPeriod.end = end;
     termPeriodBox.put(_termPeriod);
-  }
+  } // TERM PERIODS
 
+  // CURRENT HOLIDAY
   HolidayPeriod getCurrentHoliday() {
     return _currentHolidayPeriod;
   }
@@ -75,6 +73,39 @@ class MainController {
     _currentHolidayPeriod.name = '';
   }
 
+  void pushCurrentHoliday(String name) {
+    _currentHolidayPeriod.setName(name);
+    holidaysBox.put(getCurrentHoliday());
+  }
+
+  void deleteCurrentHoliday() {
+    holidaysBox.remove(_currentHolidayPeriod.id);
+  } //CURRENT HOLIDAY
+
+  // CURRENT SUBJECT
+  Subject getCurrentSubject() {
+    return _currentSubject;
+  }
+
+  void setCurrentSubject(Subject subject) {
+    this._currentSubject = subject;
+  }
+
+  void resetCurrentSubject() {
+    _currentSubject =
+        new Subject('New Subject', '', '', '', SubjectColors.sky.name);
+  }
+
+  void pushCurrentSubject() {
+    subjectBox.put(_currentSubject);
+  }
+
+  void deleteCurrentSubject() {
+    subjectBox.remove(_currentSubject.id);
+  }
+
+  //CURRENT SUBJECT
+  // HOLIDAYS DB
   int deleteHolidays() {
     return holidaysBox.removeAll();
   }
@@ -83,15 +114,13 @@ class MainController {
     holidaysBox.put(holiday);
   }
 
-  void pushCurrentHoliday(String name) {
-    _currentHolidayPeriod.setName(name);
-    holidaysBox.put(getCurrentHoliday());
-  }
+  List<HolidayPeriod> getHolidays() {
+    var holidays = holidaysBox.getAll();
+    holidays.sort((a, b) => a.getStart().compareTo(b.getStart()));
+    return holidays;
+  } //HOLIDAYS DB
 
-  void deleteCurrentHoliday() {
-    holidaysBox.remove(_currentHolidayPeriod.id);
-  }
-
+  //SUBJECT DB
   void addSubject(Subject subject) async {
     subjectBox.put(subject);
   }
@@ -106,13 +135,10 @@ class MainController {
 
   int deleteAllSubjects() {
     return subjectBox.removeAll();
-  }
+  } //SUBJECT DB
 }
 
 void todoButton() {
   Fluttertoast.showToast(
       msg: '//TODO implementar esto', backgroundColor: Colors.grey);
 }
-
-
-

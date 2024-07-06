@@ -3,8 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/subject.dart';
+import 'package:timetablepp/Pages/TimetablePages/Subjects/add_subject_page.dart';
 import 'package:timetablepp/objectbox.g.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -17,7 +19,6 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    List<Subject> a;
     AppBar dashboardAppBar = AppBar(
       title: Text('Main Page'),
       backgroundColor: Colors.blue[100],
@@ -43,8 +44,13 @@ class _DashboardPageState extends State<DashboardPage> {
         actions: <Widget>[
           IconButton(
               onPressed: () => {
-                    a = MainController().getAllSubjects(),
-                    debugPrint(a.toString())
+                    MainController().resetCurrentSubject(),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddSubjectPage(),
+                      ),
+                    ).then((_) => setState(() {}))
                   },
               icon: Icon(Icons.book))
         ],
@@ -53,9 +59,15 @@ class _DashboardPageState extends State<DashboardPage> {
 
     buildSubjectsTile(Subject subject) {
       return ListTile(
+        onTap: () {
+          MainController().setCurrentSubject(subject);
+          Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddSubjectPage()))
+              .then((_) => setState(() {}));
+        },
         title: Text(subject.name.toString()),
         subtitle: Text(
-          subject.place + ' - ' + subject.teacher,
+          '${subject.place} - ${subject.teacher}',
         ),
       );
     }
@@ -64,7 +76,7 @@ class _DashboardPageState extends State<DashboardPage> {
       return Row(
         children: [
           SizedBox(
-            height: 88,
+            height: 72,
             width: 30,
             child: ColoredBox(
               color: colorToColor(subject.color),
@@ -93,6 +105,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 children: [
                   for (int i = 0; i < subjs.length; i++)
                     buildSubjectsRow(subjs[i]),
+                  //Divider(height: 1,),
                 ],
               ),
             ],

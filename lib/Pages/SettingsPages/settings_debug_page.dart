@@ -120,7 +120,7 @@ void debugAddHolidays() {
 }
 
 void debugAddSubjects() {
-  Subject a = Subject('Calculo I', 'CAL', 'Profe 1', "E301", 'blue');
+  Subject a = Subject('Calculo I', 'CAL', 'Profe 1', "E301", SubjectColors.river.name);
   debugPrint(a.toString());
 
   MainController().addSubject(a);
