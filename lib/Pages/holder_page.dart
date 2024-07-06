@@ -3,8 +3,12 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:timetablepp/Pages/TimetablePages/all_pages.dart';
+import 'SettingsPages/settings_a_page.dart';
+import 'TimetablePages/Holidays/holidays_page.dart';
+import 'TimetablePages/Tasks/tasks_page.dart';
+import 'TimetablePages/dashboard_page.dart';
+import 'TimetablePages/dayview_page.dart';
+import 'TimetablePages/weekview_page.dart';
 
 
 
