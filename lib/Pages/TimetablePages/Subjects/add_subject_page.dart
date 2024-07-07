@@ -69,7 +69,7 @@ class _AddSubjectPageState extends State<AddSubjectPage> {
   buildSubjectAppBar() {
     return AppBar(
       backgroundColor: colorToColor(subject.color),
-      title: Text(subject.name),
+      title: Text('Añadir Asignatura'),
       actions: [
         buildDeleteButton(),
         buildHelpButton(),
@@ -86,7 +86,7 @@ class _AddSubjectPageState extends State<AddSubjectPage> {
   }
 
   buildNameTextField() {
-    myController.text = MainController().getCurrentSubject().name;
+    myController.text = '';
     return TextField(
       controller: myController,
       decoration: InputDecoration(

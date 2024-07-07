@@ -95,25 +95,23 @@ class _DashboardPageState extends State<DashboardPage> {
       );
     }
 
-    buildSubjectsCard() {
+    buildSubjectsCardNew() {
       var subjs = MainController().getAllSubjects();
 
       Card subjectsCard = Card(
         margin: const EdgeInsets.all(20.0),
         color: Colors.white,
         elevation: 2.0,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              buildSubjectsAppbar(),
-              Column(
-                children: [
-                  for (int i = 0; i < subjs.length; i++)
-                    buildSubjectsRow(subjs[i]),
-                  //Divider(height: 1,),
-                ],
-              ),
-            ],
+        child: Scaffold(
+          appBar: buildSubjectsAppbar(),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                for (int i = 0; i < subjs.length; i++)
+                  buildSubjectsRow(subjs[i]),
+                //Divider(height: 1,),
+              ],
+            ),
           ),
         ),
       );
@@ -127,7 +125,7 @@ class _DashboardPageState extends State<DashboardPage> {
         children: [
           buildUpcomingCard(),
           Expanded(
-            child: buildSubjectsCard(),
+            child: buildSubjectsCardNew(),
           ),
         ],
       ),

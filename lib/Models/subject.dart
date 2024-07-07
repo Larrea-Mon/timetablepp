@@ -6,12 +6,12 @@ class Subject {
   @Id()
   int id = 0;
 
-  String name;
-  String abv;
+  String? name;
+  String? abv;
 
-  String teacher;
-  String place;
-  String color;
+  String? teacher;
+  String? place;
+  String color = 'sky';
 
   Subject(this.name, this.abv, this.teacher, this.place, this.color);
 

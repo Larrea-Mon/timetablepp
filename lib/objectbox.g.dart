@@ -269,10 +269,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (Subject object, fb.Builder fbb) {
-          final nameOffset = fbb.writeString(object.name);
-          final abvOffset = fbb.writeString(object.abv);
-          final teacherOffset = fbb.writeString(object.teacher);
-          final placeOffset = fbb.writeString(object.place);
+          final nameOffset =
+              object.name == null ? null : fbb.writeString(object.name!);
+          final abvOffset =
+              object.abv == null ? null : fbb.writeString(object.abv!);
+          final teacherOffset =
+              object.teacher == null ? null : fbb.writeString(object.teacher!);
+          final placeOffset =
+              object.place == null ? null : fbb.writeString(object.place!);
           final colorOffset = fbb.writeString(object.color);
           fbb.startTable(8);
           fbb.addInt64(0, object.id);
@@ -288,13 +292,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final nameParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 6, '');
+              .vTableGetNullable(buffer, rootOffset, 6);
           final abvParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 8, '');
+              .vTableGetNullable(buffer, rootOffset, 8);
           final teacherParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 10, '');
+              .vTableGetNullable(buffer, rootOffset, 10);
           final placeParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 12, '');
+              .vTableGetNullable(buffer, rootOffset, 12);
           final colorParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 16, '');
           final object = Subject(
