@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
+import 'package:timetablepp/Models/subject.dart';
 
 Future<void> dialogBuilder(BuildContext context) {
   return showDialog(
@@ -44,3 +45,36 @@ IconButton helpButton(context) {
       padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
       icon: Icon(Icons.info));
 }
+
+buildSaveHolidayIcon(TextEditingController myController, Icon icon, context) {
+      return IconButton(
+        icon: icon,
+        onPressed: () {
+          if ((MainController().getCurrentHoliday().end != null) &&
+              (MainController().getCurrentHoliday().start != null)) {
+            if (!MainController()
+                .getCurrentHoliday()
+                .start!
+                .isAfter(MainController().getCurrentHoliday().end!)) {
+              if (myController.text.trim().isNotEmpty) {
+                MainController().pushCurrentHoliday(myController.text);
+                Navigator.pop(context);
+              } else {
+                Fluttertoast.showToast(
+                    msg: "El festivo debe tener nombre.",
+                    backgroundColor: Colors.grey);
+              }
+            } else {
+              Fluttertoast.showToast(
+                  msg: "La fecha inicial debe ser anterior a la fecha final",
+                  backgroundColor: Colors.grey);
+            }
+          } else {
+            Fluttertoast.showToast(
+              msg: "El período festivo debe tener comienzo y final",
+              backgroundColor: Colors.grey,
+            );
+          }
+        },
+      );
+    }

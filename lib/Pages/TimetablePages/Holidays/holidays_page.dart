@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:timetablepp/Control/main_controller.dart';
-import 'package:timetablepp/Pages/TimetablePages/Holidays/addholiday_page.dart';
+import 'package:timetablepp/Pages/TimetablePages/Holidays/add_holiday_page.dart';
+import 'package:timetablepp/Pages/TimetablePages/Holidays/edit_holiday_page.dart';
 
 import '../../../Models/holidayperiod.dart';
 
@@ -60,7 +61,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AddHolidayPage())).then(
+                              builder: (context) => EditHolidayPage())).then(
                         (_) => setState(() {}),
                       );
                     },
