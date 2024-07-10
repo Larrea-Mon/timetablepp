@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 
-import 'materials_holiday_page.dart';
+import 'materials_holiday.dart';
 
 class EditHolidayPage extends StatefulWidget {
   const EditHolidayPage({super.key});
@@ -40,9 +40,10 @@ class _EditHolidayPageState extends State<EditHolidayPage> {
 
     buildHolidayAppBar() {
       AppBar holidayAddAppBar = AppBar(
-        title: Text('Editar ${MainController().getCurrentHoliday().name}'),
+        title: Text(MainController().getCurrentHoliday().name,),
         backgroundColor: Colors.blue[100],
         actions: <Widget>[
+          buildDeleteButton(context),
           helpButton(context),
           buildSaveHolidayIcon(myController, Icon(Icons.save_as), context),
         ],

@@ -34,7 +34,7 @@ class MainController {
   HolidayPeriod _currentHolidayPeriod = HolidayPeriod(null, null, '');
   Subject _currentSubject =
       Subject('New Subject', '', '', '', SubjectColors.sky.name);
-      
+
   // TERM PERIODS -
   TermPeriod getTermPeriod() {
     var result = termPeriodBox.get(1);
@@ -87,9 +87,11 @@ class MainController {
   }
 
   void setCurrentSubject(Subject subject) {
-    debugPrint('[MainController] : SetcurrentSubject(Antes era $_currentSubject y ahora va a ser $subject)');
+    debugPrint(
+        '[MainController] : SetcurrentSubject(Antes era $_currentSubject y ahora va a ser $subject)');
     _currentSubject = subject;
-    debugPrint('[MainController] : SetcurrentSubject(TEST: _currentSubject es: $_currentSubject)');
+    debugPrint(
+        '[MainController] : SetcurrentSubject(TEST: _currentSubject es: $_currentSubject)');
   }
 
   void resetCurrentSubject() {
@@ -136,6 +138,15 @@ class MainController {
 
   int deleteAllSubjects() {
     return subjectBox.removeAll();
+  }
+
+  editCurrentSubject(
+      String name, String abv, String teacher, String place, String color) {
+    _currentSubject.name = name;
+    _currentSubject.abv = abv;
+    _currentSubject.teacher = teacher;
+    _currentSubject.place = place;
+    _currentSubject.color = color;
   } //SUBJECT DB
 }
 

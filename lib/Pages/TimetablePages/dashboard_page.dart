@@ -9,6 +9,8 @@ import 'package:timetablepp/Models/subject.dart';
 import 'package:timetablepp/Pages/TimetablePages/Subjects/add_subject_page.dart';
 import 'package:timetablepp/objectbox.g.dart';
 
+import 'Subjects/edit_subject_page.dart';
+
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
@@ -67,9 +69,10 @@ class _DashboardPageState extends State<DashboardPage> {
           debugPrint('Soy una Tile y mi Subject es [$subject]');
           MainController().setCurrentSubject(subject);
           Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddSubjectPage()))
+                  MaterialPageRoute(builder: (context) => EditSubjectPage()))
               .then((_) => setState(() {}));
         },
+        
         title: Text(subject.name.toString()),
         subtitle: Text(
           '${subject.place} - ${subject.teacher}',
@@ -100,9 +103,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
       Card subjectsCard = Card(
         margin: const EdgeInsets.all(20.0),
-        color: Colors.white,
         elevation: 2.0,
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: buildSubjectsAppbar(),
           body: SingleChildScrollView(
             child: Column(

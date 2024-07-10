@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 
-import 'materials_holiday_page.dart';
+import 'materials_holiday.dart';
 
 class AddHolidayPage extends StatefulWidget {
   const AddHolidayPage({super.key});
@@ -16,6 +16,7 @@ class AddHolidayPage extends StatefulWidget {
 }
 
 class _AddHolidayPageState extends State<AddHolidayPage> {
+  //ESTO SERÍA MAS FACIL CON UNA FORM? DESDE LUEGO. PERO YA HE EMPEZADO A HACERLO SIN LA FORM Y NO VOY A PONERME A REHACERLO AHORA
   final myController = TextEditingController();
   @override
   void dispose() {

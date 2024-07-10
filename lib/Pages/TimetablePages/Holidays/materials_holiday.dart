@@ -25,7 +25,7 @@ Future<void> dialogBuilder(BuildContext context) {
       });
 }
 
-IconButton deleteButton(context) {
+buildDeleteButton(context) {
   var a = MainController().getCurrentHoliday().getName();
 
   return IconButton(
