@@ -45,6 +45,7 @@ dependencies:
   path_provider: ^2.1.3
   objectbox: ^4.0.1
   objectbox_sync_flutter_libs: any
+  flex_color_picker: ^3.5.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
