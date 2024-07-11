@@ -12,11 +12,7 @@ class DayViewPage extends StatefulWidget {
 }
 
 class _DayViewPageState extends State<DayViewPage> {
-  late Color screenPickerColor;
-  // Color for the picker in a dialog using onChanged.
   late Color dialogPickerColor;
-  // Color for picker using the color select dialog.
-  late Color dialogSelectColor;
 
   final Map<ColorSwatch<Object>, String> colorsNameMap =
       <ColorSwatch<Object>, String>{
@@ -73,9 +69,7 @@ class _DayViewPageState extends State<DayViewPage> {
   @override
   void initState() {
     super.initState();
-    screenPickerColor = Colors.blue; // Material blue.
     dialogPickerColor = Colors.red; // Material red.
-    dialogSelectColor = const Color(0xFFA239CA); // A purple color.
   }
 
   @override

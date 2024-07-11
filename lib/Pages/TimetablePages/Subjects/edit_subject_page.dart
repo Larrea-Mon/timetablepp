@@ -16,18 +16,15 @@ class EditSubjectPage extends StatefulWidget {
 
 class _EditSubjectPageState extends State<EditSubjectPage> {
   // Color for the picker shown in Card on the screen.
-  late Color screenPickerColor;
   // Color for the picker in a dialog using onChanged.
   late Color dialogPickerColor;
-  // Color for picker using the color select dialog.
-  late Color dialogSelectColor;
+  late String dialogPickerColorName;
 
   @override
   void initState() {
     super.initState();
-    screenPickerColor = MainController().getSubjectColorsMap[subject.color]; // Material blue.
-    dialogPickerColor = Colors.red; // Material red.
-    dialogSelectColor = const Color(0xFFA239CA); // A purple color.
+    dialogPickerColor =
+        MainController().getSubjectColorsMap[subject.color]; // Material blue.
   }
 
   var subject = MainController().getCurrentSubject();
@@ -51,7 +48,7 @@ class _EditSubjectPageState extends State<EditSubjectPage> {
 
   buildSubjectAppBar() {
     return AppBar(
-      backgroundColor: MainController().subjectColorsMap[subject.color]!,
+      backgroundColor: dialogPickerColor,
       title: Text(MainController().getCurrentSubject().name!),
       actions: [
         buildDeleteButton(),
@@ -63,7 +60,7 @@ class _EditSubjectPageState extends State<EditSubjectPage> {
             abvController,
             teacherController,
             placeController,
-            SubjectColors.apple.name),
+            MainController().getNameForColor(dialogPickerColor)!),
       ],
     );
   }
@@ -80,6 +77,52 @@ class _EditSubjectPageState extends State<EditSubjectPage> {
   void dispose() {
     nameController.dispose();
     super.dispose();
+  }
+
+  Future<bool> colorPickerDialog() async {
+    return ColorPicker(
+      color: dialogPickerColor,
+      onColorChanged: (Color color) => {
+        setState(
+          () => dialogPickerColor = color,
+        ),
+      },
+
+      width: 40,
+      height: 40,
+      spacing: 5,
+      runSpacing: 5,
+      wheelDiameter: 155,
+      //heading: Text('Select Color'),
+      enableShadesSelection: false,
+      //showMaterialName: true,
+      //showColorName: true,
+      //showColorCode: true,
+      pickersEnabled: const <ColorPickerType, bool>{
+        ColorPickerType.both: false,
+        ColorPickerType.primary: false,
+        ColorPickerType.accent: false,
+        ColorPickerType.bw: false,
+        ColorPickerType.custom: true,
+        ColorPickerType.wheel: false,
+        ColorPickerType.customSecondary: false,
+      },
+      customColorSwatchesAndNames: MainController().generateColorSwatchMap(),
+    ).showPickerDialog(
+      context,
+      transitionBuilder: (BuildContext context, Animation<double> a1,
+          Animation<double> a2, Widget widget) {
+        final double curvedValue =
+            Curves.easeInOutBack.transform(a1.value) - 1.0;
+        return Transform(
+          transform: Matrix4.translationValues(0.0, curvedValue * 200, 0.0),
+          child: Opacity(opacity: a1.value, child: widget),
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 400),
+      constraints:
+          const BoxConstraints(minHeight: 160, minWidth: 300, maxWidth: 320),
+    );
   }
 
   @override
@@ -108,33 +151,21 @@ class _EditSubjectPageState extends State<EditSubjectPage> {
           ListTile(
             title: Text('Color de la asignatura.'),
             trailing: ColorIndicator(
+              onSelectFocus: false,
+              onSelect: () async {
+                //ESTO es para cuando le dan patrá
+                final Color colorBeforeDialog = dialogPickerColor;
+
+                if (!(await colorPickerDialog())) {
+                  setState(() {
+                    dialogPickerColor = colorBeforeDialog;
+                  });
+                }
+              },
               width: 44,
               height: 44,
               borderRadius: 22,
-              color: screenPickerColor,
-            ),
-          ),
-          Expanded(
-            child: Card(
-              elevation: 2,
-              child: ColorPicker(
-                pickersEnabled: const <ColorPickerType,bool>{
-                  ColorPickerType.custom : true,
-                  ColorPickerType.accent : false,  
-                  ColorPickerType.primary : false,                       
-                },
-                
-                color: MainController().subjectColorsMap[subject.color]!,
-                onColorChanged: (Color color) =>
-                    setState(() => screenPickerColor = color),
-                width: 44,
-                height: 44,
-                borderRadius: 22,
-                heading: Text(
-                  'Select color',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ),
+              color: dialogPickerColor,
             ),
           ),
         ],

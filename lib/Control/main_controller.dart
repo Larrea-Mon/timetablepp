@@ -3,6 +3,7 @@
 import 'dart:collection';
 import 'dart:ffi';
 
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/objectbox.dart';
@@ -26,10 +27,12 @@ class MainController {
   factory MainController() {
     return _instance;
   }
-  Map<String,Color> subjectColorsMap = HashMap();
+  Map<String, Color> subjectColorsMap = {};
+
   get getSubjectColorsMap => subjectColorsMap;
 
- set setSubjectColorsMap( subjectColorsMap) => this.subjectColorsMap = subjectColorsMap;
+  set setSubjectColorsMap(subjectColorsMap) =>
+      this.subjectColorsMap = subjectColorsMap;
 
   final Box<HolidayPeriod> holidaysBox = objectbox.store.box<HolidayPeriod>();
   final Box<TermPeriod> termPeriodBox = objectbox.store.box<TermPeriod>();
@@ -168,6 +171,24 @@ class MainController {
     subjectColorsMap['purple'] = Colors.purple[600]!;
     subjectColorsMap['chocolate'] = Colors.brown[400]!;
     subjectColorsMap['wood'] = Colors.brown[700]!;
+  }
+  String? getNameForColor(Color color){
+   var orig = subjectColorsMap;
+   var reversed = Map.fromEntries(orig.entries.map((e) => MapEntry(e.value, e.key)));
+   return reversed[color];
+  }
+
+  Map<ColorSwatch<Object>, String> generateColorSwatchMap() {
+    var result = <ColorSwatch<Object>, String>{
+      //ColorTools.createPrimarySwatch(subjectColorsMap['sky']!) : 'sky',
+    };
+    for (var element in SubjectColors.values) {
+      debugPrint(element.name);
+      result[ColorTools.createPrimarySwatch(subjectColorsMap[element.name]!)] =
+          element.name;
+    }
+
+    return result;
   }
 }
 
