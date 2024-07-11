@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import, prefer_final_fields
 
+import 'dart:collection';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -25,6 +26,10 @@ class MainController {
   factory MainController() {
     return _instance;
   }
+  Map<String,Color> subjectColorsMap = HashMap();
+  get getSubjectColorsMap => subjectColorsMap;
+
+ set setSubjectColorsMap( subjectColorsMap) => this.subjectColorsMap = subjectColorsMap;
 
   final Box<HolidayPeriod> holidaysBox = objectbox.store.box<HolidayPeriod>();
   final Box<TermPeriod> termPeriodBox = objectbox.store.box<TermPeriod>();
@@ -147,7 +152,23 @@ class MainController {
     _currentSubject.teacher = teacher;
     _currentSubject.place = place;
     _currentSubject.color = color;
-  } //SUBJECT DB
+  }
+
+//SUBJECT DB
+  void initColorsMap() {
+    subjectColorsMap['sky'] = Colors.blue[200]!;
+    subjectColorsMap['river'] = Colors.blue[700]!;
+    subjectColorsMap['grass'] = Colors.green[200]!;
+    subjectColorsMap['forest'] = Colors.green[700]!;
+    subjectColorsMap['sun'] = Colors.yellow[600]!;
+    subjectColorsMap['orange'] = Colors.orange[600]!;
+    subjectColorsMap['pink'] = Colors.pink[300]!;
+    subjectColorsMap['apple'] = Colors.red[600]!;
+    subjectColorsMap['lila'] = Colors.purple[400]!;
+    subjectColorsMap['purple'] = Colors.purple[600]!;
+    subjectColorsMap['chocolate'] = Colors.brown[400]!;
+    subjectColorsMap['wood'] = Colors.brown[700]!;
+  }
 }
 
 void todoButton() {

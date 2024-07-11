@@ -23,7 +23,7 @@ class _AddSubjectPageState extends State<AddSubjectPage> {
 
   buildSubjectAppBar() {
     return AppBar(
-      backgroundColor: colorToColor(subject.color),
+      backgroundColor: MainController().subjectColorsMap[subject.color]!,
       title: Text('Añadir Asignatura'),
       actions: [
         buildHelpButton(context),

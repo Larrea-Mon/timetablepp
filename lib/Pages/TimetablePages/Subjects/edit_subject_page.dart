@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import
 
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,6 +15,21 @@ class EditSubjectPage extends StatefulWidget {
 }
 
 class _EditSubjectPageState extends State<EditSubjectPage> {
+  // Color for the picker shown in Card on the screen.
+  late Color screenPickerColor;
+  // Color for the picker in a dialog using onChanged.
+  late Color dialogPickerColor;
+  // Color for picker using the color select dialog.
+  late Color dialogSelectColor;
+
+  @override
+  void initState() {
+    super.initState();
+    screenPickerColor = MainController().getSubjectColorsMap[subject.color]; // Material blue.
+    dialogPickerColor = Colors.red; // Material red.
+    dialogSelectColor = const Color(0xFFA239CA); // A purple color.
+  }
+
   var subject = MainController().getCurrentSubject();
 
   buildDeleteButton() {
@@ -35,13 +51,19 @@ class _EditSubjectPageState extends State<EditSubjectPage> {
 
   buildSubjectAppBar() {
     return AppBar(
-      backgroundColor: colorToColor(subject.color),
+      backgroundColor: MainController().subjectColorsMap[subject.color]!,
       title: Text(MainController().getCurrentSubject().name!),
       actions: [
         buildDeleteButton(),
         buildHelpButton(),
-        buildSaveButton(context, Icon(Icons.save_as), nameController, abvController,
-            teacherController, placeController, SubjectColors.apple.name),
+        buildSaveButton(
+            context,
+            Icon(Icons.save_as),
+            nameController,
+            abvController,
+            teacherController,
+            placeController,
+            SubjectColors.apple.name),
       ],
     );
   }
@@ -66,24 +88,56 @@ class _EditSubjectPageState extends State<EditSubjectPage> {
       backgroundColor: Colors.white,
       appBar: buildSubjectAppBar(),
       body: Column(
-       children: [
-            Container(
-              child: buildNameTextField(nameController),
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+        children: [
+          Container(
+            child: buildNameTextField(nameController),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+          ),
+          Container(
+            child: buildAbvTextField(abvController),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+          ),
+          Container(
+            child: buildTeacherTextFieldRow(teacherController),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+          ),
+          Container(
+            child: buildPlaceTextFieldRow(placeController),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+          ),
+          ListTile(
+            title: Text('Color de la asignatura.'),
+            trailing: ColorIndicator(
+              width: 44,
+              height: 44,
+              borderRadius: 22,
+              color: screenPickerColor,
             ),
-            Container(
-              child: buildAbvTextField(abvController),
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+          ),
+          Expanded(
+            child: Card(
+              elevation: 2,
+              child: ColorPicker(
+                pickersEnabled: const <ColorPickerType,bool>{
+                  ColorPickerType.custom : true,
+                  ColorPickerType.accent : false,  
+                  ColorPickerType.primary : false,                       
+                },
+                
+                color: MainController().subjectColorsMap[subject.color]!,
+                onColorChanged: (Color color) =>
+                    setState(() => screenPickerColor = color),
+                width: 44,
+                height: 44,
+                borderRadius: 22,
+                heading: Text(
+                  'Select color',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+              ),
             ),
-            Container(
-              child: buildTeacherTextFieldRow(teacherController),
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-            ),
-            Container(
-              child: buildPlaceTextFieldRow(placeController),
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-            ),
-          ],
+          ),
+        ],
       ),
     );
   }

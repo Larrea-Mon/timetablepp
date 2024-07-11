@@ -87,7 +87,7 @@ class _DashboardPageState extends State<DashboardPage> {
             height: 72,
             width: 30,
             child: ColoredBox(
-              color: colorToColor(subject.color),
+              color: MainController().subjectColorsMap[subject.color]!,
             ),
           ),
           //Container(height: 88, width: 50, color: Colors.green,),
