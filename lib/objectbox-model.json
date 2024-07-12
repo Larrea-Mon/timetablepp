@@ -94,10 +94,166 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "8:9066198403731461066",
+      "lastPropertyId": "5:7816044147552149826",
+      "name": "Lesson",
+      "properties": [
+        {
+          "id": "1:4867351427623262150",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6377000438013814085",
+          "name": "hour",
+          "type": 5
+        },
+        {
+          "id": "3:7477443440026383016",
+          "name": "minute",
+          "type": 5
+        },
+        {
+          "id": "4:651344471440634396",
+          "name": "day",
+          "type": 5
+        },
+        {
+          "id": "5:7816044147552149826",
+          "name": "subjectId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:8369609502199462194",
+          "relationTarget": "Subject"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "9:7962595628123035930",
+      "lastPropertyId": "22:2969465162820710256",
+      "name": "SettingsBatch",
+      "properties": [
+        {
+          "id": "1:3822177447485087621",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1242233559764430895",
+          "name": "isDarkThemeApp",
+          "type": 1
+        },
+        {
+          "id": "3:4716857800487018992",
+          "name": "isDarkThemeWidget",
+          "type": 1
+        },
+        {
+          "id": "4:6301400020867184160",
+          "name": "firstDayOfTheWeek",
+          "type": 6
+        },
+        {
+          "id": "5:7003384279367014382",
+          "name": "sendNotifsNextLesson",
+          "type": 1
+        },
+        {
+          "id": "6:740098166399107518",
+          "name": "timeSendNotifsNextLesson",
+          "type": 6
+        },
+        {
+          "id": "7:8983760934677357504",
+          "name": "sendNotifsNextHomework",
+          "type": 1
+        },
+        {
+          "id": "8:7141868142157793745",
+          "name": "timeSendNotifsHomeworkAfterClass",
+          "type": 6
+        },
+        {
+          "id": "9:1919005861197611804",
+          "name": "sendNotifsNextExam",
+          "type": 1
+        },
+        {
+          "id": "10:6254122234311399506",
+          "name": "daysSendNotifsNextExam",
+          "type": 6
+        },
+        {
+          "id": "11:5337302094719174081",
+          "name": "enableAutoSilence",
+          "type": 1
+        },
+        {
+          "id": "12:2793398206601424504",
+          "name": "minutesAutosilence",
+          "type": 6
+        },
+        {
+          "id": "13:5783053863073903254",
+          "name": "lessonsPerDay",
+          "type": 6
+        },
+        {
+          "id": "14:1242706005274499902",
+          "name": "lessonsLength",
+          "type": 6
+        },
+        {
+          "id": "15:4012179022551700003",
+          "name": "lessonsBreak",
+          "type": 6
+        },
+        {
+          "id": "16:6027581562774258379",
+          "name": "isMondayActive",
+          "type": 1
+        },
+        {
+          "id": "17:5112757132913238187",
+          "name": "isTuesdayActive",
+          "type": 1
+        },
+        {
+          "id": "18:455142664254308780",
+          "name": "isWednesdayActive",
+          "type": 1
+        },
+        {
+          "id": "19:6280600683648540867",
+          "name": "isThursdayActive",
+          "type": 1
+        },
+        {
+          "id": "20:5105959611675902343",
+          "name": "isFridayActive",
+          "type": 1
+        },
+        {
+          "id": "21:3810537354444841221",
+          "name": "isSaturdayActive",
+          "type": 1
+        },
+        {
+          "id": "22:2969465162820710256",
+          "name": "isSundayActive",
+          "type": 1
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "7:7039596356983433900",
-  "lastIndexId": "1:1874221612835247666",
+  "lastEntityId": "9:7962595628123035930",
+  "lastIndexId": "2:8369609502199462194",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,

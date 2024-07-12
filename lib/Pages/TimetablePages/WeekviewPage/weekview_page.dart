@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-class WeekViewPage extends StatefulWidget{
+class WeekViewPage extends StatefulWidget {
   const WeekViewPage({super.key});
 
   @override
@@ -11,16 +11,17 @@ class WeekViewPage extends StatefulWidget{
 
 class _WeekViewPageState extends State<WeekViewPage> {
   @override
-  Widget build(BuildContext context){
-
-
-     return Scaffold(
+  Widget build(BuildContext context) {
+    return Scaffold(
       backgroundColor: Colors.white,
       appBar: weekViewAppBar,
+      /*body: GridView.custom(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(),
+        childrenDelegate: SliverChildBuilderDelegate(),
+      ),*/
     );
   }
 }
-
 
 AppBar weekViewAppBar = AppBar(
   title: Text('Vista Semanal'),
