@@ -22,11 +22,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
               title: Text('Tema de la aplicación'),
               subtitle: Text('TODO Light'),
               enabled: true,
-              onTap: () {
-                Fluttertoast.showToast(
-                  msg: '//TODO implementar esto',
-                  backgroundColor: Colors.grey,
-                );
+              onTap: () => {
               },
             ),
             ListTile(
@@ -42,7 +38,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
             ),
             ListTile(
               title: Text('Dias Funcionales'),
-              subtitle:Text('TODO Lun,Mar,Mie,Jue,Vie,Sab,Dom'),
+              subtitle: Text('TODO Lun,Mar,Mie,Jue,Vie,Sab,Dom'),
               enabled: true,
               onTap: () {
                 Fluttertoast.showToast(

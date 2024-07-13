@@ -21,7 +21,7 @@ class _AddSubjectPageState extends State<AddSubjectPage> {
   final abvController = TextEditingController(text: '');
   final placeController = TextEditingController(text: '');
   final teacherController = TextEditingController(text: '');
-  var dialogPickerColor = MainController().getSubjectColorsMap['sky'];
+  Color dialogPickerColor = MainController().getSubjectColorsMap['sky'];
 
   buildSubjectAppBar() {
     return AppBar(
@@ -31,12 +31,12 @@ class _AddSubjectPageState extends State<AddSubjectPage> {
         buildHelpButton(context),
         buildSaveButton(
             context,
-            Icon(Icons.save),
+            Icon(Icons.save,),
             nameController,
             abvController,
             teacherController,
             placeController,
-            SubjectColors.apple.name),
+            MainController().getNameForColor(dialogPickerColor)!),
       ],
     );
   }
