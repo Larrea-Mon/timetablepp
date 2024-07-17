@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:timetablepp/Control/main_controller.dart';
+import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/subject.dart';
 
@@ -26,7 +26,8 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
               enabled: true,
               onTap: () {
                 debugAddHolidays();
-                List<HolidayPeriod> holidays = MainController().getHolidays();
+                List<HolidayPeriod> holidays =
+                    DatabaseController().getAllHolidayPeriods();
                 for (var i = 0; i < holidays.length; i++) {
                   debugPrint('$i');
                   debugPrint(holidays[i].toString());
@@ -43,7 +44,7 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
               //subtitle: Text('TODO Light'),
               enabled: true,
               onTap: () {
-                int i = MainController().deleteHolidays();
+                int i = DatabaseController().deleteHolidays();
 
                 Fluttertoast.showToast(
                   msg: 'Eliminadas $i vacaciones',
@@ -69,7 +70,7 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
               //subtitle: Text('TODO Light'),
               enabled: true,
               onTap: () {
-                int i = MainController().deleteAllSubjects();
+                int i = DatabaseController().deleteAllSubjects();
 
                 Fluttertoast.showToast(
                   msg: 'Eliminadas $i asignaturas',
@@ -101,31 +102,40 @@ AppBar settingsDebugAppBar = AppBar(
 );
 
 void debugAddHolidays() {
-  MainController().addHoliday(HolidayPeriod(DateTime.utc(2024, 12, 18),
-      DateTime.utc(2025, 01, 20), 'Vacaciones de Navidad'));
-  MainController().addHoliday(HolidayPeriod(
+  DatabaseController().putHolidayPeriod(HolidayPeriod(
+      DateTime.utc(2024, 12, 18),
+      DateTime.utc(2025, 01, 20),
+      'Vacaciones de Navidad'));
+  DatabaseController().putHolidayPeriod(HolidayPeriod(
       DateTime.utc(2024, 01, 06), DateTime.utc(2024, 01, 07), 'Reyes Magos'));
-  MainController().addHoliday(HolidayPeriod(
+  DatabaseController().putHolidayPeriod(HolidayPeriod(
       DateTime.utc(2024, 01, 01), DateTime.utc(2024, 01, 01), 'Año Nuevo'));
-  MainController().addHoliday(HolidayPeriod(
+  DatabaseController().putHolidayPeriod(HolidayPeriod(
       DateTime.utc(2024, 02, 14), DateTime.utc(2024, 02, 14), 'San Valentin'));
-  MainController().addHoliday(HolidayPeriod(
+  DatabaseController().putHolidayPeriod(HolidayPeriod(
       DateTime.utc(2024, 03, 23), DateTime.utc(2024, 03, 23), 'Viernes Santo'));
-  MainController().addHoliday(HolidayPeriod(DateTime.utc(2024, 05, 01),
-      DateTime.utc(2024, 05, 01), 'Dia del trabajador'));
-  MainController().addHoliday(HolidayPeriod(DateTime.utc(2024, 10, 12),
-      DateTime.utc(2024, 10, 12), 'Fiesta Nacional de españa'));
-  MainController().addHoliday(HolidayPeriod(DateTime.utc(2024, 11, 14),
-      DateTime.utc(2024, 11, 15), 'Dia de la Constitución'));
+  DatabaseController().putHolidayPeriod(HolidayPeriod(
+      DateTime.utc(2024, 05, 01),
+      DateTime.utc(2024, 05, 01),
+      'Dia del trabajador'));
+  DatabaseController().putHolidayPeriod(HolidayPeriod(
+      DateTime.utc(2024, 10, 12),
+      DateTime.utc(2024, 10, 12),
+      'Fiesta Nacional de españa'));
+  DatabaseController().putHolidayPeriod(HolidayPeriod(
+      DateTime.utc(2024, 11, 14),
+      DateTime.utc(2024, 11, 15),
+      'Dia de la Constitución'));
 }
 
 void debugAddSubjects() {
-  Subject a = Subject('Calculo I', 'CAL', 'Profe 1', "E301", SubjectColors.river.name);
+  Subject a =
+      Subject('Calculo I', 'CAL', 'Profe 1', "E301", SubjectColors.river.name);
   debugPrint(a.toString());
 
-  MainController().addSubject(a);
-  MainController().addSubject(Subject(
+  DatabaseController().putSubject(a);
+  DatabaseController().putSubject(Subject(
       'Estadistica ', 'STA', 'Profe 2', "E302", SubjectColors.grass.name));
-  MainController().addSubject(Subject(
+  DatabaseController().putSubject(Subject(
       'Programacion I', 'PRO', 'Profe 3', "E126", SubjectColors.forest.name));
 }

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
+import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/subject.dart';
 import 'package:timetablepp/Pages/TimetablePages/Subjects/add_subject_page.dart';
@@ -99,7 +100,7 @@ class _DashboardPageState extends State<DashboardPage> {
     }
 
     buildSubjectsCardNew() {
-      var subjs = MainController().getAllSubjects();
+      var subjs = DatabaseController().getAllSubjects();
 
       Card subjectsCard = Card(
         margin: const EdgeInsets.all(20.0),

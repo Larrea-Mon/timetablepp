@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_import,
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Pages/TimetablePages/Holidays/add_holiday_page.dart';
 import 'package:timetablepp/Pages/TimetablePages/Holidays/edit_holiday_page.dart';
@@ -35,7 +36,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
       );
     }
 
-    List<HolidayPeriod> holidays = MainController().getHolidays();
+    List<HolidayPeriod> holidays = DatabaseController().getAllHolidayPeriods();
 
     return Scaffold(
         backgroundColor: Colors.white,

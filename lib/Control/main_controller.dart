@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_final_fields
+// ignore_for_file: unused_import, prefer_final_fields, prefer_const_constructors
 
 import 'dart:collection';
 import 'dart:ffi';
@@ -6,8 +6,10 @@ import 'dart:ffi';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/objectbox.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
+import 'package:timetablepp/Models/settingsbatch.dart';
 import 'package:timetablepp/Models/termperiod.dart';
 
 import 'dart:async';
@@ -34,10 +36,6 @@ class MainController {
   set setSubjectColorsMap(subjectColorsMap) =>
       this.subjectColorsMap = subjectColorsMap;
 
-  final Box<HolidayPeriod> holidaysBox = objectbox.store.box<HolidayPeriod>();
-  final Box<TermPeriod> termPeriodBox = objectbox.store.box<TermPeriod>();
-  final Box<Subject> subjectBox = objectbox.store.box<Subject>();
-
   late TermPeriod _termPeriod;
   HolidayPeriod _currentHolidayPeriod = HolidayPeriod(null, null, '');
   Subject _currentSubject =
@@ -45,24 +43,21 @@ class MainController {
 
   // TERM PERIODS -
   TermPeriod getTermPeriod() {
-    var result = termPeriodBox.get(1);
-    if (result != null) {
-      _termPeriod = result;
-      return _termPeriod;
-    } else {
-      _termPeriod = TermPeriod(start: null, end: null);
-      return _termPeriod;
-    }
+    var result = DatabaseController().getTermPeriod(1);
+    _termPeriod = result;
+    return _termPeriod;
   }
+
+  late SettingsBatch settings;
 
   void setTermPeriodStart(DateTime start) {
     _termPeriod.start = start;
-    termPeriodBox.put(_termPeriod);
+    DatabaseController().putTermPeriod(_termPeriod);
   }
 
   void setTermPeriodEnd(DateTime end) {
     _termPeriod.end = end;
-    termPeriodBox.put(_termPeriod);
+    DatabaseController().putTermPeriod(_termPeriod);
   } // TERM PERIODS
 
   // CURRENT HOLIDAY
@@ -82,11 +77,11 @@ class MainController {
 
   void pushCurrentHoliday(String name) {
     _currentHolidayPeriod.setName(name);
-    holidaysBox.put(getCurrentHoliday());
+    DatabaseController().putHolidayPeriod(getCurrentHoliday());
   }
 
   void deleteCurrentHoliday() {
-    holidaysBox.remove(_currentHolidayPeriod.id);
+    DatabaseController().removeHolidayPeriod(_currentHolidayPeriod.id);
   } //CURRENT HOLIDAY
 
   // CURRENT SUBJECT
@@ -108,46 +103,16 @@ class MainController {
   }
 
   void pushCurrentSubject() {
-    subjectBox.put(_currentSubject);
+    DatabaseController().putSubject(_currentSubject);
   }
 
   void deleteCurrentSubject() {
-    subjectBox.remove(_currentSubject.id);
+    DatabaseController().removeSubject(_currentSubject.id);
   }
 
   //CURRENT SUBJECT
-  // HOLIDAYS DB
-  int deleteHolidays() {
-    return holidaysBox.removeAll();
-  }
-
-  void addHoliday(HolidayPeriod holiday) async {
-    holidaysBox.put(holiday);
-  }
-
-  List<HolidayPeriod> getHolidays() {
-    var holidays = holidaysBox.getAll();
-    holidays.sort((a, b) => a.getStart().compareTo(b.getStart()));
-    return holidays;
-  } //HOLIDAYS DB
 
   //SUBJECT DB
-  void addSubject(Subject subject) async {
-    subjectBox.put(subject);
-  }
-
-  List<Subject> getAllSubjects() {
-    return subjectBox.getAll();
-  }
-
-  void deleteSubject(Subject subject) {
-    subjectBox.remove(subject.id);
-  }
-
-  int deleteAllSubjects() {
-    return subjectBox.removeAll();
-  }
-
   editCurrentSubject(
       String name, String abv, String teacher, String place, String color) {
     _currentSubject.name = name;
@@ -172,10 +137,12 @@ class MainController {
     subjectColorsMap['chocolate'] = Colors.brown[400]!;
     subjectColorsMap['wood'] = Colors.brown[700]!;
   }
-  String? getNameForColor(Color color){
-   var orig = subjectColorsMap;
-   var reversed = Map.fromEntries(orig.entries.map((e) => MapEntry(e.value, e.key)));
-   return reversed[color];
+
+  String? getNameForColor(Color color) {
+    var orig = subjectColorsMap;
+    var reversed =
+        Map.fromEntries(orig.entries.map((e) => MapEntry(e.value, e.key)));
+    return reversed[color];
   }
 
   Map<ColorSwatch<Object>, String> generateColorSwatchMap() {
@@ -189,6 +156,16 @@ class MainController {
     }
 
     return result;
+  }
+
+  void initSettings() {
+    settings = DatabaseController().getSettingsBatch();
+  }
+
+  void initAll() {
+    initSettings();
+    initColorsMap();
+    //TODO volver a esto initThemeData();
   }
 }
 

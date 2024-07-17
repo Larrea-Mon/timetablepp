@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:timetablepp/Control/main_controller.dart';
+import 'package:timetablepp/Control/theme_controller.dart';
 
 class SettingsGeneralPage extends StatefulWidget {
   const SettingsGeneralPage({super.key});
@@ -20,10 +22,9 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
           children: <Widget>[
             ListTile(
               title: Text('Tema de la aplicación'),
-              subtitle: Text('TODO Light'),
+              subtitle: Text('El tema actual es '),
               enabled: true,
-              onTap: () => {
-              },
+              onTap: () => {settingsChangeThemeApp()},
             ),
             ListTile(
               title: Text('Tema del Widget'),
@@ -60,6 +61,41 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
             ),
           ],
         ));
+  }
+
+  settingsChangeThemeApp() async {
+    switch (await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: Text('Selecciona un Tema para la aplicación'),
+          children: [
+            SimpleDialogOption(
+              onPressed: () {
+                Navigator.pop(context, 'claro');
+              },
+              child: Text('Tema Claro'),
+            ),
+            SimpleDialogOption(
+              onPressed: () {
+                Navigator.pop(context, 'oscuro');
+              },
+              child: Text('Tema Oscuro'),
+            ),
+          ],
+        );
+      },
+    )) {
+      case 'claro':
+        ThemeController().setAppTheme('light');
+        break;
+      case 'oscuro':
+        ThemeController().setAppTheme('dark');
+        break;
+      default:
+        todoButton();
+        break;
+    }
   }
 }
 

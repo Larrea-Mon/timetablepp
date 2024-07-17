@@ -3,6 +3,8 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/subject.dart';
 import 'package:timetablepp/Pages/TimetablePages/Subjects/materials_subject.dart';
@@ -31,7 +33,7 @@ class _EditSubjectPageState extends State<EditSubjectPage> {
   buildDeleteButton() {
     return IconButton(
       onPressed: () => {
-        MainController().deleteSubject(subject),
+        DatabaseController().removeSubject(subject.id),
         Fluttertoast.showToast(msg: "Deleted ${subject.name}"),
         Navigator.pop(context),
       },

@@ -13,8 +13,7 @@ class SettingsBatch {
   @Id()
   int id = 0;
   //GENERAL
-  bool isDarkThemeApp = false;
-  bool isDarkThemeWidget = true;
+  int activetheme = 0;
   
   //List<bool> daysActive = [true, true, true, true, true, true, true];
   bool isMondayActive = true;
@@ -34,7 +33,9 @@ class SettingsBatch {
 
   bool sendNotifsNextHomework = true;
   int timeSendNotifsHomeworkAfterClass = 15; //minutes
-  TimeOfDay timeSendNotifsHomeworkFreeDaysHour = TimeOfDay(hour: 10, minute: 0);
+  //TimeOfDay timeSendNotifsHomeworkFreeDaysHour = TimeOfDay(hour: 10, minute: 0);
+  int timeSendNotifsHomeworkFreeDaysHour = 10;
+  int timeSendNotifsHomeworkFreeDaysMinute = 0;
   bool sendNotifsNextExam = true;
   int daysSendNotifsNextExam = 7;
   //NOTIFICACIONES
@@ -46,9 +47,11 @@ class SettingsBatch {
   int lessonsPerDay = 6;
   int lessonsLength = 60;
   int lessonsBreak = 0;
+  /*
   List<TimeOfDay> lessonsStartTimes = [
     TimeOfDay(hour: 9, minute: 0),
     TimeOfDay(hour: 10, minute: 0),
     TimeOfDay(hour: 11, minute: 30)
   ];
+  */
 }

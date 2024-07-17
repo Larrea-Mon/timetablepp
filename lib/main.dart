@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:timetablepp/Control/main_controller.dart';
+import 'package:timetablepp/Control/theme_controller.dart';
 import 'Control/objectbox.dart';
 import 'Pages/holder_page.dart';
 import 'dart:async';
@@ -13,10 +14,9 @@ late ObjectBox objectbox;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   objectbox = await ObjectBox.create();
-  MainController().initColorsMap();
+  MainController().initAll();
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,22 +24,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => MyAppState(),
-        child: MaterialApp(
-          title: 'Timetable ++',
-          theme: ThemeData(
-              useMaterial3: true,
-              appBarTheme: AppBarTheme(
-                elevation: 2,
-                shadowColor: Colors.black,
-              ),
-              datePickerTheme: DatePickerThemeData(
-                surfaceTintColor: Colors.white,
-              ),
-              colorScheme:
-                  ColorScheme.fromSeed(seedColor: Colors.amber.shade400)),
-          home: HolderPage(),
-        ));
+      create: (context) => MyAppState(),
+      child: MaterialApp(
+        title: 'Timetable ++',
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeController().getThemeMode(),
+        home: HolderPage(),
+      ),
+    );
   }
 }
 
