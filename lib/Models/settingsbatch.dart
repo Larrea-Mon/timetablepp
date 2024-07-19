@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: unused_import, prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -13,8 +13,9 @@ class SettingsBatch {
   @Id()
   int id = 0;
   //GENERAL
-  int activetheme = 0;
-  
+  int appActiveTheme = 0;
+  int widgetActiveTheme = 0;
+
   //List<bool> daysActive = [true, true, true, true, true, true, true];
   bool isMondayActive = true;
   bool isTuesdayActive = true;
@@ -23,7 +24,6 @@ class SettingsBatch {
   bool isFridayActive = true;
   bool isSaturdayActive = false;
   bool isSundayActive = false;
-
 
   int firstDayOfTheWeek = 0;
   //GENERAL
@@ -54,4 +54,17 @@ class SettingsBatch {
     TimeOfDay(hour: 11, minute: 30)
   ];
   */
+  @override
+  toString() {
+    return "[SettingsBatch] ID: '$id' \n" +
+        "GENERAL \n" +
+        "appActiveTheme: $appActiveTheme \n" +
+        "widgetActiveTheme: $widgetActiveTheme \n" +
+        "daysActive: [$isMondayActive,$isTuesdayActive,$isWednesdayActive,$isThursdayActive,$isFridayActive,$isSaturdayActive,$isSundayActive] \n" +
+        "firstDayOfTheWeek: $firstDayOfTheWeek\n" +
+        "NOTIFICACIONES \n" +
+        "sendNotifsNextLesson: $sendNotifsNextLesson \n" + 
+        "timeSendNotifsNextLesson: $sendNotifsNextLesson \n" + 
+        "sendNotifsNextHomework: $sendNotifsNextHomework";
+  }
 }

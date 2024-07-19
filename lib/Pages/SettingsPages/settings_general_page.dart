@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/main_controller.dart';
-import 'package:timetablepp/Control/theme_controller.dart';
+import 'package:timetablepp/Control/Themes/theme_controller.dart';
+
 
 class SettingsGeneralPage extends StatefulWidget {
   const SettingsGeneralPage({super.key});
@@ -87,9 +88,12 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
       },
     )) {
       case 'claro':
+        //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
         ThemeController().setAppTheme('light');
+        
         break;
       case 'oscuro':
+        //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
         ThemeController().setAppTheme('dark');
         break;
       default:

@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/objectbox.dart';
+import 'package:timetablepp/Control/settings_controller.dart';
+import 'package:timetablepp/Control/Themes/theme_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/settingsbatch.dart';
 import 'package:timetablepp/Models/termperiod.dart';
@@ -158,14 +160,11 @@ class MainController {
     return result;
   }
 
-  void initSettings() {
-    settings = DatabaseController().getSettingsBatch();
-  }
 
   void initAll() {
-    initSettings();
+    SettingsController().initSettings();
     initColorsMap();
-    //TODO volver a esto initThemeData();
+    ThemeController().initTheme();
   }
 }
 

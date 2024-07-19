@@ -31,61 +31,34 @@ class SettingsController {
     return _instance;
   }
   late SettingsBatch _settings;
-  initSettings(){
+  initSettings() {
     _settings = DatabaseController().getSettingsBatch();
   }
 
-  getActiveTheme(){
-
+  getAllSettings() {
+    initSettings();
+    return _settings;
   }
-  setActiveTheme(int theme){
-    _settings.activetheme = theme;
+
+  getActiveTheme() {}
+  setActiveTheme(int theme) {
+    _settings.appActiveTheme = theme;
     DatabaseController().setSettingsBatch(_settings);
   }
-  getIsMondayActive(){
 
-  }
-  setIsModayActive(){
-
-  }
-  setIsTuesdayActive(){
-
-  }
-  getIsWednesdayActive(){
-
-  }
-  setIsWednesdayActive(){
-
-  }
-  getIsThursdayActive(){
-
-  }
-  setIsFridayActive(){
-
-  }
-  getIsFridayActive(){
-
-  }
-  setIsSaturdayActive(){
-
-  }
-  getIsSaturdayActive(){
-
-  }
-  setIsSundayActive(){
-
-  }
-  getIsSundayActive(){
-
-  }
-  setFirstDayOfTheWeek(){
-
-  }
-  getFirstDayOfTheWeek(){
-
-  }
-    //TODO continuar con el settings controller cuando sea relevante
-
-
-
+  getIsMondayActive() {}
+  setIsModayActive() {}
+  setIsTuesdayActive() {}
+  getIsWednesdayActive() {}
+  setIsWednesdayActive() {}
+  getIsThursdayActive() {}
+  setIsFridayActive() {}
+  getIsFridayActive() {}
+  setIsSaturdayActive() {}
+  getIsSaturdayActive() {}
+  setIsSundayActive() {}
+  getIsSundayActive() {}
+  setFirstDayOfTheWeek() {}
+  getFirstDayOfTheWeek() {}
+  //TODO continuar con el settings controller cuando sea relevante
 }

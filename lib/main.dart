@@ -1,14 +1,14 @@
-// ignore_for_file: prefer_const_constructors, unused_import
+// ignore_for_file: prefer_const_constructors,
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:timetablepp/Control/main_controller.dart';
-import 'package:timetablepp/Control/theme_controller.dart';
+import 'package:timetablepp/Control/Themes/theme_controller.dart';
 import 'Control/objectbox.dart';
 import 'Pages/holder_page.dart';
 import 'dart:async';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:theme_provider/theme_provider.dart';
+
 
 late ObjectBox objectbox;
 Future<void> main() async {
@@ -18,8 +18,17 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget{
   const MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState(){
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +36,12 @@ class MyApp extends StatelessWidget {
       create: (context) => MyAppState(),
       child: MaterialApp(
         title: 'Timetable ++',
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        themeMode: ThemeController().getThemeMode(),
+        theme: ThemeController().apptheme,
         home: HolderPage(),
       ),
     );
   }
 }
+
 
 class MyAppState extends ChangeNotifier {}

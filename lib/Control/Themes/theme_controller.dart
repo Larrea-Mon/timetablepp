@@ -18,10 +18,10 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../Models/subject.dart';
-import '../objectbox.g.dart';
+import '../../Models/subject.dart';
+import '../../objectbox.g.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class ThemeController {
   ThemeController._privateConstructor();
@@ -31,35 +31,33 @@ class ThemeController {
   factory ThemeController() {
     return _instance;
   }
+  ThemeData apptheme = ThemeData();
 
-  var themeMode = ThemeMode.light;
 
   int getThemeSetting() {
     SettingsBatch setting = DatabaseController().getSettingsBatch();
-    int result = setting.activetheme;
+    int result = setting.appActiveTheme;
     return result;
   }
-
-  void initThemeMode() {
-    switch (getThemeSetting()) {
-      case 0:
-        themeMode = ThemeMode.light;
-        break;
-      case 1:
-        themeMode = ThemeMode.dark;
-        break;
-      case 2:
-        themeMode = ThemeMode.system;
-        break;
-      default:
-        themeMode = ThemeMode.system;
-        break;
-    }
+  
+  getTheme() { 
+    debugPrint('ThemeController: getTheme()');
+    return apptheme;
   }
 
-  ThemeMode getThemeMode() {
-    initThemeMode();
-    return themeMode;
+  void initTheme() {
+    debugPrint('ThemeController: initTheme()');
+    switch (getThemeSetting()) {
+      case 0:
+        apptheme = ThemeData.light();
+        break;
+      case 1:
+        apptheme = ThemeData.dark();
+        break;
+      default:
+        apptheme = ThemeData.light();
+        break;
+    }
   }
 
   void setAppTheme(String themeName) {
@@ -67,14 +65,17 @@ class ThemeController {
       case 'light':
         debugPrint('[SetAppTheme]: Changed theme to light.');
         SettingsController().setActiveTheme(0);
+        initTheme();
         break;
       case 'dark':
         debugPrint('[SetAppTheme]: Changed theme to dark.');
         SettingsController().setActiveTheme(1);
+        initTheme();
         break;
       case 'system':
         debugPrint('[SetAppTheme]: Changed theme to system.');
         SettingsController().setActiveTheme(2);
+        initTheme();
       default:
         debugPrint('[setAppTheme]:Something went wrong.');
     }
@@ -92,4 +93,6 @@ class ThemeController {
         debugPrint('[setWidgetTheme]Something went wrong.');
     }
   }
+
+  
 }

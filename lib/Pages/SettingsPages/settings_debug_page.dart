@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/database_controller.dart';
+import 'package:timetablepp/Control/settings_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/subject.dart';
 
@@ -78,6 +79,30 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
                 );
               },
             ),
+            ListTile(
+              title: Text('Ver todas las opciones'),
+              enabled: true,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('settingsbatch'),
+                      content: Text(
+                          SettingsController().getAllSettings().toString()),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('ok'))
+                      ],
+                    );
+                  },
+                );
+              },
+            )
           ],
         ));
   }
@@ -85,7 +110,6 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
 
 AppBar settingsGeneralAppBar = AppBar(
   title: Text('General'),
-  backgroundColor: Colors.blue[100],
 
   /*actions: <Widget>[
     PopupMenuButton(itemBuilder: itemBuilder)
@@ -94,7 +118,6 @@ AppBar settingsGeneralAppBar = AppBar(
 
 AppBar settingsDebugAppBar = AppBar(
   title: Text('Debug'),
-  backgroundColor: Colors.blue[100],
 
   /*actions: <Widget>[
     PopupMenuButton(itemBuilder: itemBuilder)

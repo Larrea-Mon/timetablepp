@@ -155,7 +155,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(9, 7962595628123035930),
       name: 'SettingsBatch',
-      lastPropertyId: const obx_int.IdUid(25, 7508359457946523139),
+      lastPropertyId: const obx_int.IdUid(27, 7563713612122021013),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -269,8 +269,13 @@ final _entities = <obx_int.ModelEntity>[
             type: 6,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(25, 7508359457946523139),
-            name: 'activetheme',
+            id: const obx_int.IdUid(26, 73517361895304590),
+            name: 'appActiveTheme',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(27, 7563713612122021013),
+            name: 'widgetActiveTheme',
             type: 6,
             flags: 0)
       ],
@@ -369,7 +374,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
         258324090967465752,
         8555219835403082987,
         1242233559764430895,
-        4716857800487018992
+        4716857800487018992,
+        7508359457946523139
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -538,7 +544,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (SettingsBatch object, fb.Builder fbb) {
-          fbb.startTable(26);
+          fbb.startTable(28);
           fbb.addInt64(0, object.id);
           fbb.addInt64(3, object.firstDayOfTheWeek);
           fbb.addBool(4, object.sendNotifsNextLesson);
@@ -561,7 +567,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addBool(21, object.isSundayActive);
           fbb.addInt64(22, object.timeSendNotifsHomeworkFreeDaysHour);
           fbb.addInt64(23, object.timeSendNotifsHomeworkFreeDaysMinute);
-          fbb.addInt64(24, object.activetheme);
+          fbb.addInt64(25, object.appActiveTheme);
+          fbb.addInt64(26, object.widgetActiveTheme);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -613,8 +620,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
                 const fb.Int64Reader().vTableGet(buffer, rootOffset, 48, 0)
             ..timeSendNotifsHomeworkFreeDaysMinute =
                 const fb.Int64Reader().vTableGet(buffer, rootOffset, 50, 0)
-            ..activetheme =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 52, 0);
+            ..appActiveTheme =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 54, 0)
+            ..widgetActiveTheme =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 56, 0);
 
           return object;
         }),
@@ -825,9 +834,13 @@ class SettingsBatch_ {
   static final timeSendNotifsHomeworkFreeDaysMinute =
       obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[21]);
 
-  /// See [SettingsBatch.activetheme].
-  static final activetheme =
+  /// See [SettingsBatch.appActiveTheme].
+  static final appActiveTheme =
       obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[22]);
+
+  /// See [SettingsBatch.widgetActiveTheme].
+  static final widgetActiveTheme =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[23]);
 }
 
 /// [SubjectTime] entity fields to define ObjectBox queries.
