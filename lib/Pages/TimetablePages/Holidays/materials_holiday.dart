@@ -72,7 +72,6 @@ buildSaveHolidayIcon(TextEditingController myController, Icon icon, context) {
           } else {
             Fluttertoast.showToast(
               msg: "El período festivo debe tener comienzo y final",
-              backgroundColor: Colors.grey,
             );
           }
         },

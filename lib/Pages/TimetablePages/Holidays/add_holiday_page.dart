@@ -42,7 +42,7 @@ class _AddHolidayPageState extends State<AddHolidayPage> {
     buildHolidayAppBar() {
       AppBar holidayAddAppBar = AppBar(
         title: Text('Añadir Festivo'),
-        backgroundColor: Colors.blue[100],
+
         actions: <Widget>[
           helpButton(context),
           buildSaveHolidayIcon(myController, Icon(Icons.save), context),

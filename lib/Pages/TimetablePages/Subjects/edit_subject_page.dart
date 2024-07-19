@@ -129,7 +129,6 @@ class _EditSubjectPageState extends State<EditSubjectPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: buildSubjectAppBar(),
       body: Column(
         children: [

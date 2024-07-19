@@ -21,7 +21,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
     buildHolidaysAppBar() {
       return AppBar(
         title: Text('Vacaciones'),
-        backgroundColor: Colors.blue[100],
+
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -39,7 +39,6 @@ class _HolidaysPageState extends State<HolidaysPage> {
     List<HolidayPeriod> holidays = DatabaseController().getAllHolidayPeriods();
 
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: buildHolidaysAppBar(),
         body: Column(
           children: [

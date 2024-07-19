@@ -13,7 +13,6 @@ class _WeekViewPageState extends State<WeekViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: weekViewAppBar,
       /*body: GridView.custom(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(),
@@ -25,7 +24,6 @@ class _WeekViewPageState extends State<WeekViewPage> {
 
 AppBar weekViewAppBar = AppBar(
   title: Text('Vista Semanal'),
-  backgroundColor: Colors.blue[100],
 
   /*actions: <Widget>[
     PopupMenuButton(itemBuilder: itemBuilder)

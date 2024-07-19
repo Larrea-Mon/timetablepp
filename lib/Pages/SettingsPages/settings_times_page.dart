@@ -63,7 +63,6 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
     
     //TODO MainColumn.children.add(),
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: settingsTimesAppBar,
       body: SingleChildScrollView( child: mainColumn,), 
       
@@ -73,7 +72,6 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
 
 AppBar settingsTimesAppBar = AppBar(
   title: Text('Horario'),
-  backgroundColor: Colors.blue[100],
   //TODO poner un botón aqui?
 
   /*actions: <Widget>[

@@ -41,7 +41,7 @@ class _EditHolidayPageState extends State<EditHolidayPage> {
     buildHolidayAppBar() {
       AppBar holidayAddAppBar = AppBar(
         title: Text(MainController().getCurrentHoliday().name,),
-        backgroundColor: Colors.blue[100],
+
         actions: <Widget>[
           buildDeleteButton(context),
           helpButton(context),

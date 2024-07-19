@@ -24,13 +24,12 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     AppBar dashboardAppBar = AppBar(
       title: Text('Main Page'),
-      backgroundColor: Colors.blue[100],
+
     );
 
     buildUpcomingCard() {
       return Card(
         margin: const EdgeInsets.all(20.0),
-        color: Colors.white,
         elevation: 2.0,
         child: ListTile(
           isThreeLine: true,
@@ -106,7 +105,6 @@ class _DashboardPageState extends State<DashboardPage> {
         margin: const EdgeInsets.all(20.0),
         elevation: 2.0,
         child: Scaffold(
-          backgroundColor: Colors.white,
           appBar: buildSubjectsAppbar(),
           body: SingleChildScrollView(
             child: Column(
@@ -123,7 +121,7 @@ class _DashboardPageState extends State<DashboardPage> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+
       appBar: dashboardAppBar,
       body: Column(
         children: [

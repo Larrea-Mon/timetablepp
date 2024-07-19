@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:timetablepp/Control/main_controller.dart';
 
 class SettingsNotificationsPage extends StatefulWidget {
   const SettingsNotificationsPage({super.key});
@@ -14,7 +14,6 @@ class _SettingsNotificationsPageState extends State<SettingsNotificationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: settingsNotificationsAppBar,
 body: ListView(
         children: ListTile.divideTiles(context: context, tiles: [
@@ -23,10 +22,7 @@ body: ListView(
             subtitle: Text('Muestra la siguiente lección'),
             enabled: true,
             onTap: () {
-              Fluttertoast.showToast(
-                msg: '//TODO implementar esto',
-                backgroundColor: Colors.grey,
-              );
+              todoButton();
             },
           ),
           ListTile(
@@ -34,10 +30,7 @@ body: ListView(
             subtitle: Text('TODO minuto(s) antes de que empieze la lección'),
             enabled: true,
             onTap: () {
-              Fluttertoast.showToast(
-                msg: '//TODO implementar esto',
-                backgroundColor: Colors.grey,
-              );
+              todoButton();
             },
           ),
           ListTile(
@@ -45,10 +38,7 @@ body: ListView(
             subtitle: Text('Muestra las próximas tareas'),
             enabled: true,
             onTap: () {
-              Fluttertoast.showToast(
-                msg: '//TODO implementar esto',
-                backgroundColor: Colors.grey,
-              );
+              todoButton();
             },
           ),
           ListTile(
@@ -56,10 +46,7 @@ body: ListView(
             subtitle: Text('TODO dia(s) antes de la fecha de entrega'),
             enabled: true,
             onTap: () {
-              Fluttertoast.showToast(
-                msg: '//TODO implementar esto',
-                backgroundColor: Colors.grey,
-              );
+              todoButton();
             },
           ),
           ListTile(
@@ -67,10 +54,7 @@ body: ListView(
             subtitle: Text('TODO dia(s) antes de la fecha de entrega'),
             enabled: true,
             onTap: () {
-              Fluttertoast.showToast(
-                msg: '//TODO implementar esto',
-                backgroundColor: Colors.grey,
-              );
+              todoButton();
             },
           ),
           ListTile(
@@ -78,10 +62,7 @@ body: ListView(
             subtitle: Text('TODO dia(s) antes de la fecha de entrega'),
             enabled: true,
             onTap: () {
-              Fluttertoast.showToast(
-                msg: '//TODO implementar esto',
-                backgroundColor: Colors.grey,
-              );
+             todoButton();
             },
           ),
         ]).toList(),

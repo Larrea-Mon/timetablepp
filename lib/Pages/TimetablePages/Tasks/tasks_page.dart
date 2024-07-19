@@ -13,7 +13,6 @@ class _TasksPageState extends State<TasksPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: tasksAppBar,
     );
   }
@@ -21,7 +20,7 @@ class _TasksPageState extends State<TasksPage> {
 
 AppBar tasksAppBar = AppBar(
   title: Text('Tareas y Exámenes'),
-  backgroundColor: Colors.blue[100],
+
   /*actions: <Widget>[
     PopupMenuButton(itemBuilder: itemBuilder)
   ],*/

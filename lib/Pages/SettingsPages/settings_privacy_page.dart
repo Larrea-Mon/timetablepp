@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:timetablepp/Control/main_controller.dart';
 
 
 class SettingsPrivacyPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SettingsPrivacyPageState extends State<SettingsPrivacyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+
         appBar: settingsTimesAppBar,
         body: ListView(
           children: <Widget>[
@@ -25,10 +26,7 @@ class _SettingsPrivacyPageState extends State<SettingsPrivacyPage> {
               subtitle: Text ('Lee la política de Privacidad en mi página web'),
               enabled: true,
               onTap: () {
-                Fluttertoast.showToast(
-                  msg: '//TODO implementar esto',
-                  backgroundColor: Colors.grey,
-                );
+               todoButton();
               },
             ),
             ListTile(
@@ -36,10 +34,7 @@ class _SettingsPrivacyPageState extends State<SettingsPrivacyPage> {
               subtitle : Text('Si tienes algun comentario o duda puedes mandarme un email.'),
               enabled: true,
               onTap: () {
-                Fluttertoast.showToast(
-                  msg: '//TODO implementar esto',
-                  backgroundColor: Colors.grey,
-                );
+                todoButton();
               },
             ),
           ],
@@ -49,7 +44,6 @@ class _SettingsPrivacyPageState extends State<SettingsPrivacyPage> {
 
 AppBar settingsTimesAppBar = AppBar(
   title: Text('Privacidad'),
-  backgroundColor: Colors.blue[100],
   //TODO poner un botón aqui?
 
   /*actions: <Widget>[

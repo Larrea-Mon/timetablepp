@@ -17,7 +17,6 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: settingsGeneralAppBar,
         body: ListView(
           children: <Widget>[
@@ -36,7 +35,6 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
 
                 Fluttertoast.showToast(
                   msg: 'Añadidas',
-                  backgroundColor: Colors.grey,
                 );
               },
             ),
@@ -49,7 +47,6 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
 
                 Fluttertoast.showToast(
                   msg: 'Eliminadas $i vacaciones',
-                  backgroundColor: Colors.grey,
                 );
               },
             ),
@@ -62,7 +59,6 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
 
                 Fluttertoast.showToast(
                   msg: 'Añadidas Asignaturas',
-                  backgroundColor: Colors.grey,
                 );
               },
             ),
@@ -75,7 +71,6 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
 
                 Fluttertoast.showToast(
                   msg: 'Eliminadas $i asignaturas',
-                  backgroundColor: Colors.grey,
                 );
               },
             ),

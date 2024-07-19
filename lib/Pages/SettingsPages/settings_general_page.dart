@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:theme_provider/theme_provider.dart';
 import 'package:timetablepp/Control/main_controller.dart';
-import 'package:timetablepp/Control/Themes/theme_controller.dart';
+import 'package:timetablepp/Control/Themes/app_theme_controller.dart';
 
 
 class SettingsGeneralPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+
         appBar: settingsGeneralAppBar,
         body: ListView(
           children: <Widget>[
@@ -32,10 +33,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
               subtitle: Text('TODO Dark'),
               enabled: true,
               onTap: () {
-                Fluttertoast.showToast(
-                  msg: '//TODO implementar esto',
-                  backgroundColor: Colors.grey,
-                );
+                todoButton();
               },
             ),
             ListTile(
@@ -43,10 +41,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
               subtitle: Text('TODO Lun,Mar,Mie,Jue,Vie,Sab,Dom'),
               enabled: true,
               onTap: () {
-                Fluttertoast.showToast(
-                  msg: '//TODO implementar esto',
-                  backgroundColor: Colors.grey,
-                );
+                todoButton();
               },
             ),
             ListTile(
@@ -54,10 +49,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
               subtitle: Text('TODO Mon'),
               enabled: true,
               onTap: () {
-                Fluttertoast.showToast(
-                  msg: '//TODO implementar esto',
-                  backgroundColor: Colors.grey,
-                );
+                todoButton();
               },
             ),
           ],
@@ -89,12 +81,13 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
     )) {
       case 'claro':
         //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
-        ThemeController().setAppTheme('light');
-        
+        //AppThemeController().setAppTheme('light');
+        ThemeProvider.controllerOf(context).setTheme('light');
         break;
       case 'oscuro':
         //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
-        ThemeController().setAppTheme('dark');
+       // AppThemeController().setAppTheme('dark');
+        ThemeProvider.controllerOf(context).setTheme('dark');
         break;
       default:
         todoButton();
@@ -105,8 +98,6 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
 
 AppBar settingsGeneralAppBar = AppBar(
   title: Text('General'),
-  backgroundColor: Colors.blue[100],
-
   /*actions: <Widget>[
     PopupMenuButton(itemBuilder: itemBuilder)
   ],*/
