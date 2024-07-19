@@ -75,7 +75,6 @@ class _DayViewPageState extends State<DayViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: dayViewAppBar,
       body: Card(
         child: Column(
@@ -108,7 +107,7 @@ class _DayViewPageState extends State<DayViewPage> {
 
 AppBar dayViewAppBar = AppBar(
   title: Text('Vista Diaria'),
-  backgroundColor: Colors.blue[100],
+
 
   /*actions: <Widget>[
     PopupMenuButton(itemBuilder: itemBuilder)

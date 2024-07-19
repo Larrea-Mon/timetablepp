@@ -1,46 +1,27 @@
-// ignore_for_file: unused_import, prefer_final_fields, prefer_const_constructors
+// ignore_for_file: , prefer_final_fields, prefer_const_constructors
 
-import 'dart:collection';
-import 'dart:ffi';
-
-import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/database_controller.dart';
-import 'package:timetablepp/Control/objectbox.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
-import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/settingsbatch.dart';
-import 'package:timetablepp/Models/termperiod.dart';
 
-import 'dart:async';
+class AppThemeController {
+  AppThemeController._privateConstructor();
 
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-
-import '../../Models/subject.dart';
-import '../../objectbox.g.dart';
-
-import '../../main.dart';
-
-class ThemeController {
-  ThemeController._privateConstructor();
-
-  static final ThemeController _instance =
-      ThemeController._privateConstructor();
-  factory ThemeController() {
+  static final AppThemeController _instance =
+      AppThemeController._privateConstructor();
+  factory AppThemeController() {
     return _instance;
   }
   ThemeData apptheme = ThemeData();
-
 
   int getThemeSetting() {
     SettingsBatch setting = DatabaseController().getSettingsBatch();
     int result = setting.appActiveTheme;
     return result;
   }
-  
-  getTheme() { 
+
+  getTheme() {
     debugPrint('ThemeController: getTheme()');
     return apptheme;
   }
@@ -93,6 +74,4 @@ class ThemeController {
         debugPrint('[setWidgetTheme]Something went wrong.');
     }
   }
-
-  
 }

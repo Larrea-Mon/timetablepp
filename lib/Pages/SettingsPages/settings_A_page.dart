@@ -19,7 +19,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: settingsAppBar,
         body: ListView(
           children: <Widget>[
@@ -111,7 +110,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
 AppBar settingsAppBar = AppBar(
   title: Text('Ajustes'),
-  backgroundColor: Colors.blue[100],
 
   /*actions: <Widget>[
     PopupMenuButton(itemBuilder: itemBuilder)
