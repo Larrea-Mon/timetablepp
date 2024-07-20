@@ -17,7 +17,7 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: settingsGeneralAppBar,
+        appBar: settingsDebugAppBar,
         body: ListView(
           children: <Widget>[
             ListTile(
@@ -103,13 +103,6 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
   }
 }
 
-AppBar settingsGeneralAppBar = AppBar(
-  title: Text('General'),
-
-  /*actions: <Widget>[
-    PopupMenuButton(itemBuilder: itemBuilder)
-  ],*/
-);
 
 AppBar settingsDebugAppBar = AppBar(
   title: Text('Debug'),

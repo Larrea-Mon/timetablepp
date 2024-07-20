@@ -1,5 +1,8 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:theme_provider/theme_provider.dart';
+import 'package:timetablepp/Control/app_theme_controller.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'Control/objectbox.dart';
 import 'Pages/holder_page.dart';
@@ -19,21 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeProvider(
-      themes: [
-        AppTheme.light(
-            id: 'light'), // This is standard light theme (id is default_light_theme)
-        AppTheme.dark(
-            id: 'dark'), // This is standard dark theme (id is default_dark_theme)
-        AppTheme(
-          id: "custom_theme", // Id(or name) of the theme(Has to be unique)
-          description: "My Custom Theme", // Description of theme
-          data: ThemeData(
-            // Real theme data
-            primaryColor: Colors.black,
-            hintColor: Colors.red,
-          ),
-        ),
-      ],
+      //loadThemeOnInit: true,
+      themes: AppThemeController().getAppThemes(),
+      onInitCallback: (controller, previouslySavedThemeFuture) async {
+        AppThemeController().initTheme();
+        controller.setTheme(AppThemeController().getActiveTheme().id);
+      },
       child: ThemeConsumer(
         child: Builder(
           builder: (themeContext) => MaterialApp(

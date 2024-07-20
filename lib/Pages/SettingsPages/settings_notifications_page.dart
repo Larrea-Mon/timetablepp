@@ -1,21 +1,23 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:theme_provider/theme_provider.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 
 class SettingsNotificationsPage extends StatefulWidget {
   const SettingsNotificationsPage({super.key});
 
   @override
-  State<SettingsNotificationsPage> createState() => _SettingsNotificationsPageState();
+  State<SettingsNotificationsPage> createState() =>
+      _SettingsNotificationsPageState();
 }
 
 class _SettingsNotificationsPageState extends State<SettingsNotificationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: settingsNotificationsAppBar,
-body: ListView(
+      appBar: _buildSettingsNotificationsAppBar(),
+      body: ListView(
         children: ListTile.divideTiles(context: context, tiles: [
           ListTile(
             title: Text('Notificaciónes de Lección'),
@@ -62,21 +64,19 @@ body: ListView(
             subtitle: Text('TODO dia(s) antes de la fecha de entrega'),
             enabled: true,
             onTap: () {
-             todoButton();
+              todoButton();
             },
           ),
         ]).toList(),
       ),
     );
   }
+
+  _buildSettingsNotificationsAppBar() {
+    return AppBar(
+      title: Text('Notificaciones'),
+      backgroundColor: ThemeProvider.themeOf(context).data.hintColor,
+    );
+    //TODO poner un botón aquí?
+  }
 }
-
-AppBar settingsNotificationsAppBar = AppBar(
-  title: Text('Notificaciones'),
-  backgroundColor: Colors.blue[100],
-  //TODO poner un botón aqui?
-
-  /*actions: <Widget>[
-    PopupMenuButton(itemBuilder: itemBuilder)
-  ],*/
-);

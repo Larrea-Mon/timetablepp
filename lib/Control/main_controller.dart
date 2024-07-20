@@ -9,7 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/objectbox.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
-import 'package:timetablepp/Control/Themes/app_theme_controller.dart';
+import 'package:timetablepp/Control/app_theme_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/settingsbatch.dart';
 import 'package:timetablepp/Models/termperiod.dart';
@@ -164,7 +164,7 @@ class MainController {
   void initAll() {
     SettingsController().initSettings();
     initColorsMap();
-    AppThemeController().initTheme();
+    //TODO volver a esto AppThemeController().initTheme();
   }
 }
 

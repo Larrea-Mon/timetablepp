@@ -15,6 +15,7 @@ class ObjectBox {
   }
 
   static Future<ObjectBox> create() async {
+    
     final docsDir = await getApplicationDocumentsDirectory();
     final store = await openStore(directory: p.join(docsDir.path,"obx-example"));
     return ObjectBox._create(store);

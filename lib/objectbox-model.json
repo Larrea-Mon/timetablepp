@@ -4,52 +4,28 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "3:6712300024642865997",
-      "lastPropertyId": "3:7628532944252634798",
-      "name": "TermPeriod",
-      "properties": [
-        {
-          "id": "1:3735083573369474155",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "2:6810973221594398258",
-          "name": "start",
-          "type": 10
-        },
-        {
-          "id": "3:7628532944252634798",
-          "name": "end",
-          "type": 10
-        }
-      ],
-      "relations": []
-    },
-    {
-      "id": "4:3033383584820465524",
-      "lastPropertyId": "4:651313185732812970",
+      "id": "1:8580854761514221371",
+      "lastPropertyId": "4:2319572583605026503",
       "name": "HolidayPeriod",
       "properties": [
         {
-          "id": "1:3314223274298000639",
+          "id": "1:2897001669363904909",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:1800696407142293280",
+          "id": "2:5218522932801161067",
           "name": "start",
           "type": 10
         },
         {
-          "id": "3:3066113653228354995",
+          "id": "3:6066369750214495565",
           "name": "end",
           "type": 10
         },
         {
-          "id": "4:651313185732812970",
+          "id": "4:2319572583605026503",
           "name": "name",
           "type": 9
         }
@@ -57,38 +33,75 @@
       "relations": []
     },
     {
-      "id": "7:7039596356983433900",
-      "lastPropertyId": "7:8244514203172194503",
-      "name": "Subject",
+      "id": "2:3837368679985327568",
+      "lastPropertyId": "5:6354421064310499119",
+      "name": "Lesson",
       "properties": [
         {
-          "id": "1:577877316626608401",
+          "id": "1:1126128243147593373",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:8193245059149668343",
+          "id": "2:1102212534974716332",
+          "name": "hour",
+          "type": 5
+        },
+        {
+          "id": "3:916558853735177842",
+          "name": "minute",
+          "type": 5
+        },
+        {
+          "id": "4:5216802402994332804",
+          "name": "day",
+          "type": 5
+        },
+        {
+          "id": "5:6354421064310499119",
+          "name": "subjectId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:8338900709183299503",
+          "relationTarget": "Subject"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:3744144578641230598",
+      "lastPropertyId": "6:2056781321402505831",
+      "name": "Subject",
+      "properties": [
+        {
+          "id": "1:3164545630065121224",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2652228241084836952",
           "name": "name",
           "type": 9
         },
         {
-          "id": "3:4789907192747017289",
+          "id": "3:5331165141955187264",
           "name": "abv",
           "type": 9
         },
         {
-          "id": "4:1407323447579881166",
+          "id": "4:4758388099081066784",
           "name": "teacher",
           "type": 9
         },
         {
-          "id": "5:5604493318830112940",
+          "id": "5:5137719230628209988",
           "name": "place",
           "type": 9
         },
         {
-          "id": "7:8244514203172194503",
+          "id": "6:2056781321402505831",
           "name": "color",
           "type": 9
         }
@@ -96,233 +109,192 @@
       "relations": []
     },
     {
-      "id": "8:9066198403731461066",
-      "lastPropertyId": "5:7816044147552149826",
-      "name": "Lesson",
+      "id": "5:4022893133229700797",
+      "lastPropertyId": "3:3512963349698658758",
+      "name": "SubjectTime",
       "properties": [
         {
-          "id": "1:4867351427623262150",
+          "id": "1:6852247997759590650",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:6377000438013814085",
+          "id": "2:1746992985605304413",
           "name": "hour",
-          "type": 5
+          "type": 6
         },
         {
-          "id": "3:7477443440026383016",
+          "id": "3:3512963349698658758",
           "name": "minute",
-          "type": 5
-        },
-        {
-          "id": "4:651344471440634396",
-          "name": "day",
-          "type": 5
-        },
-        {
-          "id": "5:7816044147552149826",
-          "name": "subjectId",
-          "type": 11,
-          "flags": 520,
-          "indexId": "2:8369609502199462194",
-          "relationTarget": "Subject"
+          "type": 6
         }
       ],
       "relations": []
     },
     {
-      "id": "9:7962595628123035930",
-      "lastPropertyId": "27:7563713612122021013",
-      "name": "SettingsBatch",
+      "id": "6:8770315610770758503",
+      "lastPropertyId": "3:3192627378815697225",
+      "name": "TermPeriod",
       "properties": [
         {
-          "id": "1:3822177447485087621",
+          "id": "1:6182410182531718172",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "4:6301400020867184160",
-          "name": "firstDayOfTheWeek",
+          "id": "2:5875171906117540201",
+          "name": "start",
+          "type": 10
+        },
+        {
+          "id": "3:3192627378815697225",
+          "name": "end",
+          "type": 10
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "7:1394606018714506811",
+      "lastPropertyId": "24:5761305450991132851",
+      "name": "SettingsBatch",
+      "properties": [
+        {
+          "id": "1:2913842438045222602",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7612856395423466994",
+          "name": "appActiveTheme",
+          "type": 9
+        },
+        {
+          "id": "3:2380285000361470013",
+          "name": "widgetActiveTheme",
           "type": 6
         },
         {
-          "id": "5:7003384279367014382",
-          "name": "sendNotifsNextLesson",
-          "type": 1
-        },
-        {
-          "id": "6:740098166399107518",
-          "name": "timeSendNotifsNextLesson",
-          "type": 6
-        },
-        {
-          "id": "7:8983760934677357504",
-          "name": "sendNotifsNextHomework",
-          "type": 1
-        },
-        {
-          "id": "8:7141868142157793745",
-          "name": "timeSendNotifsHomeworkAfterClass",
-          "type": 6
-        },
-        {
-          "id": "9:1919005861197611804",
-          "name": "sendNotifsNextExam",
-          "type": 1
-        },
-        {
-          "id": "10:6254122234311399506",
-          "name": "daysSendNotifsNextExam",
-          "type": 6
-        },
-        {
-          "id": "11:5337302094719174081",
-          "name": "enableAutoSilence",
-          "type": 1
-        },
-        {
-          "id": "12:2793398206601424504",
-          "name": "minutesAutosilence",
-          "type": 6
-        },
-        {
-          "id": "13:5783053863073903254",
-          "name": "lessonsPerDay",
-          "type": 6
-        },
-        {
-          "id": "14:1242706005274499902",
-          "name": "lessonsLength",
-          "type": 6
-        },
-        {
-          "id": "15:4012179022551700003",
-          "name": "lessonsBreak",
-          "type": 6
-        },
-        {
-          "id": "16:6027581562774258379",
+          "id": "4:8716076441801428007",
           "name": "isMondayActive",
           "type": 1
         },
         {
-          "id": "17:5112757132913238187",
+          "id": "5:7416606653076765869",
           "name": "isTuesdayActive",
           "type": 1
         },
         {
-          "id": "18:455142664254308780",
+          "id": "6:110580738220500317",
           "name": "isWednesdayActive",
           "type": 1
         },
         {
-          "id": "19:6280600683648540867",
+          "id": "7:3540444230138283693",
           "name": "isThursdayActive",
           "type": 1
         },
         {
-          "id": "20:5105959611675902343",
+          "id": "8:7579351411599530050",
           "name": "isFridayActive",
           "type": 1
         },
         {
-          "id": "21:3810537354444841221",
+          "id": "9:5658798479320078405",
           "name": "isSaturdayActive",
           "type": 1
         },
         {
-          "id": "22:2969465162820710256",
+          "id": "10:3179588705729704977",
           "name": "isSundayActive",
           "type": 1
         },
         {
-          "id": "23:8070058903277532290",
+          "id": "11:8481401657505330177",
+          "name": "firstDayOfTheWeek",
+          "type": 6
+        },
+        {
+          "id": "12:3243519915968758427",
+          "name": "sendNotifsNextLesson",
+          "type": 1
+        },
+        {
+          "id": "13:2317602204116279282",
+          "name": "timeSendNotifsNextLesson",
+          "type": 6
+        },
+        {
+          "id": "14:5727023552341271590",
+          "name": "sendNotifsNextHomework",
+          "type": 1
+        },
+        {
+          "id": "15:7083816533479401061",
+          "name": "timeSendNotifsHomeworkAfterClass",
+          "type": 6
+        },
+        {
+          "id": "16:5199238861051797907",
           "name": "timeSendNotifsHomeworkFreeDaysHour",
           "type": 6
         },
         {
-          "id": "24:5672706178154757184",
+          "id": "17:7923646921431651540",
           "name": "timeSendNotifsHomeworkFreeDaysMinute",
           "type": 6
         },
         {
-          "id": "26:73517361895304590",
-          "name": "appActiveTheme",
+          "id": "18:1028596755060113782",
+          "name": "sendNotifsNextExam",
+          "type": 1
+        },
+        {
+          "id": "19:8290366056985994140",
+          "name": "daysSendNotifsNextExam",
           "type": 6
         },
         {
-          "id": "27:7563713612122021013",
-          "name": "widgetActiveTheme",
-          "type": 6
-        }
-      ],
-      "relations": []
-    },
-    {
-      "id": "10:7165403485464021256",
-      "lastPropertyId": "3:4407822383198214790",
-      "name": "SubjectTime",
-      "properties": [
-        {
-          "id": "1:6183662035754576763",
-          "name": "id",
-          "type": 6,
-          "flags": 1
+          "id": "20:9114647169376636416",
+          "name": "enableAutoSilence",
+          "type": 1
         },
         {
-          "id": "2:3562131586575814635",
-          "name": "hour",
+          "id": "21:4496436887677194396",
+          "name": "minutesAutosilence",
           "type": 6
         },
         {
-          "id": "3:4407822383198214790",
-          "name": "minute",
+          "id": "22:5111428637400359396",
+          "name": "lessonsPerDay",
+          "type": 6
+        },
+        {
+          "id": "23:3884263845346654801",
+          "name": "lessonsLength",
+          "type": 6
+        },
+        {
+          "id": "24:5761305450991132851",
+          "name": "lessonsBreak",
           "type": 6
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "10:7165403485464021256",
-  "lastIndexId": "2:8369609502199462194",
+  "lastEntityId": "7:1394606018714506811",
+  "lastIndexId": "1:8338900709183299503",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [
-    3550581915661698429,
-    5641477025173493033,
-    7387174656048122430,
-    2545113248978641425
-  ],
+  "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [
-    4875495904651296124,
-    2495712168504459199,
-    6733068527520113198,
-    8853223232895115220,
-    8676671176066478731,
-    4136888799807000002,
-    5662718307907723849,
-    6181656001915519347,
-    1159009269193963203,
-    4812326025030964172,
-    7214797018055737408,
-    2707582517948775339,
-    4310842985319946914,
-    3637776464582519531,
-    1520117690305473185,
-    6965828538278559551,
-    6342334289272328411,
-    258324090967465752,
-    8555219835403082987,
-    1242233559764430895,
-    4716857800487018992,
-    7508359457946523139
-  ],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }

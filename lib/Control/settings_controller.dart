@@ -35,14 +35,19 @@ class SettingsController {
     _settings = DatabaseController().getSettingsBatch();
   }
 
-  getAllSettings() {
+  SettingsBatch getAllSettings() {
     initSettings();
     return _settings;
   }
 
-  getActiveTheme() {}
-  setActiveTheme(int theme) {
+  String getActiveTheme() {
+    String result = _settings.appActiveTheme;
+    debugPrint('[SettingsController]: getActiveTheme: result = $result');
+    return result;
+  }
+  void setActiveTheme(String theme) {
     _settings.appActiveTheme = theme;
+    debugPrint('[SettingsController]: setActiveTheme: theme = $theme');
     DatabaseController().setSettingsBatch(_settings);
   }
 

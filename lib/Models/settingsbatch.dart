@@ -13,7 +13,7 @@ class SettingsBatch {
   @Id()
   int id = 0;
   //GENERAL
-  int appActiveTheme = 0;
+  String appActiveTheme = 'winter';
   int widgetActiveTheme = 0;
 
   //List<bool> daysActive = [true, true, true, true, true, true, true];

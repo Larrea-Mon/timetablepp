@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:theme_provider/theme_provider.dart';
 import 'package:timetablepp/Control/main_controller.dart';
-import 'package:timetablepp/Control/Themes/app_theme_controller.dart';
-
+import 'package:timetablepp/Control/app_theme_controller.dart';
 
 class SettingsGeneralPage extends StatefulWidget {
   const SettingsGeneralPage({super.key});
@@ -15,45 +14,52 @@ class SettingsGeneralPage extends StatefulWidget {
 }
 
 class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
+  _buildSettingsGeneralAppBar() {
+    return AppBar(
+      title: Text('General'),
+      backgroundColor: ThemeProvider.themeOf(context).data.hintColor,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        appBar: settingsGeneralAppBar,
-        body: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text('Tema de la aplicación'),
-              subtitle: Text('El tema actual es '),
-              enabled: true,
-              onTap: () => {settingsChangeThemeApp()},
-            ),
-            ListTile(
-              title: Text('Tema del Widget'),
-              subtitle: Text('TODO Dark'),
-              enabled: true,
-              onTap: () {
-                todoButton();
-              },
-            ),
-            ListTile(
-              title: Text('Dias Funcionales'),
-              subtitle: Text('TODO Lun,Mar,Mie,Jue,Vie,Sab,Dom'),
-              enabled: true,
-              onTap: () {
-                todoButton();
-              },
-            ),
-            ListTile(
-              title: Text('Primer día de la semana'),
-              subtitle: Text('TODO Mon'),
-              enabled: true,
-              onTap: () {
-                todoButton();
-              },
-            ),
-          ],
-        ));
+      appBar: _buildSettingsGeneralAppBar(),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Tema de la aplicación'),
+            subtitle: Text('El tema actual es '),
+            enabled: true,
+            onTap: () => {settingsChangeThemeApp()},
+          ),
+          ListTile(
+            title: Text('Tema del Widget'),
+            subtitle: Text('TODO Dark'),
+            enabled: true,
+            onTap: () {
+              todoButton();
+            },
+          ),
+          ListTile(
+            title: Text('Dias Funcionales'),
+            subtitle: Text('TODO Lun,Mar,Mie,Jue,Vie,Sab,Dom'),
+            enabled: true,
+            onTap: () {
+              todoButton();
+            },
+          ),
+          ListTile(
+            title: Text('Primer día de la semana'),
+            subtitle: Text('TODO Mon'),
+            enabled: true,
+            onTap: () {
+              todoButton();
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   settingsChangeThemeApp() async {
@@ -65,29 +71,51 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
           children: [
             SimpleDialogOption(
               onPressed: () {
-                Navigator.pop(context, 'claro');
+                Navigator.pop(context, 'summer');
               },
-              child: Text('Tema Claro'),
+              child: Text('Tema Claro - verano'),
             ),
             SimpleDialogOption(
               onPressed: () {
-                Navigator.pop(context, 'oscuro');
+                Navigator.pop(context, 'spring');
               },
-              child: Text('Tema Oscuro'),
+              child: Text('Tema Claro - primavera'),
+            ),
+            SimpleDialogOption(
+              onPressed: () {
+                Navigator.pop(context, 'autumn');
+              },
+              child: Text('Tema Oscuro - otoño'),
+            ),
+            SimpleDialogOption(
+              onPressed: () {
+                Navigator.pop(context, 'winter');
+              },
+              child: Text('Tema Oscuro - invierno'),
             ),
           ],
         );
       },
     )) {
-      case 'claro':
+      case 'autumn':
         //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
-        //AppThemeController().setAppTheme('light');
-        ThemeProvider.controllerOf(context).setTheme('light');
+        AppThemeController().setAppTheme('autumn');
+        //ThemeProvider.controllerOf(context).setTheme('autumn');
         break;
-      case 'oscuro':
+      case 'winter':
         //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
-       // AppThemeController().setAppTheme('dark');
-        ThemeProvider.controllerOf(context).setTheme('dark');
+        AppThemeController().setAppTheme('winter');
+        //ThemeProvider.controllerOf(context).setTheme('winter');
+        break;
+      case 'spring':
+        //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
+        AppThemeController().setAppTheme('spring');
+        //ThemeProvider.controllerOf(context).setTheme('spring');
+        break;
+      case 'summer':
+        //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
+        AppThemeController().setAppTheme('summer');
+        //ThemeProvider.controllerOf(context).setTheme('summer');
         break;
       default:
         todoButton();
@@ -95,10 +123,3 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
     }
   }
 }
-
-AppBar settingsGeneralAppBar = AppBar(
-  title: Text('General'),
-  /*actions: <Widget>[
-    PopupMenuButton(itemBuilder: itemBuilder)
-  ],*/
-);

@@ -25,52 +25,28 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(3, 6712300024642865997),
-      name: 'TermPeriod',
-      lastPropertyId: const obx_int.IdUid(3, 7628532944252634798),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 3735083573369474155),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 6810973221594398258),
-            name: 'start',
-            type: 10,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 7628532944252634798),
-            name: 'end',
-            type: 10,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(4, 3033383584820465524),
+      id: const obx_int.IdUid(1, 8580854761514221371),
       name: 'HolidayPeriod',
-      lastPropertyId: const obx_int.IdUid(4, 651313185732812970),
+      lastPropertyId: const obx_int.IdUid(4, 2319572583605026503),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 3314223274298000639),
+            id: const obx_int.IdUid(1, 2897001669363904909),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 1800696407142293280),
+            id: const obx_int.IdUid(2, 5218522932801161067),
             name: 'start',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 3066113653228354995),
+            id: const obx_int.IdUid(3, 6066369750214495565),
             name: 'end',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 651313185732812970),
+            id: const obx_int.IdUid(4, 2319572583605026503),
             name: 'name',
             type: 9,
             flags: 0)
@@ -78,38 +54,74 @@ final _entities = <obx_int.ModelEntity>[
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(7, 7039596356983433900),
-      name: 'Subject',
-      lastPropertyId: const obx_int.IdUid(7, 8244514203172194503),
+      id: const obx_int.IdUid(2, 3837368679985327568),
+      name: 'Lesson',
+      lastPropertyId: const obx_int.IdUid(5, 6354421064310499119),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 577877316626608401),
+            id: const obx_int.IdUid(1, 1126128243147593373),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 8193245059149668343),
+            id: const obx_int.IdUid(2, 1102212534974716332),
+            name: 'hour',
+            type: 5,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 916558853735177842),
+            name: 'minute',
+            type: 5,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 5216802402994332804),
+            name: 'day',
+            type: 5,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 6354421064310499119),
+            name: 'subjectId',
+            type: 11,
+            flags: 520,
+            indexId: const obx_int.IdUid(1, 8338900709183299503),
+            relationTarget: 'Subject')
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(4, 3744144578641230598),
+      name: 'Subject',
+      lastPropertyId: const obx_int.IdUid(6, 2056781321402505831),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 3164545630065121224),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 2652228241084836952),
             name: 'name',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 4789907192747017289),
+            id: const obx_int.IdUid(3, 5331165141955187264),
             name: 'abv',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 1407323447579881166),
+            id: const obx_int.IdUid(4, 4758388099081066784),
             name: 'teacher',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 5604493318830112940),
+            id: const obx_int.IdUid(5, 5137719230628209988),
             name: 'place',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 8244514203172194503),
+            id: const obx_int.IdUid(6, 2056781321402505831),
             name: 'color',
             type: 9,
             flags: 0)
@@ -117,189 +129,177 @@ final _entities = <obx_int.ModelEntity>[
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(8, 9066198403731461066),
-      name: 'Lesson',
-      lastPropertyId: const obx_int.IdUid(5, 7816044147552149826),
+      id: const obx_int.IdUid(5, 4022893133229700797),
+      name: 'SubjectTime',
+      lastPropertyId: const obx_int.IdUid(3, 3512963349698658758),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 4867351427623262150),
+            id: const obx_int.IdUid(1, 6852247997759590650),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 6377000438013814085),
+            id: const obx_int.IdUid(2, 1746992985605304413),
             name: 'hour',
-            type: 5,
+            type: 6,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 7477443440026383016),
+            id: const obx_int.IdUid(3, 3512963349698658758),
             name: 'minute',
-            type: 5,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 651344471440634396),
-            name: 'day',
-            type: 5,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 7816044147552149826),
-            name: 'subjectId',
-            type: 11,
-            flags: 520,
-            indexId: const obx_int.IdUid(2, 8369609502199462194),
-            relationTarget: 'Subject')
-      ],
-      relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(9, 7962595628123035930),
-      name: 'SettingsBatch',
-      lastPropertyId: const obx_int.IdUid(27, 7563713612122021013),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 3822177447485087621),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 6301400020867184160),
-            name: 'firstDayOfTheWeek',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 7003384279367014382),
-            name: 'sendNotifsNextLesson',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 740098166399107518),
-            name: 'timeSendNotifsNextLesson',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 8983760934677357504),
-            name: 'sendNotifsNextHomework',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(8, 7141868142157793745),
-            name: 'timeSendNotifsHomeworkAfterClass',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(9, 1919005861197611804),
-            name: 'sendNotifsNextExam',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(10, 6254122234311399506),
-            name: 'daysSendNotifsNextExam',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(11, 5337302094719174081),
-            name: 'enableAutoSilence',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(12, 2793398206601424504),
-            name: 'minutesAutosilence',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(13, 5783053863073903254),
-            name: 'lessonsPerDay',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(14, 1242706005274499902),
-            name: 'lessonsLength',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(15, 4012179022551700003),
-            name: 'lessonsBreak',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(16, 6027581562774258379),
-            name: 'isMondayActive',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(17, 5112757132913238187),
-            name: 'isTuesdayActive',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(18, 455142664254308780),
-            name: 'isWednesdayActive',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(19, 6280600683648540867),
-            name: 'isThursdayActive',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(20, 5105959611675902343),
-            name: 'isFridayActive',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(21, 3810537354444841221),
-            name: 'isSaturdayActive',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(22, 2969465162820710256),
-            name: 'isSundayActive',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(23, 8070058903277532290),
-            name: 'timeSendNotifsHomeworkFreeDaysHour',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(24, 5672706178154757184),
-            name: 'timeSendNotifsHomeworkFreeDaysMinute',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(26, 73517361895304590),
-            name: 'appActiveTheme',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(27, 7563713612122021013),
-            name: 'widgetActiveTheme',
             type: 6,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(10, 7165403485464021256),
-      name: 'SubjectTime',
-      lastPropertyId: const obx_int.IdUid(3, 4407822383198214790),
+      id: const obx_int.IdUid(6, 8770315610770758503),
+      name: 'TermPeriod',
+      lastPropertyId: const obx_int.IdUid(3, 3192627378815697225),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 6183662035754576763),
+            id: const obx_int.IdUid(1, 6182410182531718172),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 3562131586575814635),
-            name: 'hour',
+            id: const obx_int.IdUid(2, 5875171906117540201),
+            name: 'start',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 3192627378815697225),
+            name: 'end',
+            type: 10,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(7, 1394606018714506811),
+      name: 'SettingsBatch',
+      lastPropertyId: const obx_int.IdUid(24, 5761305450991132851),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 2913842438045222602),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 7612856395423466994),
+            name: 'appActiveTheme',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 2380285000361470013),
+            name: 'widgetActiveTheme',
             type: 6,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 4407822383198214790),
-            name: 'minute',
+            id: const obx_int.IdUid(4, 8716076441801428007),
+            name: 'isMondayActive',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 7416606653076765869),
+            name: 'isTuesdayActive',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 110580738220500317),
+            name: 'isWednesdayActive',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 3540444230138283693),
+            name: 'isThursdayActive',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 7579351411599530050),
+            name: 'isFridayActive',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(9, 5658798479320078405),
+            name: 'isSaturdayActive',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(10, 3179588705729704977),
+            name: 'isSundayActive',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(11, 8481401657505330177),
+            name: 'firstDayOfTheWeek',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(12, 3243519915968758427),
+            name: 'sendNotifsNextLesson',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(13, 2317602204116279282),
+            name: 'timeSendNotifsNextLesson',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(14, 5727023552341271590),
+            name: 'sendNotifsNextHomework',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(15, 7083816533479401061),
+            name: 'timeSendNotifsHomeworkAfterClass',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(16, 5199238861051797907),
+            name: 'timeSendNotifsHomeworkFreeDaysHour',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(17, 7923646921431651540),
+            name: 'timeSendNotifsHomeworkFreeDaysMinute',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(18, 1028596755060113782),
+            name: 'sendNotifsNextExam',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(19, 8290366056985994140),
+            name: 'daysSendNotifsNextExam',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(20, 9114647169376636416),
+            name: 'enableAutoSilence',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(21, 4496436887677194396),
+            name: 'minutesAutosilence',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(22, 5111428637400359396),
+            name: 'lessonsPerDay',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(23, 3884263845346654801),
+            name: 'lessonsLength',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(24, 5761305450991132851),
+            name: 'lessonsBreak',
             type: 6,
             flags: 0)
       ],
@@ -342,83 +342,21 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(10, 7165403485464021256),
-      lastIndexId: const obx_int.IdUid(2, 8369609502199462194),
+      lastEntityId: const obx_int.IdUid(7, 1394606018714506811),
+      lastIndexId: const obx_int.IdUid(1, 8338900709183299503),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [
-        3550581915661698429,
-        5641477025173493033,
-        7387174656048122430,
-        2545113248978641425
-      ],
+      retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [
-        4875495904651296124,
-        2495712168504459199,
-        6733068527520113198,
-        8853223232895115220,
-        8676671176066478731,
-        4136888799807000002,
-        5662718307907723849,
-        6181656001915519347,
-        1159009269193963203,
-        4812326025030964172,
-        7214797018055737408,
-        2707582517948775339,
-        4310842985319946914,
-        3637776464582519531,
-        1520117690305473185,
-        6965828538278559551,
-        6342334289272328411,
-        258324090967465752,
-        8555219835403082987,
-        1242233559764430895,
-        4716857800487018992,
-        7508359457946523139
-      ],
+      retiredPropertyUids: const [],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
       version: 1);
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    TermPeriod: obx_int.EntityDefinition<TermPeriod>(
-        model: _entities[0],
-        toOneRelations: (TermPeriod object) => [],
-        toManyRelations: (TermPeriod object) => {},
-        getId: (TermPeriod object) => object.id,
-        setId: (TermPeriod object, int id) {
-          object.id = id;
-        },
-        objectToFB: (TermPeriod object, fb.Builder fbb) {
-          fbb.startTable(4);
-          fbb.addInt64(0, object.id);
-          fbb.addInt64(1, object.start?.millisecondsSinceEpoch);
-          fbb.addInt64(2, object.end?.millisecondsSinceEpoch);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final startValue =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 6);
-          final endValue =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 8);
-          final startParam = startValue == null
-              ? null
-              : DateTime.fromMillisecondsSinceEpoch(startValue);
-          final endParam = endValue == null
-              ? null
-              : DateTime.fromMillisecondsSinceEpoch(endValue);
-          final object = TermPeriod(start: startParam, end: endParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-
-          return object;
-        }),
     HolidayPeriod: obx_int.EntityDefinition<HolidayPeriod>(
-        model: _entities[1],
+        model: _entities[0],
         toOneRelations: (HolidayPeriod object) => [],
         toManyRelations: (HolidayPeriod object) => {},
         getId: (HolidayPeriod object) => object.id,
@@ -455,55 +393,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    Subject: obx_int.EntityDefinition<Subject>(
-        model: _entities[2],
-        toOneRelations: (Subject object) => [],
-        toManyRelations: (Subject object) => {},
-        getId: (Subject object) => object.id,
-        setId: (Subject object, int id) {
-          object.id = id;
-        },
-        objectToFB: (Subject object, fb.Builder fbb) {
-          final nameOffset =
-              object.name == null ? null : fbb.writeString(object.name!);
-          final abvOffset =
-              object.abv == null ? null : fbb.writeString(object.abv!);
-          final teacherOffset =
-              object.teacher == null ? null : fbb.writeString(object.teacher!);
-          final placeOffset =
-              object.place == null ? null : fbb.writeString(object.place!);
-          final colorOffset = fbb.writeString(object.color);
-          fbb.startTable(8);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, nameOffset);
-          fbb.addOffset(2, abvOffset);
-          fbb.addOffset(3, teacherOffset);
-          fbb.addOffset(4, placeOffset);
-          fbb.addOffset(6, colorOffset);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final nameParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 6);
-          final abvParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 8);
-          final teacherParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 10);
-          final placeParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 12);
-          final colorParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 16, '');
-          final object = Subject(
-              nameParam, abvParam, teacherParam, placeParam, colorParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-
-          return object;
-        }),
     Lesson: obx_int.EntityDefinition<Lesson>(
-        model: _entities[3],
+        model: _entities[1],
         toOneRelations: (Lesson object) => [object.subject],
         toManyRelations: (Lesson object) => {},
         getId: (Lesson object) => object.id,
@@ -535,100 +426,55 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.subject.attach(store);
           return object;
         }),
-    SettingsBatch: obx_int.EntityDefinition<SettingsBatch>(
-        model: _entities[4],
-        toOneRelations: (SettingsBatch object) => [],
-        toManyRelations: (SettingsBatch object) => {},
-        getId: (SettingsBatch object) => object.id,
-        setId: (SettingsBatch object, int id) {
+    Subject: obx_int.EntityDefinition<Subject>(
+        model: _entities[2],
+        toOneRelations: (Subject object) => [],
+        toManyRelations: (Subject object) => {},
+        getId: (Subject object) => object.id,
+        setId: (Subject object, int id) {
           object.id = id;
         },
-        objectToFB: (SettingsBatch object, fb.Builder fbb) {
-          fbb.startTable(28);
+        objectToFB: (Subject object, fb.Builder fbb) {
+          final nameOffset =
+              object.name == null ? null : fbb.writeString(object.name!);
+          final abvOffset =
+              object.abv == null ? null : fbb.writeString(object.abv!);
+          final teacherOffset =
+              object.teacher == null ? null : fbb.writeString(object.teacher!);
+          final placeOffset =
+              object.place == null ? null : fbb.writeString(object.place!);
+          final colorOffset = fbb.writeString(object.color);
+          fbb.startTable(7);
           fbb.addInt64(0, object.id);
-          fbb.addInt64(3, object.firstDayOfTheWeek);
-          fbb.addBool(4, object.sendNotifsNextLesson);
-          fbb.addInt64(5, object.timeSendNotifsNextLesson);
-          fbb.addBool(6, object.sendNotifsNextHomework);
-          fbb.addInt64(7, object.timeSendNotifsHomeworkAfterClass);
-          fbb.addBool(8, object.sendNotifsNextExam);
-          fbb.addInt64(9, object.daysSendNotifsNextExam);
-          fbb.addBool(10, object.enableAutoSilence);
-          fbb.addInt64(11, object.minutesAutosilence);
-          fbb.addInt64(12, object.lessonsPerDay);
-          fbb.addInt64(13, object.lessonsLength);
-          fbb.addInt64(14, object.lessonsBreak);
-          fbb.addBool(15, object.isMondayActive);
-          fbb.addBool(16, object.isTuesdayActive);
-          fbb.addBool(17, object.isWednesdayActive);
-          fbb.addBool(18, object.isThursdayActive);
-          fbb.addBool(19, object.isFridayActive);
-          fbb.addBool(20, object.isSaturdayActive);
-          fbb.addBool(21, object.isSundayActive);
-          fbb.addInt64(22, object.timeSendNotifsHomeworkFreeDaysHour);
-          fbb.addInt64(23, object.timeSendNotifsHomeworkFreeDaysMinute);
-          fbb.addInt64(25, object.appActiveTheme);
-          fbb.addInt64(26, object.widgetActiveTheme);
+          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(2, abvOffset);
+          fbb.addOffset(3, teacherOffset);
+          fbb.addOffset(4, placeOffset);
+          fbb.addOffset(5, colorOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
-          final object = SettingsBatch()
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..firstDayOfTheWeek =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0)
-            ..sendNotifsNextLesson =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false)
-            ..timeSendNotifsNextLesson =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0)
-            ..sendNotifsNextHomework =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 16, false)
-            ..timeSendNotifsHomeworkAfterClass =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0)
-            ..sendNotifsNextExam =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 20, false)
-            ..daysSendNotifsNextExam =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 22, 0)
-            ..enableAutoSilence =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 24, false)
-            ..minutesAutosilence =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 26, 0)
-            ..lessonsPerDay =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 28, 0)
-            ..lessonsLength =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 30, 0)
-            ..lessonsBreak =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 32, 0)
-            ..isMondayActive =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 34, false)
-            ..isTuesdayActive =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 36, false)
-            ..isWednesdayActive =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 38, false)
-            ..isThursdayActive =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 40, false)
-            ..isFridayActive =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 42, false)
-            ..isSaturdayActive =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 44, false)
-            ..isSundayActive =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 46, false)
-            ..timeSendNotifsHomeworkFreeDaysHour =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 48, 0)
-            ..timeSendNotifsHomeworkFreeDaysMinute =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 50, 0)
-            ..appActiveTheme =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 54, 0)
-            ..widgetActiveTheme =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 56, 0);
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 6);
+          final abvParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 8);
+          final teacherParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 10);
+          final placeParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 12);
+          final colorParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 14, '');
+          final object = Subject(
+              nameParam, abvParam, teacherParam, placeParam, colorParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
         }),
     SubjectTime: obx_int.EntityDefinition<SubjectTime>(
-        model: _entities[5],
+        model: _entities[3],
         toOneRelations: (SubjectTime object) => [],
         toManyRelations: (SubjectTime object) => {},
         getId: (SubjectTime object) => object.id,
@@ -654,44 +500,179 @@ obx_int.ModelDefinition getObjectBoxModel() {
                 const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
 
           return object;
+        }),
+    TermPeriod: obx_int.EntityDefinition<TermPeriod>(
+        model: _entities[4],
+        toOneRelations: (TermPeriod object) => [],
+        toManyRelations: (TermPeriod object) => {},
+        getId: (TermPeriod object) => object.id,
+        setId: (TermPeriod object, int id) {
+          object.id = id;
+        },
+        objectToFB: (TermPeriod object, fb.Builder fbb) {
+          fbb.startTable(4);
+          fbb.addInt64(0, object.id);
+          fbb.addInt64(1, object.start?.millisecondsSinceEpoch);
+          fbb.addInt64(2, object.end?.millisecondsSinceEpoch);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final startValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 6);
+          final endValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 8);
+          final startParam = startValue == null
+              ? null
+              : DateTime.fromMillisecondsSinceEpoch(startValue);
+          final endParam = endValue == null
+              ? null
+              : DateTime.fromMillisecondsSinceEpoch(endValue);
+          final object = TermPeriod(start: startParam, end: endParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+
+          return object;
+        }),
+    SettingsBatch: obx_int.EntityDefinition<SettingsBatch>(
+        model: _entities[5],
+        toOneRelations: (SettingsBatch object) => [],
+        toManyRelations: (SettingsBatch object) => {},
+        getId: (SettingsBatch object) => object.id,
+        setId: (SettingsBatch object, int id) {
+          object.id = id;
+        },
+        objectToFB: (SettingsBatch object, fb.Builder fbb) {
+          final appActiveThemeOffset = fbb.writeString(object.appActiveTheme);
+          fbb.startTable(25);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, appActiveThemeOffset);
+          fbb.addInt64(2, object.widgetActiveTheme);
+          fbb.addBool(3, object.isMondayActive);
+          fbb.addBool(4, object.isTuesdayActive);
+          fbb.addBool(5, object.isWednesdayActive);
+          fbb.addBool(6, object.isThursdayActive);
+          fbb.addBool(7, object.isFridayActive);
+          fbb.addBool(8, object.isSaturdayActive);
+          fbb.addBool(9, object.isSundayActive);
+          fbb.addInt64(10, object.firstDayOfTheWeek);
+          fbb.addBool(11, object.sendNotifsNextLesson);
+          fbb.addInt64(12, object.timeSendNotifsNextLesson);
+          fbb.addBool(13, object.sendNotifsNextHomework);
+          fbb.addInt64(14, object.timeSendNotifsHomeworkAfterClass);
+          fbb.addInt64(15, object.timeSendNotifsHomeworkFreeDaysHour);
+          fbb.addInt64(16, object.timeSendNotifsHomeworkFreeDaysMinute);
+          fbb.addBool(17, object.sendNotifsNextExam);
+          fbb.addInt64(18, object.daysSendNotifsNextExam);
+          fbb.addBool(19, object.enableAutoSilence);
+          fbb.addInt64(20, object.minutesAutosilence);
+          fbb.addInt64(21, object.lessonsPerDay);
+          fbb.addInt64(22, object.lessonsLength);
+          fbb.addInt64(23, object.lessonsBreak);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = SettingsBatch()
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
+            ..appActiveTheme = const fb.StringReader(asciiOptimization: true)
+                .vTableGet(buffer, rootOffset, 6, '')
+            ..widgetActiveTheme =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0)
+            ..isMondayActive =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 10, false)
+            ..isTuesdayActive =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false)
+            ..isWednesdayActive =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 14, false)
+            ..isThursdayActive =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 16, false)
+            ..isFridayActive =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 18, false)
+            ..isSaturdayActive =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 20, false)
+            ..isSundayActive =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 22, false)
+            ..firstDayOfTheWeek =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 24, 0)
+            ..sendNotifsNextLesson =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 26, false)
+            ..timeSendNotifsNextLesson =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 28, 0)
+            ..sendNotifsNextHomework =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 30, false)
+            ..timeSendNotifsHomeworkAfterClass =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 32, 0)
+            ..timeSendNotifsHomeworkFreeDaysHour =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 34, 0)
+            ..timeSendNotifsHomeworkFreeDaysMinute =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 36, 0)
+            ..sendNotifsNextExam =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 38, false)
+            ..daysSendNotifsNextExam =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 40, 0)
+            ..enableAutoSilence =
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 42, false)
+            ..minutesAutosilence =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 44, 0)
+            ..lessonsPerDay =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 46, 0)
+            ..lessonsLength =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 48, 0)
+            ..lessonsBreak =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 50, 0);
+
+          return object;
         })
   };
 
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [TermPeriod] entity fields to define ObjectBox queries.
-class TermPeriod_ {
-  /// See [TermPeriod.id].
-  static final id =
-      obx.QueryIntegerProperty<TermPeriod>(_entities[0].properties[0]);
-
-  /// See [TermPeriod.start].
-  static final start =
-      obx.QueryDateProperty<TermPeriod>(_entities[0].properties[1]);
-
-  /// See [TermPeriod.end].
-  static final end =
-      obx.QueryDateProperty<TermPeriod>(_entities[0].properties[2]);
-}
-
 /// [HolidayPeriod] entity fields to define ObjectBox queries.
 class HolidayPeriod_ {
   /// See [HolidayPeriod.id].
   static final id =
-      obx.QueryIntegerProperty<HolidayPeriod>(_entities[1].properties[0]);
+      obx.QueryIntegerProperty<HolidayPeriod>(_entities[0].properties[0]);
 
   /// See [HolidayPeriod.start].
   static final start =
-      obx.QueryDateProperty<HolidayPeriod>(_entities[1].properties[1]);
+      obx.QueryDateProperty<HolidayPeriod>(_entities[0].properties[1]);
 
   /// See [HolidayPeriod.end].
   static final end =
-      obx.QueryDateProperty<HolidayPeriod>(_entities[1].properties[2]);
+      obx.QueryDateProperty<HolidayPeriod>(_entities[0].properties[2]);
 
   /// See [HolidayPeriod.name].
   static final name =
-      obx.QueryStringProperty<HolidayPeriod>(_entities[1].properties[3]);
+      obx.QueryStringProperty<HolidayPeriod>(_entities[0].properties[3]);
+}
+
+/// [Lesson] entity fields to define ObjectBox queries.
+class Lesson_ {
+  /// See [Lesson.id].
+  static final id =
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[0]);
+
+  /// See [Lesson.hour].
+  static final hour =
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[1]);
+
+  /// See [Lesson.minute].
+  static final minute =
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[2]);
+
+  /// See [Lesson.day].
+  static final day =
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[3]);
+
+  /// See [Lesson.subject].
+  static final subject =
+      obx.QueryRelationToOne<Lesson, Subject>(_entities[1].properties[4]);
 }
 
 /// [Subject] entity fields to define ObjectBox queries.
@@ -721,139 +702,131 @@ class Subject_ {
       obx.QueryStringProperty<Subject>(_entities[2].properties[5]);
 }
 
-/// [Lesson] entity fields to define ObjectBox queries.
-class Lesson_ {
-  /// See [Lesson.id].
+/// [SubjectTime] entity fields to define ObjectBox queries.
+class SubjectTime_ {
+  /// See [SubjectTime.id].
   static final id =
-      obx.QueryIntegerProperty<Lesson>(_entities[3].properties[0]);
+      obx.QueryIntegerProperty<SubjectTime>(_entities[3].properties[0]);
 
-  /// See [Lesson.hour].
+  /// See [SubjectTime.hour].
   static final hour =
-      obx.QueryIntegerProperty<Lesson>(_entities[3].properties[1]);
+      obx.QueryIntegerProperty<SubjectTime>(_entities[3].properties[1]);
 
-  /// See [Lesson.minute].
+  /// See [SubjectTime.minute].
   static final minute =
-      obx.QueryIntegerProperty<Lesson>(_entities[3].properties[2]);
+      obx.QueryIntegerProperty<SubjectTime>(_entities[3].properties[2]);
+}
 
-  /// See [Lesson.day].
-  static final day =
-      obx.QueryIntegerProperty<Lesson>(_entities[3].properties[3]);
+/// [TermPeriod] entity fields to define ObjectBox queries.
+class TermPeriod_ {
+  /// See [TermPeriod.id].
+  static final id =
+      obx.QueryIntegerProperty<TermPeriod>(_entities[4].properties[0]);
 
-  /// See [Lesson.subject].
-  static final subject =
-      obx.QueryRelationToOne<Lesson, Subject>(_entities[3].properties[4]);
+  /// See [TermPeriod.start].
+  static final start =
+      obx.QueryDateProperty<TermPeriod>(_entities[4].properties[1]);
+
+  /// See [TermPeriod.end].
+  static final end =
+      obx.QueryDateProperty<TermPeriod>(_entities[4].properties[2]);
 }
 
 /// [SettingsBatch] entity fields to define ObjectBox queries.
 class SettingsBatch_ {
   /// See [SettingsBatch.id].
   static final id =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[0]);
-
-  /// See [SettingsBatch.firstDayOfTheWeek].
-  static final firstDayOfTheWeek =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[1]);
-
-  /// See [SettingsBatch.sendNotifsNextLesson].
-  static final sendNotifsNextLesson =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[2]);
-
-  /// See [SettingsBatch.timeSendNotifsNextLesson].
-  static final timeSendNotifsNextLesson =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[3]);
-
-  /// See [SettingsBatch.sendNotifsNextHomework].
-  static final sendNotifsNextHomework =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[4]);
-
-  /// See [SettingsBatch.timeSendNotifsHomeworkAfterClass].
-  static final timeSendNotifsHomeworkAfterClass =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[5]);
-
-  /// See [SettingsBatch.sendNotifsNextExam].
-  static final sendNotifsNextExam =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[6]);
-
-  /// See [SettingsBatch.daysSendNotifsNextExam].
-  static final daysSendNotifsNextExam =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[7]);
-
-  /// See [SettingsBatch.enableAutoSilence].
-  static final enableAutoSilence =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[8]);
-
-  /// See [SettingsBatch.minutesAutosilence].
-  static final minutesAutosilence =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[9]);
-
-  /// See [SettingsBatch.lessonsPerDay].
-  static final lessonsPerDay =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[10]);
-
-  /// See [SettingsBatch.lessonsLength].
-  static final lessonsLength =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[11]);
-
-  /// See [SettingsBatch.lessonsBreak].
-  static final lessonsBreak =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[12]);
-
-  /// See [SettingsBatch.isMondayActive].
-  static final isMondayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[13]);
-
-  /// See [SettingsBatch.isTuesdayActive].
-  static final isTuesdayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[14]);
-
-  /// See [SettingsBatch.isWednesdayActive].
-  static final isWednesdayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[15]);
-
-  /// See [SettingsBatch.isThursdayActive].
-  static final isThursdayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[16]);
-
-  /// See [SettingsBatch.isFridayActive].
-  static final isFridayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[17]);
-
-  /// See [SettingsBatch.isSaturdayActive].
-  static final isSaturdayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[18]);
-
-  /// See [SettingsBatch.isSundayActive].
-  static final isSundayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[19]);
-
-  /// See [SettingsBatch.timeSendNotifsHomeworkFreeDaysHour].
-  static final timeSendNotifsHomeworkFreeDaysHour =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[20]);
-
-  /// See [SettingsBatch.timeSendNotifsHomeworkFreeDaysMinute].
-  static final timeSendNotifsHomeworkFreeDaysMinute =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[21]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[0]);
 
   /// See [SettingsBatch.appActiveTheme].
   static final appActiveTheme =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[22]);
+      obx.QueryStringProperty<SettingsBatch>(_entities[5].properties[1]);
 
   /// See [SettingsBatch.widgetActiveTheme].
   static final widgetActiveTheme =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[23]);
-}
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[2]);
 
-/// [SubjectTime] entity fields to define ObjectBox queries.
-class SubjectTime_ {
-  /// See [SubjectTime.id].
-  static final id =
-      obx.QueryIntegerProperty<SubjectTime>(_entities[5].properties[0]);
+  /// See [SettingsBatch.isMondayActive].
+  static final isMondayActive =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[3]);
 
-  /// See [SubjectTime.hour].
-  static final hour =
-      obx.QueryIntegerProperty<SubjectTime>(_entities[5].properties[1]);
+  /// See [SettingsBatch.isTuesdayActive].
+  static final isTuesdayActive =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[4]);
 
-  /// See [SubjectTime.minute].
-  static final minute =
-      obx.QueryIntegerProperty<SubjectTime>(_entities[5].properties[2]);
+  /// See [SettingsBatch.isWednesdayActive].
+  static final isWednesdayActive =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[5]);
+
+  /// See [SettingsBatch.isThursdayActive].
+  static final isThursdayActive =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[6]);
+
+  /// See [SettingsBatch.isFridayActive].
+  static final isFridayActive =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[7]);
+
+  /// See [SettingsBatch.isSaturdayActive].
+  static final isSaturdayActive =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[8]);
+
+  /// See [SettingsBatch.isSundayActive].
+  static final isSundayActive =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[9]);
+
+  /// See [SettingsBatch.firstDayOfTheWeek].
+  static final firstDayOfTheWeek =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[10]);
+
+  /// See [SettingsBatch.sendNotifsNextLesson].
+  static final sendNotifsNextLesson =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[11]);
+
+  /// See [SettingsBatch.timeSendNotifsNextLesson].
+  static final timeSendNotifsNextLesson =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[12]);
+
+  /// See [SettingsBatch.sendNotifsNextHomework].
+  static final sendNotifsNextHomework =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[13]);
+
+  /// See [SettingsBatch.timeSendNotifsHomeworkAfterClass].
+  static final timeSendNotifsHomeworkAfterClass =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[14]);
+
+  /// See [SettingsBatch.timeSendNotifsHomeworkFreeDaysHour].
+  static final timeSendNotifsHomeworkFreeDaysHour =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[15]);
+
+  /// See [SettingsBatch.timeSendNotifsHomeworkFreeDaysMinute].
+  static final timeSendNotifsHomeworkFreeDaysMinute =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[16]);
+
+  /// See [SettingsBatch.sendNotifsNextExam].
+  static final sendNotifsNextExam =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[17]);
+
+  /// See [SettingsBatch.daysSendNotifsNextExam].
+  static final daysSendNotifsNextExam =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[18]);
+
+  /// See [SettingsBatch.enableAutoSilence].
+  static final enableAutoSilence =
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[19]);
+
+  /// See [SettingsBatch.minutesAutosilence].
+  static final minutesAutosilence =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[20]);
+
+  /// See [SettingsBatch.lessonsPerDay].
+  static final lessonsPerDay =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[21]);
+
+  /// See [SettingsBatch.lessonsLength].
+  static final lessonsLength =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[22]);
+
+  /// See [SettingsBatch.lessonsBreak].
+  static final lessonsBreak =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[23]);
 }
