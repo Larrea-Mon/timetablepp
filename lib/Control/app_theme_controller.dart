@@ -33,8 +33,13 @@ class AppThemeController {
   AppTheme getActiveTheme() {
     return _appTheme;
   }
+  String getActiveThemeName(){
+    return getActiveTheme().id;
+  }
   void setAppTheme(String themeName){
-   
+    debugPrint('[AppThemeController]: setAppTheme($themeName)');
+   SettingsController().setActiveTheme(themeName);
+   _appTheme = getAppThemeByName(themeName);
   }
 
   void setWidgetTheme(String themeName) {
@@ -65,8 +70,7 @@ class AppThemeController {
         description: 'Black and blue theme',
         data: ThemeData(
           useMaterial3: true,
-          primaryColor: Colors.black,
-          hintColor: Colors.blue[800],
+          appBarTheme: AppBarTheme(backgroundColor: Colors.blue),
           textTheme: const TextTheme().apply(bodyColor: Colors.white),
         ),
       ),
@@ -76,7 +80,7 @@ class AppThemeController {
         data: ThemeData(
           useMaterial3: true,
           primaryColor: Colors.black,
-          hintColor: Colors.deepOrangeAccent,
+         appBarTheme: AppBarTheme(backgroundColor: Colors.brown),
           textTheme: const TextTheme().apply(bodyColor: Colors.white),
         ),
       ),
@@ -86,7 +90,7 @@ class AppThemeController {
         data: ThemeData(
           useMaterial3: true,
           primaryColor: Colors.white,
-          hintColor: Colors.pinkAccent,
+          appBarTheme: AppBarTheme(backgroundColor: Colors.pink),
           textTheme: const TextTheme().apply(bodyColor: Colors.black),
         ),
       ),
@@ -96,7 +100,7 @@ class AppThemeController {
         data: ThemeData(
           useMaterial3: true,
           primaryColor: Colors.white,
-          hintColor: Colors.greenAccent,
+         appBarTheme: AppBarTheme(backgroundColor: Colors.greenAccent),
           textTheme: const TextTheme().apply(bodyColor: Colors.black),
         ),
       )

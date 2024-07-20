@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unused_import
 
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:theme_provider/theme_provider.dart';
@@ -17,7 +18,6 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
   _buildSettingsGeneralAppBar() {
     return AppBar(
       title: Text('General'),
-      backgroundColor: ThemeProvider.themeOf(context).data.hintColor,
     );
   }
 
@@ -29,7 +29,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
         children: <Widget>[
           ListTile(
             title: Text('Tema de la aplicación'),
-            subtitle: Text('El tema actual es '),
+            subtitle: Text('El tema actual es: ${AppThemeController().getActiveThemeName().capitalize}'),
             enabled: true,
             onTap: () => {settingsChangeThemeApp()},
           ),
@@ -98,24 +98,20 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
       },
     )) {
       case 'autumn':
-        //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
         AppThemeController().setAppTheme('autumn');
-        //ThemeProvider.controllerOf(context).setTheme('autumn');
+        ThemeProvider.controllerOf(context).setTheme('autumn');
         break;
       case 'winter':
-        //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
         AppThemeController().setAppTheme('winter');
-        //ThemeProvider.controllerOf(context).setTheme('winter');
+        ThemeProvider.controllerOf(context).setTheme('winter');
         break;
       case 'spring':
-        //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
         AppThemeController().setAppTheme('spring');
-        //ThemeProvider.controllerOf(context).setTheme('spring');
+        ThemeProvider.controllerOf(context).setTheme('spring');
         break;
       case 'summer':
-        //ThemeController().themeProvider.setSelectedThemeMode(ThemeMode.light);
         AppThemeController().setAppTheme('summer');
-        //ThemeProvider.controllerOf(context).setTheme('summer');
+        ThemeProvider.controllerOf(context).setTheme('summer');
         break;
       default:
         todoButton();
