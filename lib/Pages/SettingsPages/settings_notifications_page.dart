@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:theme_provider/theme_provider.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 
 class SettingsNotificationsPage extends StatefulWidget {
@@ -75,7 +74,6 @@ class _SettingsNotificationsPageState extends State<SettingsNotificationsPage> {
   _buildSettingsNotificationsAppBar() {
     return AppBar(
       title: Text('Notificaciones'),
-      backgroundColor: ThemeProvider.themeOf(context).data.hintColor,
     );
     //TODO poner un botón aquí?
   }

@@ -29,7 +29,8 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
         children: <Widget>[
           ListTile(
             title: Text('Tema de la aplicación'),
-            subtitle: Text('El tema actual es: ${AppThemeController().getActiveThemeName().capitalize}'),
+            subtitle: Text(
+                'El tema actual es: ${AppThemeController().getActiveThemeName().capitalize}'),
             enabled: true,
             onTap: () => {settingsChangeThemeApp()},
           ),
@@ -81,7 +82,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
               },
               child: Text('Tema Claro - primavera'),
             ),
-            SimpleDialogOption(
+            SimpleDialogOption( 
               onPressed: () {
                 Navigator.pop(context, 'autumn');
               },
