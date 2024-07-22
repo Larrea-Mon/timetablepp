@@ -21,7 +21,6 @@ class _HolidaysPageState extends State<HolidaysPage> {
     buildHolidaysAppBar() {
       return AppBar(
         title: Text('Vacaciones'),
-
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -38,7 +37,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
 
     List<HolidayPeriod> holidays = DatabaseController().getAllHolidayPeriods();
 
-    return Scaffold(
+    Scaffold myScaffold = Scaffold(
         appBar: buildHolidaysAppBar(),
         body: Column(
           children: [
@@ -54,8 +53,10 @@ class _HolidaysPageState extends State<HolidaysPage> {
                 itemCount: holidays.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(holidays[index].getName()/* + ' DEBUG: ID: ' + holidays[index].id.toString()*/),
-                    subtitle: Text('${holidays[index].getStartAsString()} - ${holidays[index].getEndAsString()}'),
+                    title: Text(holidays[index]
+                        .getName() /* + ' DEBUG: ID: ' + holidays[index].id.toString()*/),
+                    subtitle: Text(
+                        '${holidays[index].getStartAsString()} - ${holidays[index].getEndAsString()}'),
                     onTap: () {
                       MainController().setCurrentHoliday(holidays[index]);
                       Navigator.push(
@@ -80,6 +81,7 @@ class _HolidaysPageState extends State<HolidaysPage> {
         )
         //body: Placeholder(),
         );
+    return myScaffold;
   }
 }
 

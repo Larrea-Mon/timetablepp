@@ -18,8 +18,8 @@ class AppThemeController {
 
   late AppTheme _appTheme;
 
-  initTheme() {
-    String theme = SettingsController().getActiveTheme();
+  initAppTheme() {
+    String theme = SettingsController().getAppActiveTheme();
     try {
       debugPrint(
           '[AppThemeController]: initTheme(): Initializing the app with $theme theme');
@@ -40,7 +40,7 @@ class AppThemeController {
 
   void setAppTheme(String themeName) {
     debugPrint('[AppThemeController]: setAppTheme($themeName)');
-    SettingsController().setActiveTheme(themeName);
+    SettingsController().setAppActiveTheme(themeName);
     _appTheme = getAppThemeByName(themeName);
   }
 
@@ -55,6 +55,9 @@ class AppThemeController {
       default:
         debugPrint('[setWidgetTheme]: Something went wrong.');
     }
+  }
+  String getWidgetThemeName(String themeName){
+    return SettingsController().getAppActiveTheme();
   }
 
   AppTheme getAppThemeByName(String name) {
@@ -82,6 +85,10 @@ class AppThemeController {
       id: id,
       description: description,
       data: ThemeData(
+        datePickerTheme: DatePickerThemeData(
+          backgroundColor: isBright ? Colors.grey[200]! : Colors.grey[700],
+          
+        ),
           appBarTheme: AppBarTheme(
             titleTextStyle: TextStyle(
               color: secondaryColor,
