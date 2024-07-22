@@ -7,6 +7,8 @@ import 'package:theme_provider/theme_provider.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Control/app_theme_controller.dart';
 
+import '../../Control/widget_controller.dart';
+
 class SettingsGeneralPage extends StatefulWidget {
   const SettingsGeneralPage({super.key});
 
@@ -34,14 +36,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
             enabled: true,
             onTap: () => {settingsChangeThemeApp()},
           ),
-          ListTile(
-            title: Text('Tema del Widget'),
-            subtitle: Text('TODO Dark'),
-            enabled: true,
-            onTap: () {
-              todoButton();
-            },
-          ),
+          WidgetThemeListTile(),
           ListTile(
             title: Text('Dias Funcionales'),
             subtitle: Text('TODO Lun,Mar,Mie,Jue,Vie,Sab,Dom'),
@@ -82,7 +77,7 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
               },
               child: Text('Tema Claro - primavera'),
             ),
-            SimpleDialogOption( 
+            SimpleDialogOption(
               onPressed: () {
                 Navigator.pop(context, 'autumn');
               },
@@ -118,5 +113,64 @@ class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
         todoButton();
         break;
     }
+  }
+}
+
+class WidgetThemeListTile extends StatefulWidget {
+  const WidgetThemeListTile({super.key});
+  @override
+  State<WidgetThemeListTile> createState() => _WidgetThemeListTileState();
+}
+
+class _WidgetThemeListTileState extends State<WidgetThemeListTile> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text('Tema del Widget'),
+      subtitle: Text(
+          'El Tema Actual es: ${WidgetController().getWidgetTheme().capitalize}'),
+      enabled: true,
+      onTap: () async {
+        switch (await showDialog<int>(
+          context: context,
+          builder: (BuildContext context) {
+            return SimpleDialog(
+              title: Text('Selecciona un Tema para el Widget'),
+              children: [
+                SimpleDialogOption(
+                  onPressed: () {
+                    Navigator.pop(context, 0);
+                  },
+                  child: Text('Tema Claro'),
+                ),
+                SimpleDialogOption(
+                  child: Text('Tema Oscuro'),
+                  onPressed: () {
+                    Navigator.pop(context, 1);
+                  },
+                )
+              ],
+            );
+          },
+        )) {
+          case 0:
+            WidgetController().setWidgetTheme(0);
+            setState(() {});
+            break;
+          case 1:
+            WidgetController().setWidgetTheme(1);
+            setState(() {});
+            break;
+          default:
+            debugPrint('[settingsChangeWidgetTheme]: Algo ha salido mal.');
+            break;
+        }
+      },
+    );
   }
 }

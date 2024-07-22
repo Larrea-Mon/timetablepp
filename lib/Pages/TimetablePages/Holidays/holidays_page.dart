@@ -87,7 +87,6 @@ class _HolidaysPageState extends State<HolidaysPage> {
 
 class TopListTile extends StatefulWidget {
   const TopListTile({super.key});
-  final String startDate = '-';
   @override
   State<TopListTile> createState() => TopListTileState();
 }
@@ -123,7 +122,6 @@ class TopListTileState extends State<TopListTile> {
 
 class BottomListTile extends StatefulWidget {
   const BottomListTile({super.key});
-  final String enddate = '-';
   @override
   State<BottomListTile> createState() => BottomListTileState();
 }
