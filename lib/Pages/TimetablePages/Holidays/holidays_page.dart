@@ -17,6 +17,7 @@ class HolidaysPage extends StatefulWidget {
 
 class _HolidaysPageState extends State<HolidaysPage> {
   @override
+  //TODO rehacer esto para implementar DateTimeRange en vez de dos datetimepickers.
   Widget build(BuildContext context) {
     buildHolidaysAppBar() {
       return AppBar(
