@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:timetablepp/Control/main_controller.dart';
+import 'package:timetablepp/Control/settings_controller.dart';
 
 class SettingsNotificationsPage extends StatefulWidget {
   const SettingsNotificationsPage({super.key});
@@ -76,5 +77,31 @@ class _SettingsNotificationsPageState extends State<SettingsNotificationsPage> {
       title: Text('Notificaciones'),
     );
     //TODO poner un botón aquí?
+  }
+}
+
+
+class _ClassNotifsTilesPackage extends StatefulWidget{
+  const _ClassNotifsTilesPackage();
+  @override
+  State<_ClassNotifsTilesPackage> createState() => _ClassNotifsTilesPackageState();
+}
+class _ClassNotifsTilesPackageState extends State<_ClassNotifsTilesPackage>{
+  bool asdas = true;
+  
+  
+  @override
+  void initState() {
+    asdas = SettingsController().
+    super.initState();
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CheckboxListTile(value: value, onChanged: onChanged)
+      ],
+    );
   }
 }

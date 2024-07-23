@@ -152,6 +152,7 @@ class SettingsController {
     debugPrint('[SettingsController]: setFirstDayOfTheWeek: $firstDayOfTheWeek');
     if (firstDayOfTheWeek < 7) {
       _settings.firstDayOfTheWeek = firstDayOfTheWeek;
+      DatabaseController().setSettingsBatch(_settings);
     } else {
       debugPrint('[SettingsController]: setFirstdayOfTheWeek: Something went wrong.');
     }
@@ -161,5 +162,22 @@ class SettingsController {
     debugPrint('[SettingsController]: getFirstDayOfTheWeek: $result');
     return result;
   }
-  //TODO continuar con el settings controller cuando sea relevante
+  //GENERAL HASTA AQUÍ
+  //NOTIFS AQUI
+  bool getSendNotifsNextLesson(){
+    bool result = _settings.sendNotifsNextLesson;
+    debugPrint('[SettingsController]: getNotifsNextLesson: $result');
+    return result;
+  }
+  void setSendNotifsNextLesson(bool sendNotifsNextLesson){
+    debugPrint('[SettingsController]: setNotifsNextLesson: $sendNotifsNextLesson');
+    _settings.sendNotifsNextLesson = sendNotifsNextLesson;
+    DatabaseController().setSettingsBatch(_settings);
+  }
+  bool getSendNotifsNextHomework(){
+    bool result = _settings.sendNotifsNextHomework;
+    debugPrint('[SettingsController]: getNotifsNextLesson: $result');
+    return result;
+  }
+  //NOTIFS HASTA AQUÍ
 }
