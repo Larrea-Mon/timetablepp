@@ -45,35 +45,121 @@ class SettingsController {
     debugPrint('[SettingsController]: getAppActiveTheme: result = $result');
     return result;
   }
+
   void setAppActiveTheme(String theme) {
     _settings.appActiveTheme = theme;
     debugPrint('[SettingsController]: setAppActiveTheme: theme = $theme');
     DatabaseController().setSettingsBatch(_settings);
   }
-  int getWidgetActiveTheme(){
+
+  int getWidgetActiveTheme() {
     int result = _settings.widgetActiveTheme;
     debugPrint('[SettingsController]: getWidgetActiveTheme: $result');
     return result;
   }
-  void setWidgetActiveTheme(int theme){
+
+  void setWidgetActiveTheme(int theme) {
     _settings.widgetActiveTheme = theme;
     debugPrint('[SettingsController]: setWidgetActiveTheme: $theme');
     DatabaseController().setSettingsBatch(_settings);
   }
 
-  getIsMondayActive() {}
-  setIsModayActive() {}
-  setIsTuesdayActive() {}
-  getIsWednesdayActive() {}
-  setIsWednesdayActive() {}
-  getIsThursdayActive() {}
-  setIsFridayActive() {}
-  getIsFridayActive() {}
-  setIsSaturdayActive() {}
-  getIsSaturdayActive() {}
-  setIsSundayActive() {}
-  getIsSundayActive() {}
-  setFirstDayOfTheWeek() {}
-  getFirstDayOfTheWeek() {}
+  bool getIsMondayActive() {
+    bool result = _settings.isMondayActive;
+    debugPrint('[SettingsController]: getIsMondayActive: $result');
+    return result;
+  }
+
+  void setIsMondayActive(bool isMondayActive) {
+    debugPrint('[SettingsController]: setIsMondayActive: $isMondayActive');
+    _settings.isMondayActive = isMondayActive;
+    DatabaseController().setSettingsBatch(_settings);
+  }
+
+  bool getIsTuesdayActive() {
+    bool result = _settings.isTuesdayActive;
+    debugPrint('[SettingsController]: getIsTuesdayActive: $result');
+    return result;
+  }
+
+  void setIsTuesdayActive(bool isTuesdayActive) {
+    debugPrint('[SettingsController]: setIsTuesdayActive: $isTuesdayActive');
+    _settings.isTuesdayActive = isTuesdayActive;
+    DatabaseController().setSettingsBatch(_settings);
+  }
+
+  bool getIsWednesdayActive() {
+    bool result = _settings.isWednesdayActive;
+    debugPrint('[SettingsController]: getIsWednesdayActive: $result');
+    return result;
+  }
+
+  void setIsWednesdayActive(bool isWednesdayActive) {
+    debugPrint('[SettingsController]: setWednesdayActive: $isWednesdayActive');
+    _settings.isWednesdayActive = isWednesdayActive;
+    DatabaseController().setSettingsBatch(_settings);
+  }
+
+  bool getIsThursdayActive() {
+    bool result = _settings.isThursdayActive;
+    debugPrint('[SettingsController]: isThursdayActive: $result');
+    return result;
+  }
+
+  void setIsThursdayActive(bool isThursdayActive) {
+    debugPrint('[SettingsController]: setThursdayActive: $isThursdayActive');
+    _settings.isThursdayActive = isThursdayActive;
+    DatabaseController().setSettingsBatch(_settings);
+  }
+
+  void setIsFridayActive(bool isFridayActive) {
+    debugPrint('[SettingsController]: setFridayActive: $isFridayActive');
+    _settings.isFridayActive = isFridayActive;
+    DatabaseController().setSettingsBatch(_settings);
+  }
+
+  bool getIsFridayActive() {
+    bool result = _settings.isFridayActive;
+    debugPrint('[SettingsController]: isFridayActive: $result');
+    return result;
+  }
+
+  void setIsSaturdayActive(bool isSaturdayActive) {
+    debugPrint('[SettingsController]: setIsSaturdayActive: $isSaturdayActive');
+    _settings.isSaturdayActive = isSaturdayActive;
+    DatabaseController().setSettingsBatch(_settings);
+  }
+
+  bool getIsSaturdayActive() {
+    bool result = _settings.isSaturdayActive;
+    debugPrint('[SettingsController]: getIsSaturdayActive: $result');
+    return result;
+  }
+
+  void setIsSundayActive(bool isSundayActive) {
+    debugPrint('[SettingsController]: setSundayActive: $isSundayActive');
+    _settings.isSundayActive = isSundayActive;
+    DatabaseController().setSettingsBatch(_settings);
+  }
+
+  bool getIsSundayActive() {
+    bool result = _settings.isSundayActive;
+    debugPrint('[SettingsController]: isSundayActive: $result');
+    return result;
+  }
+
+  void setFirstDayOfTheWeek(int firstDayOfTheWeek) {
+    debugPrint('[SettingsController]: setFirstDayOfTheWeek: $firstDayOfTheWeek');
+    if (firstDayOfTheWeek < 7) {
+      _settings.firstDayOfTheWeek = firstDayOfTheWeek;
+    } else {
+      debugPrint('[SettingsController]: setFirstdayOfTheWeek: Something went wrong.');
+    }
+  }
+  int getFirstDayOfTheWeek() {
+    int result = _settings.firstDayOfTheWeek;
+    debugPrint('[SettingsController]: getFirstDayOfTheWeek: $result');
+    return result;
+  }
   //TODO continuar con el settings controller cuando sea relevante
 }

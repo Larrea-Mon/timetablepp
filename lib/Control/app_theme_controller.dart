@@ -83,21 +83,33 @@ class AppThemeController {
   AppTheme _appThemeFactory(String id, String description, bool isBright,
       Color primaryColor, Color secondaryColor) {
 
-
-
+        
     return AppTheme(
       id: id,
       description: description,
       data: ThemeData(
+        sliderTheme: SliderThemeData(
+          activeTickMarkColor: isBright ? Colors.black : Colors.white,
+          inactiveTickMarkColor: isBright ? Colors.black : Colors.white,
+          showValueIndicator: ShowValueIndicator.always,
+          
+          thumbColor: primaryColor,
+          valueIndicatorColor: primaryColor,
+          valueIndicatorStrokeColor: primaryColor,
+          valueIndicatorTextStyle: TextStyle().apply(color: isBright ? Colors.black : Colors.white)
+        ),
           datePickerTheme: DatePickerThemeData(
-            backgroundColor: isBright ? Colors.grey[200]! : Colors.grey[700],
-            todayBackgroundColor: WidgetStatePropertyAll(secondaryColor),
-            cancelButtonStyle: ButtonStyle(backgroundColor: WidgetStatePropertyAll(secondaryColor)),
-            confirmButtonStyle: ButtonStyle(backgroundColor: WidgetStatePropertyAll(secondaryColor)),
-            headerBackgroundColor: primaryColor,
-            rangePickerBackgroundColor: secondaryColor, 
-            rangePickerHeaderHeadlineStyle: TextStyle( color: isBright ? Colors.grey[100]! : Colors.grey[850]!,)
-          ),
+              backgroundColor: isBright ? Colors.grey[200]! : Colors.grey[700],
+              todayBackgroundColor: WidgetStatePropertyAll(secondaryColor),
+              cancelButtonStyle: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(secondaryColor)),
+              confirmButtonStyle: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(secondaryColor)),
+              headerBackgroundColor: primaryColor,
+              rangePickerBackgroundColor: secondaryColor,
+              rangePickerHeaderHeadlineStyle: TextStyle(
+                color: isBright ? Colors.grey[100]! : Colors.grey[850]!,
+              )),
           appBarTheme: AppBarTheme(
             titleTextStyle: TextStyle(
               color: secondaryColor,
@@ -155,8 +167,8 @@ class AppThemeController {
         'summer',
         'light, green, red',
         true,
-        Colors.green[100]!,
-        Colors.pinkAccent,
+        Colors.pink[100]!,
+        Colors.green[700]!,
       ),
     ];
     return appThemes;
