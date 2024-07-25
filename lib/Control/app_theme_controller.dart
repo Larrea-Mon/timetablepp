@@ -86,6 +86,15 @@ class AppThemeController {
       id: id,
       description: description,
       data: ThemeData(
+        checkboxTheme: CheckboxThemeData(checkColor: WidgetStatePropertyAll(secondaryColor) ),
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(primaryColor),
+              foregroundColor: WidgetStatePropertyAll(
+                isBright ? Colors.black : Colors.white,
+              ),
+            ),
+          ),
           sliderTheme: SliderThemeData(
               activeTickMarkColor: isBright ? Colors.black : Colors.white,
               inactiveTickMarkColor: isBright ? Colors.black : Colors.white,
@@ -110,11 +119,11 @@ class AppThemeController {
           ),
           appBarTheme: AppBarTheme(
             titleTextStyle: TextStyle(
-              color: secondaryColor,
+              color: isBright ? Colors.black : Colors.white,
               fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
-            foregroundColor: secondaryColor,
+            backgroundColor: primaryColor,
             elevation: 3,
             shadowColor: Colors.black,
           ),
@@ -122,7 +131,8 @@ class AppThemeController {
             color: isBright ? Colors.grey[100] : Colors.grey[900],
           ),
           cardTheme: CardTheme(color: primaryColor, elevation: 2),
-          splashColor: primaryColor,
+          splashFactory: NoSplash.splashFactory, //TODO volver a esto algun moment
+          splashColor: secondaryColor.withOpacity(0.3),
           colorScheme: ColorScheme(
               brightness: _isBright(isBright),
               primary: isBright ? Colors.grey[100]! : Colors.grey[850]!,
@@ -144,8 +154,8 @@ class AppThemeController {
         'winter',
         'dark,deep purple, accent',
         false,
-        Colors.deepPurple,
-        Colors.blueAccent,
+        Colors.deepPurple[700]!,
+        Colors.blueAccent[100]!,
       ),
       _appThemeFactory(
         'autumn',
@@ -165,7 +175,7 @@ class AppThemeController {
         'summer',
         'light, green, red',
         true,
-        Colors.pink[100]!,
+        Colors.green[100]!,
         Colors.green[700]!,
       ),
     ];

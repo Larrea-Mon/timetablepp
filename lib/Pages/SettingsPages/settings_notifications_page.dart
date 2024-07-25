@@ -19,22 +19,7 @@ class _SettingsNotificationsPageState extends State<SettingsNotificationsPage> {
       appBar: _buildSettingsNotificationsAppBar(),
       body: ListView(
         children: ListTile.divideTiles(context: context, tiles: [
-          ListTile(
-            title: Text('Notificaciónes de Lección'),
-            subtitle: Text('Muestra la siguiente lección'),
-            enabled: true,
-            onTap: () {
-              todoButton();
-            },
-          ),
-          ListTile(
-            title: Text('Notificacion de tiempo'),
-            subtitle: Text('TODO minuto(s) antes de que empieze la lección'),
-            enabled: true,
-            onTap: () {
-              todoButton();
-            },
-          ),
+          _LessonNotifsTilesPackage(),
           ListTile(
             title: Text('Notificación de Tarea'),
             subtitle: Text('Muestra las próximas tareas'),
@@ -76,31 +61,50 @@ class _SettingsNotificationsPageState extends State<SettingsNotificationsPage> {
     return AppBar(
       title: Text('Notificaciones'),
     );
-    //TODO poner un botón aquí?
   }
 }
 
-
-class _ClassNotifsTilesPackage extends StatefulWidget{
-  const _ClassNotifsTilesPackage();
+class _LessonNotifsTilesPackage extends StatefulWidget {
+  const _LessonNotifsTilesPackage();
   @override
-  State<_ClassNotifsTilesPackage> createState() => _ClassNotifsTilesPackageState();
+  State<_LessonNotifsTilesPackage> createState() =>
+      _LessonNotifsTilesPackageState();
 }
-class _ClassNotifsTilesPackageState extends State<_ClassNotifsTilesPackage>{
-  bool asdas = true;
-  
-  
+
+class _LessonNotifsTilesPackageState extends State<_LessonNotifsTilesPackage> {
+  late bool asdas;
+
   @override
   void initState() {
-    asdas = SettingsController().
+    asdas = SettingsController().getSendNotifsNextLesson();
     super.initState();
   }
-  
+
+  late ListTile myTile;
+  late CheckboxListTile myCheckBoxListTile;
+
   @override
   Widget build(BuildContext context) {
+    myTile = ListTile(
+      enabled: SettingsController().getSendNotifsNextLesson(),
+      title: Text('Mandar la notificación con antelación.'),
+      subtitle: Text('${SettingsController().getTimeSendNotifsNextLesson()} minutos antes de clase'),
+    );
+    myCheckBoxListTile = CheckboxListTile(
+      title: Text('Notificación antes de clase'),
+      value: asdas,
+      onChanged: (bool? value) => {
+        SettingsController().setSendNotifsNextLesson(value!),
+        setState(() {
+          asdas = value;
+        }),
+      },
+    );
+
     return Column(
       children: [
-        CheckboxListTile(value: value, onChanged: onChanged)
+        myCheckBoxListTile,
+        myTile,
       ],
     );
   }

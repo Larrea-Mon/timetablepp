@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
+  // ignore_for_file: unused_import, prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -64,7 +64,12 @@ class SettingsBatch {
         "firstDayOfTheWeek: $firstDayOfTheWeek\n" +
         "NOTIFICACIONES \n" +
         "sendNotifsNextLesson: $sendNotifsNextLesson \n" + 
-        "timeSendNotifsNextLesson: $sendNotifsNextLesson \n" + 
-        "sendNotifsNextHomework: $sendNotifsNextHomework";
+        "timeSendNotifsNextLesson: $timeSendNotifsNextLesson m\n" + 
+        "sendNotifsNextHomework: $sendNotifsNextHomework\n" + 
+        "timeSendNotifsHomeworkAfterClass: $timeSendNotifsHomeworkAfterClass m\n" + 
+        "timeSendNotifsHomeworkFreeDaysHour: $timeSendNotifsHomeworkFreeDaysHour h\n" +
+        "timeSendNotifsHomeworkFreeDaysMinute: $timeSendNotifsHomeworkFreeDaysMinute m\n" +
+        "sendNotifsNextExam: $sendNotifsNextExam \n" +
+        "daysSendNotifsNextExam: $daysSendNotifsNextExam \n";
   }
 }

@@ -17,10 +17,7 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../Models/subject.dart';
-import '../objectbox.g.dart';
 
-import '../main.dart';
 
 class SettingsController {
   SettingsController._privateConstructor();
@@ -174,10 +171,59 @@ class SettingsController {
     _settings.sendNotifsNextLesson = sendNotifsNextLesson;
     DatabaseController().setSettingsBatch(_settings);
   }
+  int getTimeSendNotifsNextLesson(){
+    int result = _settings.timeSendNotifsNextLesson;
+    debugPrint('[SettingsController]: getTimeSendNotifsNextLesson: $result');
+    return result;
+  }
+  void setTimeSendNotifsNextLesson(int minutes){
+    debugPrint('[SettingsController]: setTimeSendNotifsNextLesson: $minutes');
+    _settings.timeSendNotifsNextLesson = minutes;
+    DatabaseController().setSettingsBatch(_settings);
+  }
   bool getSendNotifsNextHomework(){
     bool result = _settings.sendNotifsNextHomework;
     debugPrint('[SettingsController]: getNotifsNextLesson: $result');
     return result;
   }
+  void setSendNotifsNextHomework(bool sendNotifsNextHomework){
+   _settings.sendNotifsNextHomework = sendNotifsNextHomework;
+    debugPrint('[SettingsController]: setSendNotifsNextHomework: $sendNotifsNextHomework');
+    DatabaseController().setSettingsBatch(_settings);
+  }
+  int getTimeSendNotifsHomeworkAfterClass(){
+    int result = _settings.timeSendNotifsHomeworkAfterClass;
+    debugPrint('[SettingsController]: getNotifsNextLesson: $result');
+    return result;
+  }
+  void setTimeNotifsHomeworkFreeDays(TimeOfDay time){
+  //ESTA ES UNICA Y DIFERENTE
+  _settings.timeSendNotifsHomeworkFreeDaysHour = time.hour;
+  _settings.timeSendNotifsHomeworkFreeDaysMinute = time.minute;
+  debugPrint('[SettingsController]: setTimeNotifsHomeworkFreeDays: hour: ${time.hour}, minute: ${time.minute}');
+  DatabaseController().setSettingsBatch(_settings);
+  }
+  TimeOfDay getTimeNotifsHomeworkFreeDays(){
+    //ESTA TAMBIEN ES UNICA 
+    TimeOfDay time  = TimeOfDay(hour: _settings.timeSendNotifsHomeworkFreeDaysHour, minute: _settings.timeSendNotifsHomeworkFreeDaysMinute);
+    debugPrint('[SettingsController]: getTimeNotifsHomeworkFreeDays: hour: ${time.hour}, minute: ${time.minute}');
+    return time;
+  }
+  void setSendNotifsNextExam(bool sendNotifsNextExam){
+    _settings.sendNotifsNextExam = sendNotifsNextExam;
+    debugPrint('[SettingsController]: setSendNotifsNextExam: $sendNotifsNextExam');
+    DatabaseController().setSettingsBatch(_settings);
+  }
+  bool getSendNotifsNextExam(){
+    bool result = _settings.sendNotifsNextExam;
+    debugPrint('[SettingsController]: getDaysSendNotifsNextExam: $result');
+    return result;
+  }
   //NOTIFS HASTA AQUÍ
+  //AQUÍ EL SILENCI AUTOMÁTICO
+  void setEnableAutoSilence(bool enableAutoSilence){
+    _settings.enableAutoSilence = enableAutoSilence;
+    debugPrint('EnableAutoSilence');//TODO seguirPorAqui
+    
+  }
 }
