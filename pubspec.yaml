@@ -47,6 +47,7 @@ dependencies:
   objectbox_sync_flutter_libs: any
   flex_color_picker: ^3.5.1
   theme_provider: ^0.6.0
+  permission_handler: ^11.3.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
