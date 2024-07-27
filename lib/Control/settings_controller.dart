@@ -196,6 +196,11 @@ class SettingsController {
     debugPrint('[SettingsController]: getNotifsNextLesson: $result');
     return result;
   }
+  void setTimeSendNotifsHomeworkAfterClass(int timeSendNotifsHomeworkAfterClass ){
+    _settings.timeSendNotifsHomeworkAfterClass = timeSendNotifsHomeworkAfterClass;
+    debugPrint('[SettingsController:] setTimeSendNotifsHomeworkAfterClass: ${timeSendNotifsHomeworkAfterClass.toString()}');
+    DatabaseController().setSettingsBatch(_settings);
+  }
   void setTimeNotifsHomeworkFreeDays(TimeOfDay time){
   //ESTA ES UNICA Y DIFERENTE
   _settings.timeSendNotifsHomeworkFreeDaysHour = time.hour;
@@ -208,6 +213,16 @@ class SettingsController {
     TimeOfDay time  = TimeOfDay(hour: _settings.timeSendNotifsHomeworkFreeDaysHour, minute: _settings.timeSendNotifsHomeworkFreeDaysMinute);
     debugPrint('[SettingsController]: getTimeNotifsHomeworkFreeDays: hour: ${time.hour}, minute: ${time.minute}');
     return time;
+  }
+  int getDaysSendNotifsNextHomework(){
+    int result = _settings.daysSendNotifsNextHomework;
+    debugPrint('[SettingsController]: getDaysSendNotifsNextHomework: $result');
+    return result;
+  }
+
+  void setDaysSendNotifsNextHomework(int days){
+    _settings.daysSendNotifsNextHomework = days;
+    
   }
   void setSendNotifsNextExam(bool sendNotifsNextExam){
     _settings.sendNotifsNextExam = sendNotifsNextExam;
@@ -226,4 +241,17 @@ class SettingsController {
     debugPrint('EnableAutoSilence');//TODO seguirPorAqui
     
   }
+}
+
+// ignore: non_constant_identifier_names
+String toDtoString(TimeOfDay ToD){
+  String resultmin = ToD.minute.toString();
+  String resulthour = ToD.hour.toString();
+  if (resulthour.length == 1) {
+    resulthour = '0$resulthour';
+  }if (resultmin.length == 1) {
+    resultmin = '0$resultmin';
+  }
+
+  return '$resulthour:$resultmin';
 }

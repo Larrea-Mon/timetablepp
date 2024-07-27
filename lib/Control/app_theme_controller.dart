@@ -86,6 +86,10 @@ class AppThemeController {
       id: id,
       description: description,
       data: ThemeData(
+        timePickerTheme: TimePickerThemeData(
+          dayPeriodColor: secondaryColor,
+          confirmButtonStyle: ButtonStyle()
+        ),
         checkboxTheme: CheckboxThemeData(checkColor: WidgetStatePropertyAll(secondaryColor) ),
           textButtonTheme: TextButtonThemeData(
             style: ButtonStyle(

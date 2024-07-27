@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_automute_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_debug_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_general_page.dart';
-import 'package:timetablepp/Pages/SettingsPages/settings_notifications_page.dart';
+import 'package:timetablepp/Pages/SettingsPages/Notifications/settings_notifications_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_privacy_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_times_page.dart';
 
@@ -111,7 +111,4 @@ class _SettingsPageState extends State<SettingsPage> {
 AppBar settingsAppBar = AppBar(
   title: Text('Ajustes'),
 
-  /*actions: <Widget>[
-    PopupMenuButton(itemBuilder: itemBuilder)
-  ],*/
 );
