@@ -166,7 +166,6 @@ class MainController {
     SettingsController().initSettings();
     initColorsMap();
     WidgetController().initWidgetTheme();
-    //TODO volver a esto AppThemeController().initTheme();
   }
 }
 

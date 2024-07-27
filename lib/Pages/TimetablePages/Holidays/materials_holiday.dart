@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import, prefer_adjacent_string_concatenation
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,7 +13,8 @@ Future<void> dialogBuilder(BuildContext context) {
         return AlertDialog(
           title: Text('Periodo de vacaciones.'),
           content: Text(
-              'Durante un periodo de vacaciones, Timetable++ no te mandará notificaciones de ir a clase.\nLa aplicación te seguirá mandando notificaciones de entregas y exámenes.'),
+              'Durante un periodo de vacaciones, Timetable++ no te mandará notificaciones de ir a clase.\n' + 
+              'La aplicación te seguirá mandando notificaciones de entregas y exámenes.'),
           actions: [
             TextButton(
                 onPressed: () {
