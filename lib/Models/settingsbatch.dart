@@ -36,6 +36,7 @@ class SettingsBatch {
   //TimeOfDay timeSendNotifsHomeworkFreeDaysHour = TimeOfDay(hour: 10, minute: 0);
   int timeSendNotifsHomeworkFreeDaysHour = 10;
   int timeSendNotifsHomeworkFreeDaysMinute = 0;
+  int daysSendNotifsNextHomework = 5;
   bool sendNotifsNextExam = true;
   int daysSendNotifsNextExam = 7;
   //NOTIFICACIONES
@@ -69,6 +70,7 @@ class SettingsBatch {
         "timeSendNotifsHomeworkAfterClass: $timeSendNotifsHomeworkAfterClass m\n" + 
         "timeSendNotifsHomeworkFreeDaysHour: $timeSendNotifsHomeworkFreeDaysHour h\n" +
         "timeSendNotifsHomeworkFreeDaysMinute: $timeSendNotifsHomeworkFreeDaysMinute m\n" +
+        "daysSendNotifsNextHomework: $daysSendNotifsNextHomework \n" + 
         "sendNotifsNextExam: $sendNotifsNextExam \n" +
         "daysSendNotifsNextExam: $daysSendNotifsNextExam \n";
   }

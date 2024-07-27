@@ -179,7 +179,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(7, 1394606018714506811),
       name: 'SettingsBatch',
-      lastPropertyId: const obx_int.IdUid(24, 5761305450991132851),
+      lastPropertyId: const obx_int.IdUid(25, 2872802622032652321),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -300,6 +300,11 @@ final _entities = <obx_int.ModelEntity>[
         obx_int.ModelProperty(
             id: const obx_int.IdUid(24, 5761305450991132851),
             name: 'lessonsBreak',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(25, 2872802622032652321),
+            name: 'daysSendNotifsNextHomework',
             type: 6,
             flags: 0)
       ],
@@ -545,7 +550,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (SettingsBatch object, fb.Builder fbb) {
           final appActiveThemeOffset = fbb.writeString(object.appActiveTheme);
-          fbb.startTable(25);
+          fbb.startTable(26);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, appActiveThemeOffset);
           fbb.addInt64(2, object.widgetActiveTheme);
@@ -570,6 +575,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addInt64(21, object.lessonsPerDay);
           fbb.addInt64(22, object.lessonsLength);
           fbb.addInt64(23, object.lessonsBreak);
+          fbb.addInt64(24, object.daysSendNotifsNextHomework);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -624,7 +630,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
             ..lessonsLength =
                 const fb.Int64Reader().vTableGet(buffer, rootOffset, 48, 0)
             ..lessonsBreak =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 50, 0);
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 50, 0)
+            ..daysSendNotifsNextHomework =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 52, 0);
 
           return object;
         })
@@ -829,4 +837,8 @@ class SettingsBatch_ {
   /// See [SettingsBatch.lessonsBreak].
   static final lessonsBreak =
       obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[23]);
+
+  /// See [SettingsBatch.daysSendNotifsNextHomework].
+  static final daysSendNotifsNextHomework =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[24]);
 }

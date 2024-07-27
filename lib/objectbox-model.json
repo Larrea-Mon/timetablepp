@@ -158,7 +158,7 @@
     },
     {
       "id": "7:1394606018714506811",
-      "lastPropertyId": "24:5761305450991132851",
+      "lastPropertyId": "25:2872802622032652321",
       "name": "SettingsBatch",
       "properties": [
         {
@@ -280,6 +280,11 @@
         {
           "id": "24:5761305450991132851",
           "name": "lessonsBreak",
+          "type": 6
+        },
+        {
+          "id": "25:2872802622032652321",
+          "name": "daysSendNotifsNextHomework",
           "type": 6
         }
       ],
