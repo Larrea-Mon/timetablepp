@@ -5,15 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
 
-class HomeworkNotifsTilesPackage extends StatefulWidget {
-  const HomeworkNotifsTilesPackage({super.key});
+class HomeworkNotifsTilesColumn extends StatefulWidget {
+  const HomeworkNotifsTilesColumn({super.key});
   @override
-  State<HomeworkNotifsTilesPackage> createState() =>
-      _HomeworkNotifsTilesPackageState();
+  State<HomeworkNotifsTilesColumn> createState() =>
+      _HomeworkNotifsTilesColumnState();
 }
 
-class _HomeworkNotifsTilesPackageState
-    extends State<HomeworkNotifsTilesPackage> {
+class _HomeworkNotifsTilesColumnState
+    extends State<HomeworkNotifsTilesColumn> {
   late bool enabled;
   late int homeworkAfterClassTime;
   late TimeOfDay homeworkFreeDayTime;
@@ -24,6 +24,7 @@ class _HomeworkNotifsTilesPackageState
     homeworkAfterClassTime =
         SettingsController().getTimeSendNotifsHomeworkAfterClass();
     homeworkFreeDayTime = SettingsController().getTimeNotifsHomeworkFreeDays();
+    homeworkNotificationsDay = SettingsController().getDaysSendNotifsNextHomework();
     enabled = SettingsController().getSendNotifsNextHomework();
     super.initState();
   }
@@ -84,7 +85,7 @@ class _HomeworkNotifsTilesPackageState
                           Navigator.of(context).pop();
                         }
                       },
-                      child: Text('Ok'))
+                      child: Text('Ok'),)
                 ],
               );
             });
@@ -116,12 +117,12 @@ class _HomeworkNotifsTilesPackageState
     //SECONDTILE ACABA AQUI
     var myThirdController = TextEditingController(
         text: SettingsController()
-            .getTimeSendNotifsHomeworkAfterClass()
+            .getDaysSendNotifsNextHomework()
             .toString());
 
     myThirdTile = ListTile(
       enabled: SettingsController().getSendNotifsNextHomework(),
-      title: Text('Mandar el recordatorio con días de antelación.'),
+      title: Text('Mandar el recordatorio con antelación.'),
       subtitle: Text('$homeworkNotificationsDay días antes de la entrega'),
       onTap: () {
         showDialog(
@@ -129,7 +130,7 @@ class _HomeworkNotifsTilesPackageState
             builder: (BuildContext context) {
               return AlertDialog.adaptive(
                 content: SizedBox(
-                  height: 80,//TODO terminar de implementar esto bien
+                  height: 80,
                   width: BorderSide.strokeAlignCenter,
                   child: TextField(
                     keyboardType: TextInputType.number,
@@ -140,25 +141,25 @@ class _HomeworkNotifsTilesPackageState
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.fromLTRB(12, 4, 12, 4),
                       hintStyle: TextStyle(color: Colors.grey[150]),
-                      hintText: ('Minutos después de clase.'),
+                      hintText: ('Días antes de la entrega.'),
                     ),
                   ),
                 ),
                 actions: [
                   TextButton(
                       onPressed: () {
-                        if ((myFirstController.text == '') ||
-                            (myFirstController.text.trim() == '0')) {
+                        if ((myThirdController.text == '') ||
+                            (myThirdController.text.trim() == '0')) {
                           Fluttertoast.showToast(
                               msg: 'Debe de haber un número mayor que 0.',
                               backgroundColor: Colors.grey);
                         } else {
                           SettingsController()
-                              .setTimeSendNotifsHomeworkAfterClass(
-                                  num.parse(myFirstController.text).toInt());
+                              .setDaysSendNotifsNextHomework(
+                                  num.parse(myThirdController.text).toInt());
                           setState(() {
-                            homeworkAfterClassTime =
-                                num.parse(myFirstController.text).toInt();
+                            homeworkNotificationsDay =
+                                num.parse(myThirdController.text).toInt();
                           });
                           Navigator.of(context).pop();
                         }

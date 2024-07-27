@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
 
+import 'column_exam.dart';
 import 'column_homework.dart';
 import 'column_lesson.dart';
 class SettingsNotificationsPage extends StatefulWidget {
@@ -23,24 +24,25 @@ class _SettingsNotificationsPageState extends State<SettingsNotificationsPage> {
       appBar: _buildSettingsNotificationsAppBar(),
       body: ListView(
         children: ListTile.divideTiles(context: context, tiles: [
-          LessonNotifsTilesPackage(),
-          HomeworkNotifsTilesPackage(),
-          ListTile(
+          LessonNotifsTilesColumn(),
+          HomeworkNotifsTilesColumn(),
+          ExamNotifsTilesColumn(),
+          /*ListTile(
             title: Text('TODO Notificacion de Examen'),
             subtitle: Text('TODO dia(s) antes de la fecha de entrega'),
             enabled: true,
             onTap: () {
               todoButton();
             },
-          ),
-          ListTile(
+          ),*/
+          /*ListTile(
             title: Text('Notificacion de tiempo'),
             subtitle: Text('TODO dia(s) antes de la fecha de entrega'),
             enabled: true,
             onTap: () {
               todoButton();
             },
-          ),
+          ),*/
         ]).toList(),
       ),
     );

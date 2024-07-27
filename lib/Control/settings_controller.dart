@@ -222,7 +222,8 @@ class SettingsController {
 
   void setDaysSendNotifsNextHomework(int days){
     _settings.daysSendNotifsNextHomework = days;
-    
+    debugPrint('[SettingsController]: setDaysSendNotifsNextHomework: $days');
+    DatabaseController().setSettingsBatch(_settings);
   }
   void setSendNotifsNextExam(bool sendNotifsNextExam){
     _settings.sendNotifsNextExam = sendNotifsNextExam;
@@ -233,6 +234,16 @@ class SettingsController {
     bool result = _settings.sendNotifsNextExam;
     debugPrint('[SettingsController]: getDaysSendNotifsNextExam: $result');
     return result;
+  }
+  int getDaysSendNotifsNextExam(){
+    int result = _settings.daysSendNotifsNextExam;
+    debugPrint('[SettingsController]: getDaysSendNotifsNextExam: $result');
+    return result;
+  }
+  void setDaysSendNotifsNextExam(int days){
+    _settings.daysSendNotifsNextExam = days;
+    debugPrint('[SettingsController]: setDaysSendNotifsNextExam');
+    DatabaseController().setSettingsBatch(_settings);
   }
   //NOTIFS HASTA AQUÍ
   //AQUÍ EL SILENCI AUTOMÁTICO

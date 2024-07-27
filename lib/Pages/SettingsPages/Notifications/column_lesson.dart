@@ -5,14 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
 
-class LessonNotifsTilesPackage extends StatefulWidget {
-  const LessonNotifsTilesPackage({super.key});
+class LessonNotifsTilesColumn extends StatefulWidget {
+  const LessonNotifsTilesColumn({super.key});
   @override
-  State<LessonNotifsTilesPackage> createState() =>
-      LessonNotifsTilesPackageState();
+  State<LessonNotifsTilesColumn> createState() =>
+      LessonNotifsTilesColumnState();
 }
 
-class LessonNotifsTilesPackageState extends State<LessonNotifsTilesPackage> {
+class LessonNotifsTilesColumnState extends State<LessonNotifsTilesColumn> {
   late bool asdas;
   late int time;
 
