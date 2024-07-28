@@ -12,8 +12,7 @@ class HomeworkNotifsTilesColumn extends StatefulWidget {
       _HomeworkNotifsTilesColumnState();
 }
 
-class _HomeworkNotifsTilesColumnState
-    extends State<HomeworkNotifsTilesColumn> {
+class _HomeworkNotifsTilesColumnState extends State<HomeworkNotifsTilesColumn> {
   late bool enabled;
   late int homeworkAfterClassTime;
   late TimeOfDay homeworkFreeDayTime;
@@ -24,7 +23,8 @@ class _HomeworkNotifsTilesColumnState
     homeworkAfterClassTime =
         SettingsController().getTimeSendNotifsHomeworkAfterClass();
     homeworkFreeDayTime = SettingsController().getTimeNotifsHomeworkFreeDays();
-    homeworkNotificationsDay = SettingsController().getDaysSendNotifsNextHomework();
+    homeworkNotificationsDay =
+        SettingsController().getDaysSendNotifsNextHomework();
     enabled = SettingsController().getSendNotifsNextHomework();
     super.initState();
   }
@@ -68,24 +68,25 @@ class _HomeworkNotifsTilesColumnState
                 ),
                 actions: [
                   TextButton(
-                      onPressed: () {
-                        if ((myFirstController.text == '') ||
-                            (myFirstController.text.trim() == '0')) {
-                          Fluttertoast.showToast(
-                              msg: 'Debe de haber un número mayor que 0.',
-                              backgroundColor: Colors.grey);
-                        } else {
-                          SettingsController()
-                              .setTimeSendNotifsHomeworkAfterClass(
-                                  num.parse(myFirstController.text).toInt());
-                          setState(() {
-                            homeworkAfterClassTime =
-                                num.parse(myFirstController.text).toInt();
-                          });
-                          Navigator.of(context).pop();
-                        }
-                      },
-                      child: Text('Ok'),)
+                    onPressed: () {
+                      if ((myFirstController.text == '') ||
+                          (myFirstController.text.trim() == '0')) {
+                        Fluttertoast.showToast(
+                            msg: 'Debe de haber un número mayor que 0.',
+                            backgroundColor: Colors.grey);
+                      } else {
+                        SettingsController()
+                            .setTimeSendNotifsHomeworkAfterClass(
+                                num.parse(myFirstController.text).toInt());
+                        setState(() {
+                          homeworkAfterClassTime =
+                              num.parse(myFirstController.text).toInt();
+                        });
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: Text('Ok'),
+                  ),
                 ],
               );
             });
@@ -116,9 +117,7 @@ class _HomeworkNotifsTilesColumnState
     );
     //SECONDTILE ACABA AQUI
     var myThirdController = TextEditingController(
-        text: SettingsController()
-            .getDaysSendNotifsNextHomework()
-            .toString());
+        text: SettingsController().getDaysSendNotifsNextHomework().toString());
 
     myThirdTile = ListTile(
       enabled: SettingsController().getSendNotifsNextHomework(),
@@ -154,9 +153,8 @@ class _HomeworkNotifsTilesColumnState
                               msg: 'Debe de haber un número mayor que 0.',
                               backgroundColor: Colors.grey);
                         } else {
-                          SettingsController()
-                              .setDaysSendNotifsNextHomework(
-                                  num.parse(myThirdController.text).toInt());
+                          SettingsController().setDaysSendNotifsNextHomework(
+                              num.parse(myThirdController.text).toInt());
                           setState(() {
                             homeworkNotificationsDay =
                                 num.parse(myThirdController.text).toInt();
