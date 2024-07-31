@@ -72,6 +72,14 @@ class SettingsBatch {
         "timeSendNotifsHomeworkFreeDaysMinute: $timeSendNotifsHomeworkFreeDaysMinute m\n" +
         "daysSendNotifsNextHomework: $daysSendNotifsNextHomework \n" + 
         "sendNotifsNextExam: $sendNotifsNextExam \n" +
-        "daysSendNotifsNextExam: $daysSendNotifsNextExam \n";
+        "daysSendNotifsNextExam: $daysSendNotifsNextExam \n" +
+        "AUTOSILENCE \n"+
+        "enableAutoSilence: $enableAutoSilence\n" + 
+        "minutesAutosilence: $minutesAutosilence\n"+
+        "HORARIO\n" +
+        "lessonsPerDay: $lessonsPerDay\n" + 
+        "lessonsLength: $lessonsLength\n" + 
+        "lessonsBreak: $lessonsBreak\n" + 
+        "";
   }
 }
