@@ -15,6 +15,7 @@ import 'dart:async';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:timetablepp/Models/weekview_lesson.dart';
 
 import '../Models/subject.dart';
 import '../objectbox.g.dart';
@@ -34,6 +35,8 @@ class DatabaseController {
   final Box<TermPeriod> _termPeriodBox = objectbox.store.box<TermPeriod>();
   final Box<Subject> _subjectBox = objectbox.store.box<Subject>();
   final Box<SettingsBatch> _settingsBox = objectbox.store.box<SettingsBatch>();
+  final Box<WeekviewLesson> _weekviewBox =
+      objectbox.store.box<WeekviewLesson>();
   // TERMPERIOD
   TermPeriod getTermPeriod(int id) {
     var result = _termPeriodBox.get(id);
@@ -51,7 +54,7 @@ class DatabaseController {
   // TERMPERIOD
   //term period sólo necesita estas dos
   //SETTINGSBATCH
-  
+
   SettingsBatch getSettingsBatch() {
     var result = _settingsBox.get(1);
     if (result != null) {
@@ -89,7 +92,7 @@ class DatabaseController {
     return _subjectBox.getAll();
   }
 
-   int deleteAllSubjects() {
+  int deleteAllSubjects() {
     return _subjectBox.removeAll();
   }
 
@@ -115,12 +118,37 @@ class DatabaseController {
   List<HolidayPeriod> getAllHolidayPeriods() {
     return _holidaysBox.getAll();
   }
+
   int deleteHolidays() {
     return _holidaysBox.removeAll();
   }
-  //Holidays
-  
- 
 
-  
+  //Holidays
+  //WeekviewLesson
+  WeekviewLesson getWeekviewLesson(int id) {
+    return _weekviewBox.get(id)!;
+  }
+
+  void putWeekviewLesson(WeekviewLesson weekviewLesson) {
+    _weekviewBox.put(weekviewLesson);
+  }
+
+  bool removeWeekviewLesson(int id) {
+    return _weekviewBox.remove(id);
+  }
+
+  List<WeekviewLesson> getAllWeekviewLessons() {
+    var lessons = _weekviewBox.getAll();
+
+    return lessons;
+  }
+
+  int deleteAllWeekviewLessons() {
+    return _weekviewBox.removeAll();
+  }
+  void putAllLessons(List<WeekviewLesson> lessons){
+    _weekviewBox.putMany(lessons);
+  }
+
+//WeekviewLesson
 }

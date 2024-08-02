@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_automute_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_debug_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_general_page.dart';
-import 'package:timetablepp/Pages/SettingsPages/Notifications/settings_notifications_page.dart';
+import 'package:timetablepp/Pages/SettingsPages/NotificationSettings/settings_notifications_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_privacy_page.dart';
-import 'package:timetablepp/Pages/SettingsPages/settings_times_page.dart';
+import 'package:timetablepp/Pages/SettingsPages/Timetable/settings_weekview_times_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -54,21 +54,25 @@ class _SettingsPageState extends State<SettingsPage> {
                 debugPrint('Automute');
 
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsAutoMutePage()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsAutoMutePage(),
+                  ),
+                );
               },
             ),
             ListTile(
-              title: Text('Horario'),
+              title: Text('Horario semanal'),
               enabled: true,
               onTap: () {
                 debugPrint('Horario');
 
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsTimesPage()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsTimesPage(),
+                  ),
+                );
               },
             ),
             ListTile(
@@ -78,9 +82,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 debugPrint('Privacidad');
 
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsPrivacyPage()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsPrivacyPage(),
+                  ),
+                );
               },
             ),
             //AQUI LA TAB DE DEBUG
@@ -97,7 +103,6 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
 
-
             /* POR AHORA NO HAY INFORMACION O SE PONE EN PRIVACIDAD
           ListTile(
             title: Text('Información'),
@@ -110,5 +115,4 @@ class _SettingsPageState extends State<SettingsPage> {
 
 AppBar settingsAppBar = AppBar(
   title: Text('Ajustes'),
-
 );

@@ -11,12 +11,11 @@ import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 
 @Entity()
-class WeekviewLesson {
+class WeekviewLesson implements Comparable {
   @Id()
   int id = 0;
 
   int startHour = 9;
-
   int startMinute = 0;
 
   WeekviewLesson({required this.startHour, required this.startMinute});
@@ -38,16 +37,15 @@ class WeekviewLesson {
     debugPrint(
         '[WeekviewLesson.useThisConstructor:] hour: $hour, minute: $minute,  result: $result, remainer: $remainer,');
     this.startHour = result;*/
-    if(minute >59){
+    if (minute > 59) {
       hour++;
-      minute = minute-60; 
+      minute = minute - 60;
     }
-    if(hour>23){
-      hour = hour-24;
+    if (hour > 23) {
+      hour = hour - 24;
     }
-    this.startHour = hour;
-    this.startMinute = minute;
-
+    startHour = hour;
+    startMinute = minute;
   }
 
   WeekviewLesson.asToD(TimeOfDay toD) {
@@ -66,5 +64,21 @@ class WeekviewLesson {
   @override
   String toString() {
     return '[WeekviewLesson]: startHour: $startHour, startMinute: $startMinute';
+  }
+
+  @override
+  int compareTo(other) {
+    other = other as WeekviewLesson;
+    if (other.startHour > startHour) {
+      return -1;
+    } else if (other.startHour < startHour) {
+      return 1;
+    } else if (other.startMinute > startMinute) {
+      return -1;
+    } else if (other.startMinute < startMinute) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 }

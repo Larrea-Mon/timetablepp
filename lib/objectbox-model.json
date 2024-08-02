@@ -289,9 +289,33 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "8:121648874015261506",
+      "lastPropertyId": "3:4659670827029778035",
+      "name": "WeekviewLesson",
+      "properties": [
+        {
+          "id": "1:3700233555744549527",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7788919287754757403",
+          "name": "startHour",
+          "type": 6
+        },
+        {
+          "id": "3:4659670827029778035",
+          "name": "startMinute",
+          "type": 6
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "7:1394606018714506811",
+  "lastEntityId": "8:121648874015261506",
   "lastIndexId": "1:8338900709183299503",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

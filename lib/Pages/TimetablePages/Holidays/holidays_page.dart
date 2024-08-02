@@ -61,9 +61,11 @@ class _HolidaysPageState extends State<HolidaysPage> {
                     onTap: () {
                       MainController().setCurrentHoliday(holidays[index]);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EditHolidayPage())).then(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditHolidayPage(),
+                        ),
+                      ).then(
                         (_) => setState(() {}),
                       );
                     },

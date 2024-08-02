@@ -1,30 +1,19 @@
-// ignore_for_file: unused_import, prefer_final_fields, prefer_const_constructors
+// ignore_for_file: , prefer_final_fields, prefer_const_constructors
 
-import 'dart:collection';
-import 'dart:ffi';
+
 
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/database_controller.dart';
-import 'package:timetablepp/Control/objectbox.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
-import 'package:timetablepp/Control/app_theme_controller.dart';
+import 'package:timetablepp/Control/weekview_backend.dart';
 import 'package:timetablepp/Control/widget_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/settingsbatch.dart';
 import 'package:timetablepp/Models/termperiod.dart';
 
-import 'dart:async';
-
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-
 import '../Models/subject.dart';
-import '../objectbox.g.dart';
-
-import '../main.dart';
-
 class MainController {
   MainController._privateConstructor();
 
@@ -166,6 +155,7 @@ class MainController {
     SettingsController().initSettings();
     initColorsMap();
     WidgetController().initWidgetTheme();
+    WeekviewBackend().initLessons();
   }
 }
 
