@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time_planner/time_planner.dart';
 
 import 'package:timetablepp/Control/database_controller.dart';
 
@@ -156,6 +157,7 @@ class WeekviewBackend {
   }
 
   List<DateTime> getDatesForWeekView() {
+    //EN DESUSO TOTAL
     DateTime now = DateTime.now();
     DateTime date = DateTime(now.year, now.month, now.day);
     List<DateTime> result = List<DateTime>.empty(growable: true);
@@ -202,6 +204,180 @@ class WeekviewBackend {
     for (var i = 0; i < 7; i++) {
       debugPrint('[WeekviewBackend][getDatesForWeekView]:${result[i]}');
     }
+    return result;
+  }
+
+  getActiveDays() {
+    List<TimePlannerTitle> result = List.empty(growable: true);
+
+    switch (SettingsController().getFirstDayOfTheWeek()) {
+      case 1:
+        result.addAll([
+          if (SettingsController().getIsMondayActive())
+            TimePlannerTitle(title: 'Lunes'),
+          if (SettingsController().getIsTuesdayActive())
+            TimePlannerTitle(title: 'Martes'),
+          if (SettingsController().getIsWednesdayActive())
+            TimePlannerTitle(title: 'Miercoles'),
+          if (SettingsController().getIsThursdayActive())
+            TimePlannerTitle(title: 'Jueves'),
+          if (SettingsController().getIsFridayActive())
+            TimePlannerTitle(title: 'Viernes'),
+          if (SettingsController().getIsSaturdayActive())
+            TimePlannerTitle(title: 'Sábado'),
+          if (SettingsController().getIsSundayActive())
+            TimePlannerTitle(title: 'Domingo'),
+        ]);
+        break;
+      case 2:
+        result.addAll([
+          if (SettingsController().getIsTuesdayActive())
+            TimePlannerTitle(title: 'Martes'),
+          if (SettingsController().getIsWednesdayActive())
+            TimePlannerTitle(title: 'Miercoles'),
+          if (SettingsController().getIsThursdayActive())
+            TimePlannerTitle(title: 'Jueves'),
+          if (SettingsController().getIsFridayActive())
+            TimePlannerTitle(title: 'Viernes'),
+          if (SettingsController().getIsSaturdayActive())
+            TimePlannerTitle(title: 'Sábado'),
+          if (SettingsController().getIsSundayActive())
+            TimePlannerTitle(title: 'Domingo'),
+          if (SettingsController().getIsMondayActive())
+            TimePlannerTitle(title: 'Lunes'),
+        ]);
+        break;
+      case 3:
+        result.addAll([
+          if (SettingsController().getIsWednesdayActive())
+            TimePlannerTitle(title: 'Miercoles'),
+          if (SettingsController().getIsThursdayActive())
+            TimePlannerTitle(title: 'Jueves'),
+          if (SettingsController().getIsFridayActive())
+            TimePlannerTitle(title: 'Viernes'),
+          if (SettingsController().getIsSaturdayActive())
+            TimePlannerTitle(title: 'Sábado'),
+          if (SettingsController().getIsSundayActive())
+            TimePlannerTitle(title: 'Domingo'),
+          if (SettingsController().getIsMondayActive())
+            TimePlannerTitle(title: 'Lunes'),
+          if (SettingsController().getIsTuesdayActive())
+            TimePlannerTitle(title: 'Martes'),
+        ]);
+      case 4:
+        result.addAll([
+          if (SettingsController().getIsThursdayActive())
+            TimePlannerTitle(title: 'Jueves'),
+          if (SettingsController().getIsFridayActive())
+            TimePlannerTitle(title: 'Viernes'),
+          if (SettingsController().getIsSaturdayActive())
+            TimePlannerTitle(title: 'Sábado'),
+          if (SettingsController().getIsSundayActive())
+            TimePlannerTitle(title: 'Domingo'),
+          if (SettingsController().getIsMondayActive())
+            TimePlannerTitle(title: 'Lunes'),
+          if (SettingsController().getIsTuesdayActive())
+            TimePlannerTitle(title: 'Martes'),
+          if (SettingsController().getIsWednesdayActive())
+            TimePlannerTitle(title: 'Miercoles'),
+        ]);
+        break;
+      case 5:
+        result.addAll([
+          if (SettingsController().getIsFridayActive())
+            TimePlannerTitle(title: 'Viernes'),
+          if (SettingsController().getIsSaturdayActive())
+            TimePlannerTitle(title: 'Sábado'),
+          if (SettingsController().getIsSundayActive())
+            TimePlannerTitle(title: 'Domingo'),
+          if (SettingsController().getIsMondayActive())
+            TimePlannerTitle(title: 'Lunes'),
+          if (SettingsController().getIsTuesdayActive())
+            TimePlannerTitle(title: 'Martes'),
+          if (SettingsController().getIsWednesdayActive())
+            TimePlannerTitle(title: 'Miercoles'),
+          if (SettingsController().getIsThursdayActive())
+            TimePlannerTitle(title: 'Jueves'),
+        ]);
+        break;
+      case 6:
+        result.addAll([
+          if (SettingsController().getIsSaturdayActive())
+            TimePlannerTitle(title: 'Sábado'),
+          if (SettingsController().getIsSundayActive())
+            TimePlannerTitle(title: 'Domingo'),
+          if (SettingsController().getIsMondayActive())
+            TimePlannerTitle(title: 'Lunes'),
+          if (SettingsController().getIsTuesdayActive())
+            TimePlannerTitle(title: 'Martes'),
+          if (SettingsController().getIsWednesdayActive())
+            TimePlannerTitle(title: 'Miercoles'),
+          if (SettingsController().getIsThursdayActive())
+            TimePlannerTitle(title: 'Jueves'),
+          if (SettingsController().getIsFridayActive())
+            TimePlannerTitle(title: 'Viernes'),
+        ]);
+        break;
+      case 7:
+        result.addAll([
+          if (SettingsController().getIsSundayActive())
+            TimePlannerTitle(title: 'Domingo'),
+          if (SettingsController().getIsMondayActive())
+            TimePlannerTitle(title: 'Lunes'),
+          if (SettingsController().getIsTuesdayActive())
+            TimePlannerTitle(title: 'Martes'),
+          if (SettingsController().getIsWednesdayActive())
+            TimePlannerTitle(title: 'Miercoles'),
+          if (SettingsController().getIsThursdayActive())
+            TimePlannerTitle(title: 'Jueves'),
+          if (SettingsController().getIsFridayActive())
+            TimePlannerTitle(title: 'Viernes'),
+          if (SettingsController().getIsSaturdayActive())
+            TimePlannerTitle(title: 'Sábado'),
+        ]);
+        break;
+      default:
+        result.addAll(
+          [
+            if (SettingsController().getIsMondayActive())
+              TimePlannerTitle(title: 'Lunes'),
+            if (SettingsController().getIsTuesdayActive())
+              TimePlannerTitle(title: 'Martes'),
+            if (SettingsController().getIsWednesdayActive())
+              TimePlannerTitle(title: 'Miercoles'),
+            if (SettingsController().getIsThursdayActive())
+              TimePlannerTitle(title: 'Jueves'),
+            if (SettingsController().getIsFridayActive())
+              TimePlannerTitle(title: 'Viernes'),
+            if (SettingsController().getIsSaturdayActive())
+              TimePlannerTitle(title: 'Sábado'),
+            if (SettingsController().getIsSundayActive())
+              TimePlannerTitle(title: 'Domingo'),
+          ],
+        );
+    }
+    return result;
+  }
+
+  getTasks() {
+    List<TimePlannerTask> result = [
+      TimePlannerTask(
+        // background color for task
+        color: Colors.purple,
+        // day: Index of header, hour: Task will be begin at this hour
+        // minutes: Task will be begin at this minutes
+        dateTime: TimePlannerDateTime(day: 0, hour: 14, minutes: 30),
+        // Minutes duration of task
+        minutesDuration: 90,
+        // Days duration of task (use for multi days task)
+        daysDuration: 1,
+        onTap: () {},
+        child: Text(
+          'this is a task',
+          style: TextStyle(color: Colors.grey[350], fontSize: 12),
+        ),
+      ),
+    ];
     return result;
   }
 }

@@ -5,6 +5,7 @@ import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Control/weekview_backend.dart';
 import 'package:timetablepp/Pages/SettingsPages/Timetable/settings_weekview_times_page.dart';
 //import 'package:flutter_week_view/flutter_week_view.dart';
+import 'package:time_planner/time_planner.dart';
 
 class WeekViewPage extends StatefulWidget {
   const WeekViewPage({super.key});
@@ -67,9 +68,21 @@ class MyCustomGridState extends State<MyCustomGrid> {
   @override
   Widget build(BuildContext context) {
     //return Placeholder();
-    List<DateTime> dates = WeekviewBackend().getDatesForWeekView();
+    // List<DateTime> dates = WeekviewBackend().getDatesForWeekView();
     //WeekView myWeekView = WeekView(dates: dates,);
-    return myWeekView;
+
+    TimePlanner myTimePlanner = TimePlanner(
+      startHour: 8,
+      endHour: 23,
+      use24HourFormat: true,
+      headers: WeekviewBackend().getActiveDays(),
+      tasks: [],//WeekviewBackend().getTasks(),
+      style: TimePlannerStyle(
+        showScrollBar: true,
+        
+      ),
+    );
+    return myTimePlanner;
     //TODO Volver a esto en otro momento.
     /*return GridView.custom(
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 60,),
