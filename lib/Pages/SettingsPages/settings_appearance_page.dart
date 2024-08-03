@@ -10,14 +10,14 @@ import 'package:timetablepp/Control/settings_controller.dart';
 
 import '../../Control/widget_controller.dart';
 
-class SettingsGeneralPage extends StatefulWidget {
-  const SettingsGeneralPage({super.key});
+class SettingsAppearancePage extends StatefulWidget {
+  const SettingsAppearancePage({super.key});
 
   @override
-  State<SettingsGeneralPage> createState() => _SettingsGeneralPageState();
+  State<SettingsAppearancePage> createState() => _SettingsAppearancePageState();
 }
 
-class _SettingsGeneralPageState extends State<SettingsGeneralPage> {
+class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   _buildSettingsGeneralAppBar() {
     return AppBar(
       title: Text('General'),

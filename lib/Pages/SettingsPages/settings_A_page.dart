@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_automute_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_debug_page.dart';
-import 'package:timetablepp/Pages/SettingsPages/settings_general_page.dart';
+import 'package:timetablepp/Pages/SettingsPages/settings_appearance_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/NotificationSettings/settings_notifications_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/settings_privacy_page.dart';
 import 'package:timetablepp/Pages/SettingsPages/Timetable/settings_weekview_times_page.dart';
@@ -31,7 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SettingsGeneralPage()));
+                        builder: (context) => const SettingsAppearancePage()));
               },
             ),
             ListTile(
