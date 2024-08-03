@@ -26,20 +26,19 @@ class _WeekViewPageState extends State<WeekViewPage> {
       title: Text('Vista Semanal'),
       actions: <Widget>[
         IconButton(
-          onPressed: () {
+          onPressed: () => {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => SettingsTimesPage(),
               ),
-            );
+            ).then((_) => setState(() {}))
           },
           icon: Icon(Icons.settings),
         ),
         IconButton(
           onPressed: () {
             todoButton();
-            WeekviewBackend().printLessons();
           },
           icon: Icon(Icons.add_box),
         )
@@ -76,10 +75,10 @@ class MyCustomGridState extends State<MyCustomGrid> {
       endHour: 23,
       use24HourFormat: true,
       headers: WeekviewBackend().getActiveDays(),
-      tasks: [],//WeekviewBackend().getTasks(),
+      tasks: WeekviewBackend().getTasks(),
       style: TimePlannerStyle(
         showScrollBar: true,
-        
+        cellWidth: 65,
       ),
     );
     return myTimePlanner;

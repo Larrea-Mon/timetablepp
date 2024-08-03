@@ -13,8 +13,7 @@ class SettingsTimesPage extends StatefulWidget {
 
   @override
   State<SettingsTimesPage> createState() => _SettingsTimesPageState();
-} //TODO ENORME: Implementar alguna medida de seguridad para que no se vaya de las manos esto.
-// AQUI ha ocurrido un desastre y la mitad de esta funcionalidad no va a ver la luz.
+}
 
 class _SettingsTimesPageState extends State<SettingsTimesPage> {
   late int lessonsPerDay;
@@ -25,8 +24,7 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
   @override
   void initState() {
     lessonsPerDay = WeekviewBackend().getLessonsPerDay();
-    //lessonsLen = WeekviewBackend().getLessonsLength();
-    //lessonsBreak = WeekviewBackend().getLessonsBreak();
+
     super.initState();
   }
 
@@ -245,7 +243,6 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
               },
             );
             if (pickedTime != null) {
-              
               data.startHour = pickedTime.hour;
               data.startMinute = pickedTime.minute;
               WeekviewBackend().sortLessons();
@@ -269,22 +266,241 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
     Column mainColumn = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        tile0,
+        //tile0,
         //const Divider(),
         //tile1,
         //const Divider(),
         //tile2,
         //const Divider(),
-        tileTitle,
-        Flexible(
+        //tileTitle,
+        /* Flexible(
           child: listaInicios,
-        ),
+        ),*/
+        _FirstDayOfTheWeekTile(),
+        _ActiveDaysRow(),
       ],
     );
 
     return Scaffold(
       appBar: settingsTimesAppBar,
       body: mainColumn,
+    );
+  }
+}
+
+class _FirstDayOfTheWeekTile extends StatefulWidget {
+  const _FirstDayOfTheWeekTile();
+  @override
+  State<_FirstDayOfTheWeekTile> createState() => _FirstDayOfTheWeekTileState();
+}
+
+class _FirstDayOfTheWeekTileState extends State<_FirstDayOfTheWeekTile> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //TODO que se vea esto siempre.
+    return Column(
+      children: [
+        ListTile(
+          title: Text('Primer día de la semana'),
+          enabled: true,
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
+          child: Slider(
+            value: SettingsController().getFirstDayOfTheWeek().toDouble(),
+            min: 1.0,
+            divisions: 6,
+            max: 7.0,
+            label: intToDay(SettingsController().getFirstDayOfTheWeek()),
+            onChanged: (double value) {
+              setState(
+                () {
+                  SettingsController().setFirstDayOfTheWeek(value.toInt());
+                },
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+String intToDay(int dayOfTheWeek) {
+  switch (dayOfTheWeek) {
+    case 1:
+      return 'Monday';
+    case 2:
+      return 'Tuesday';
+    case 3:
+      return 'Wednesday';
+    case 4:
+      return 'Thursday';
+    case 5:
+      return 'Friday';
+    case 6:
+      return 'Saturday';
+    case 7:
+      return 'Sunday';
+    default:
+      debugPrint('IntToDay: Something went Wrong');
+      return 'Monday';
+  }
+}
+
+class _ActiveDaysRow extends StatefulWidget {
+  const _ActiveDaysRow();
+  @override
+  State<_ActiveDaysRow> createState() => _ActiveDaysRowState();
+}
+
+class _ActiveDaysRowState extends State<_ActiveDaysRow> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  _mondayCheckBox() {
+    return Checkbox(
+      value: SettingsController().getIsMondayActive(),
+      onChanged: (bool? value) {
+        SettingsController().setIsMondayActive(value!);
+        setState(() {});
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return Column(
+          children: [
+            ListTile(
+              title: Text('Días Activos'),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    child: Column(
+                      children: [
+                        Text('Monday'),
+                        _mondayCheckBox(),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    child: Column(
+                      children: [
+                        Text('Tuesday'),
+                        Checkbox(
+                          value: SettingsController().getIsTuesdayActive(),
+                          onChanged: (bool? value) {
+                            SettingsController().setIsTuesdayActive(value!);
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    child: Column(
+                      children: [
+                        Text('Wednesday'),
+                        Checkbox(
+                          value: SettingsController().getIsWednesdayActive(),
+                          onChanged: (bool? value) {
+                            SettingsController().setIsWednesdayActive(value!);
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    child: Column(
+                      children: [
+                        Text('Thursday'),
+                        Checkbox(
+                          value: SettingsController().getIsThursdayActive(),
+                          onChanged: (bool? value) {
+                            SettingsController().setIsThursdayActive(value!);
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    child: Column(
+                      children: [
+                        Text('Friday'),
+                        Checkbox(
+                          value: SettingsController().getIsFridayActive(),
+                          onChanged: (bool? value) {
+                            SettingsController().setIsFridayActive(value!);
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    child: Column(
+                      children: [
+                        Text('Saturday'),
+                        Checkbox(
+                          value: SettingsController().getIsSaturdayActive(),
+                          onChanged: (bool? value) {
+                            SettingsController().setIsSaturdayActive(value!);
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    child: Column(
+                      children: [
+                        Text('Sunday'),
+                        Checkbox(
+                          value: SettingsController().getIsSundayActive(),
+                          onChanged: (bool? value) {
+                            SettingsController().setIsSundayActive(value!);
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        );
+      },
     );
   }
 }

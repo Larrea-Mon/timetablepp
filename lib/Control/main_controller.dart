@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
-import 'package:timetablepp/Control/weekview_backend.dart';
 import 'package:timetablepp/Control/widget_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/settingsbatch.dart';
@@ -155,7 +154,6 @@ class MainController {
     SettingsController().initSettings();
     initColorsMap();
     WidgetController().initWidgetTheme();
-    WeekviewBackend().initLessons();
   }
 }
 

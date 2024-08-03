@@ -15,7 +15,6 @@ import 'dart:async';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:timetablepp/Models/weekview_lesson.dart';
 
 import '../Models/subject.dart';
 import '../objectbox.g.dart';
@@ -35,8 +34,6 @@ class DatabaseController {
   final Box<TermPeriod> _termPeriodBox = objectbox.store.box<TermPeriod>();
   final Box<Subject> _subjectBox = objectbox.store.box<Subject>();
   final Box<SettingsBatch> _settingsBox = objectbox.store.box<SettingsBatch>();
-  final Box<WeekviewLesson> _weekviewBox =
-      objectbox.store.box<WeekviewLesson>();
   // TERMPERIOD
   TermPeriod getTermPeriod(int id) {
     var result = _termPeriodBox.get(id);
@@ -124,7 +121,8 @@ class DatabaseController {
   }
 
   //Holidays
-  //WeekviewLesson
+  //WeekviewLesson 
+  /*EN DESUSO TOTAL 
   WeekviewLesson getWeekviewLesson(int id) {
     return _weekviewBox.get(id)!;
   }
@@ -149,6 +147,6 @@ class DatabaseController {
   void putAllLessons(List<WeekviewLesson> lessons){
     _weekviewBox.putMany(lessons);
   }
-
+*/
 //WeekviewLesson
 }
