@@ -154,4 +154,54 @@ class WeekviewBackend {
   int getLessonsPerDay() {
     return SettingsController().getLessonsPerDay();
   }
+
+  List<DateTime> getDatesForWeekView() {
+    DateTime now = DateTime.now();
+    DateTime date = DateTime(now.year, now.month, now.day);
+    List<DateTime> result = List<DateTime>.empty(growable: true);
+    //result.add(date);
+    //CALCULAMOS LOS DIAS QUE MOSTRAR EN EL CALENDARIO.
+    int firstDotW = SettingsController().getFirstDayOfTheWeek();
+    //EL PLAN: PRIMERO SACAR LA SEMANA, SUS SIETE DÍAS Y LUEGO RESTAR LOS DIAS INACTIVOS
+    //PASO 1
+    if (date.weekday == firstDotW) {
+      debugPrint('[WeekviewBackend]: Haber si me muero 1');
+      for (var i = 0; i < 7; i++) {
+        result.add(date.add(Duration(days: i)));
+      }
+      /*
+      result.add(date.add(Duration(days: 1)));
+      result.add(date.add(Duration(days: 2)));
+      result.add(date.add(Duration(days: 3)));       
+      result.add(date.add(Duration(days: 4))); 
+      result.add(date.add(Duration(days: 5))); 
+      result.add(date.add(Duration(days: 6))); 
+      result.add(date.add(Duration(days: 7))); 
+      */
+    } else if (date.weekday > firstDotW) {
+      debugPrint('[WeekviewBackend]:Haber si me muero 2');
+      int delta = firstDotW - date.weekday;
+      for (var i = 0; i < 7; i++) {
+        if (i < delta) {
+          result.add(date.subtract(Duration(days: delta - i)));
+        } else if (i >= delta) {
+          result.add(date.add(Duration(days: i - delta)));
+        }
+      }
+    } else if (date.weekday < firstDotW) {
+      debugPrint('[WeekviewBackend]: Haber si me muero 3');
+      int delta = date.weekday - firstDotW;
+      for (var i = 0; i < 7; i++) {
+        if (i < delta) {
+          result.add(date.subtract(Duration(days: delta - i)));
+        } else if (i >= delta) {
+          result.add(date.add(Duration(days: i - delta)));
+        }
+      }
+    }
+    for (var i = 0; i < 7; i++) {
+      debugPrint('[WeekviewBackend][getDatesForWeekView]:${result[i]}');
+    }
+    return result;
+  }
 }
