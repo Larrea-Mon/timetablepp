@@ -434,9 +434,9 @@ class _FirstDayOfTheWeekTileState extends State<_FirstDayOfTheWeekTile> {
           padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
           child: Slider(
             value: SettingsController().getFirstDayOfTheWeek().toDouble(),
-            min: 0.0,
+            min: 1.0,
             divisions: 6,
-            max: 6.0,
+            max: 7.0,
             label: intToDay(SettingsController().getFirstDayOfTheWeek()),
             onChanged: (double value) {
               setState(
@@ -454,19 +454,19 @@ class _FirstDayOfTheWeekTileState extends State<_FirstDayOfTheWeekTile> {
 
 String intToDay(int dayOfTheWeek) {
   switch (dayOfTheWeek) {
-    case 0:
-      return 'Monday';
     case 1:
-      return 'Tuesday';
+      return 'Monday';
     case 2:
-      return 'Wednesday';
+      return 'Tuesday';
     case 3:
-      return 'Thursday';
+      return 'Wednesday';
     case 4:
-      return 'Friday';
+      return 'Thursday';
     case 5:
-      return 'Saturday';
+      return 'Friday';
     case 6:
+      return 'Saturday';
+    case 7:
       return 'Sunday';
     default:
       debugPrint('IntToDay: Something went Wrong');

@@ -152,7 +152,8 @@ class SettingsController {
   void setFirstDayOfTheWeek(int firstDayOfTheWeek) {
     debugPrint(
         '[SettingsController]: setFirstDayOfTheWeek: $firstDayOfTheWeek');
-    if (firstDayOfTheWeek < 7) {
+
+    if ((firstDayOfTheWeek < 8) || (firstDayOfTheWeek > 0)) {
       _settings.firstDayOfTheWeek = firstDayOfTheWeek;
       pushSettings();
     } else {
