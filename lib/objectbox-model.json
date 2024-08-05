@@ -289,30 +289,6 @@
         }
       ],
       "relations": []
-    },
-    {
-      "id": "8:121648874015261506",
-      "lastPropertyId": "3:4659670827029778035",
-      "name": "WeekviewLesson",
-      "properties": [
-        {
-          "id": "1:3700233555744549527",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "2:7788919287754757403",
-          "name": "startHour",
-          "type": 6
-        },
-        {
-          "id": "3:4659670827029778035",
-          "name": "startMinute",
-          "type": 6
-        }
-      ],
-      "relations": []
     }
   ],
   "lastEntityId": "8:121648874015261506",
@@ -321,9 +297,15 @@
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    121648874015261506
+  ],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    3700233555744549527,
+    7788919287754757403,
+    4659670827029778035
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

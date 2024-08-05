@@ -20,7 +20,6 @@ import 'Models/settingsbatch.dart';
 import 'Models/subject.dart';
 import 'Models/subjecttime.dart';
 import 'Models/termperiod.dart';
-import 'Models/weekview_lesson.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -310,30 +309,6 @@ final _entities = <obx_int.ModelEntity>[
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(8, 121648874015261506),
-      name: 'WeekviewLesson',
-      lastPropertyId: const obx_int.IdUid(3, 4659670827029778035),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 3700233555744549527),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 7788919287754757403),
-            name: 'startHour',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 4659670827029778035),
-            name: 'startMinute',
-            type: 6,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
 ];
 
@@ -376,9 +351,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
       lastIndexId: const obx_int.IdUid(1, 8338900709183299503),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [],
+      retiredEntityUids: const [121648874015261506],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [
+        3700233555744549527,
+        7788919287754757403,
+        4659670827029778035
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -660,35 +639,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
                 const fb.Int64Reader().vTableGet(buffer, rootOffset, 52, 0);
 
           return object;
-        }),
-    WeekviewLesson: obx_int.EntityDefinition<WeekviewLesson>(
-        model: _entities[6],
-        toOneRelations: (WeekviewLesson object) => [],
-        toManyRelations: (WeekviewLesson object) => {},
-        getId: (WeekviewLesson object) => object.id,
-        setId: (WeekviewLesson object, int id) {
-          object.id = id;
-        },
-        objectToFB: (WeekviewLesson object, fb.Builder fbb) {
-          fbb.startTable(4);
-          fbb.addInt64(0, object.id);
-          fbb.addInt64(1, object.startHour);
-          fbb.addInt64(2, object.startMinute);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final startHourParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
-          final startMinuteParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
-          final object = WeekviewLesson(
-              startHour: startHourParam, startMinute: startMinuteParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-
-          return object;
         })
   };
 
@@ -895,19 +845,4 @@ class SettingsBatch_ {
   /// See [SettingsBatch.daysSendNotifsNextHomework].
   static final daysSendNotifsNextHomework =
       obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[24]);
-}
-
-/// [WeekviewLesson] entity fields to define ObjectBox queries.
-class WeekviewLesson_ {
-  /// See [WeekviewLesson.id].
-  static final id =
-      obx.QueryIntegerProperty<WeekviewLesson>(_entities[6].properties[0]);
-
-  /// See [WeekviewLesson.startHour].
-  static final startHour =
-      obx.QueryIntegerProperty<WeekviewLesson>(_entities[6].properties[1]);
-
-  /// See [WeekviewLesson.startMinute].
-  static final startMinute =
-      obx.QueryIntegerProperty<WeekviewLesson>(_entities[6].properties[2]);
 }
