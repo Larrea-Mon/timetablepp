@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:time_planner/time_planner.dart';
+import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
+import 'package:timetablepp/Models/subject.dart';
 
 
 class WeekviewBackend {
@@ -130,7 +132,7 @@ class WeekviewBackend {
     return result;
   }
 
-  getActiveDays() {
+  List<TimePlannerTitle>  getActiveDays() {
     List<TimePlannerTitle> result = List.empty(growable: true);
 
     switch (SettingsController().getFirstDayOfTheWeek()) {
@@ -282,7 +284,7 @@ class WeekviewBackend {
     return result;
   }
 
-  getTasks() {
+  List<TimePlannerTask> getTasks() {
     List<TimePlannerTask> result = [
       TimePlannerTask(
         // background color for task
@@ -302,5 +304,9 @@ class WeekviewBackend {
       ),
     ];
     return result;
+  }
+
+  List<Subject> getAllSubjects() {
+    return DatabaseController().getAllSubjects();
   }
 }

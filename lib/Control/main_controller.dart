@@ -128,7 +128,15 @@ class MainController {
     subjectColorsMap['chocolate'] = Colors.brown[400]!;
     subjectColorsMap['wood'] = Colors.brown[700]!;
   }
-
+  Color getColorFromName(String name){
+    var result = subjectColorsMap[name];//TODO LUNES POR LA MAÑANA SEGUIR POR AQUI
+    if (result != null) {
+      //DO NOTHING
+    } else {
+      result =  subjectColorsMap['river'];
+    }
+    return result!;
+  }
   String? getNameForColor(Color color) {
     var orig = subjectColorsMap;
     var reversed =

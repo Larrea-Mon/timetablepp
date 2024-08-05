@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'SettingsPages/settings_a_page.dart';
 import 'TimetablePages/Holidays/holidays_page.dart';
 import 'TimetablePages/Tasks/tasks_page.dart';
-import 'TimetablePages/WeekviewPage/weekview_page.dart';
+import 'TimetablePages/Weekview_and_Lessons/weekview_page.dart';
 import 'TimetablePages/dashboard_page.dart';
 import 'TimetablePages/dayview_page.dart';
 

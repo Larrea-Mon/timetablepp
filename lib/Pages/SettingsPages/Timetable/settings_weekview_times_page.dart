@@ -48,71 +48,7 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
             icon: Icon(Icons.info)),
       ],
     );
-    var myFirstController = TextEditingController(
-        text: WeekviewBackend().getLessonsPerDay().toString());
-    ListTile tile0 = ListTile(
-      title: Text('Lecciones por día'),
-      subtitle: Text('$lessonsPerDay lecciones al día'),
-      enabled: true,
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog.adaptive(
-              content: SizedBox(
-                height: 80,
-                width: BorderSide.strokeAlignCenter,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  controller: myFirstController,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(12, 4, 12, 4),
-                    hintStyle: TextStyle(color: Colors.grey[150]),
-                    hintText: ('Lecciones al Día.'),
-                  ),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    if (myFirstController.text == '') {
-                      Fluttertoast.showToast(
-                          msg: 'Debe de haber un número mayor que 1.',
-                          backgroundColor: Colors.grey);
-                    } else if ((myFirstController.text.trim() == '0')) {
-                      Fluttertoast.showToast(
-                          msg: 'Debe de haber un número mayor que 1.',
-                          backgroundColor: Colors.grey);
-                    } else if ((num.parse(myFirstController.text.trim()) >
-                        17)) {
-                      Fluttertoast.showToast(
-                          msg:
-                              '16 es el máximo de divisiones que puedes tener en un día.',
-                          backgroundColor: Colors.grey);
-                    } else {
-                      WeekviewBackend().setLessonsPerDay(
-                        num.parse(myFirstController.text).toInt(),
-                      );
-                      setState(
-                        () {
-                          lessonsPerDay =
-                              num.parse(myFirstController.text).toInt();
-                        },
-                      );
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  child: Text('Ok'),
-                )
-              ],
-            );
-          },
-        );
-      },
-    );
+
     /* ESTO TAMBIEN ESTÁ CONGELADO HASTA PROXIMO AVISO
     var mySecondController = TextEditingController(
         text: WeekviewBackend().getLessonsLength().toString());
@@ -223,36 +159,6 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
         );
       },
     ); */
-    ListView listaInicios = ListView.builder(
-      physics: ScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount: lessonsPerDay,
-      itemBuilder: (context, index) {
-        var data = WeekviewBackend().getWeekviewLesson(index);
-        return ListTile(
-          title: Text('Clase ${index + 1}'),
-          subtitle: Text('${toDtoString(data.getTimeOfDay())}'),
-          onTap: () async {
-            TimeOfDay? pickedTime = await showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return TimePickerDialog(
-                  initialTime: data.getTimeOfDay(),
-                );
-              },
-            );
-            if (pickedTime != null) {
-              data.startHour = pickedTime.hour;
-              data.startMinute = pickedTime.minute;
-              WeekviewBackend().sortLessons();
-              WeekviewBackend().pushLessons();
-              setState(() {});
-            } //Fluttertoast.showToast(msg: "Picked ${toDtoString(pickedTime!)}");
-          },
-        );
-      },
-    );
 
     ListTile tileTitle = ListTile(
       title: Text(
@@ -266,16 +172,6 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
     Column mainColumn = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        //tile0,
-        //const Divider(),
-        //tile1,
-        //const Divider(),
-        //tile2,
-        //const Divider(),
-        //tileTitle,
-        /* Flexible(
-          child: listaInicios,
-        ),*/
         _FirstDayOfTheWeekTile(),
         _ActiveDaysRow(),
       ],
