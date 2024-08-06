@@ -14,6 +14,8 @@ class Lesson {
 
   final subject = ToOne<Subject>();
 
+  Lesson({required this.day, required this.hour, required this.minute});
+
   @override
   String toString() {
     return '[Lesson]: id: $id, hour: $hour, minute $minute, day: $day';

@@ -10,11 +10,9 @@ class Event {
   String notes;
   String type;
   
-  @Property(type: PropertyType.date)
   DateTime date;
 
-  @Property(type: PropertyType.float)
-  double percentage;
 
-  Event(this.name, this.date, this.notes, this.percentage, this.type);
+
+  Event({required this.name, required this.date, required this.notes, required this.type});
 }

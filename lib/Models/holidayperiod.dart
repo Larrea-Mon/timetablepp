@@ -16,7 +16,7 @@ class HolidayPeriod {
   @Property(type: PropertyType.date)
   DateTime? end;
   
-  String name;
+  String name = '';
 
   DateTime getStart(){
     if (start != null) {
@@ -64,8 +64,12 @@ class HolidayPeriod {
     }
   }
   
-  HolidayPeriod(this.start, this.end, this.name);
-  HolidayPeriod.clone(HolidayPeriod holidayPeriod): this(holidayPeriod.start, holidayPeriod.end, holidayPeriod.name);
+  HolidayPeriod({required this.start,required this.end, required this.name});
+  HolidayPeriod.clone(HolidayPeriod holidayPeriod){
+    this.start = holidayPeriod.start; 
+    this.end = holidayPeriod.end;
+    this.name=  holidayPeriod.name;
+  } 
 
   @override
   String toString() {

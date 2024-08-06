@@ -13,7 +13,7 @@ class Subject {
   String? place;
   String color = 'sky';
 
-  Subject(this.name, this.abv, this.teacher, this.place, this.color);
+  Subject({required this.name,required this.abv,required this.teacher,required this.place,required this.color});
 
   @override
   String toString() {
