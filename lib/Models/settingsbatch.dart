@@ -24,8 +24,8 @@ class SettingsBatch {
   bool isFridayActive = true;
   bool isSaturdayActive = false;
   bool isSundayActive = false;
-
-  int firstDayOfTheWeek = 0;
+  //SEGUN EL ESTANDAR MUNDIAL LOS DIAS DE LA SEMANA SON DEL 1 AL 7. DE 0 NADA.
+  int firstDayOfTheWeek = 1;
   //GENERAL
   //NOTIFICACIONES
   bool sendNotifsNextLesson = true;
