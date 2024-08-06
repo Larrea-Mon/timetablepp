@@ -109,30 +109,6 @@
       "relations": []
     },
     {
-      "id": "5:4022893133229700797",
-      "lastPropertyId": "3:3512963349698658758",
-      "name": "SubjectTime",
-      "properties": [
-        {
-          "id": "1:6852247997759590650",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "2:1746992985605304413",
-          "name": "hour",
-          "type": 6
-        },
-        {
-          "id": "3:3512963349698658758",
-          "name": "minute",
-          "type": 6
-        }
-      ],
-      "relations": []
-    },
-    {
       "id": "6:8770315610770758503",
       "lastPropertyId": "3:3192627378815697225",
       "name": "TermPeriod",
@@ -298,13 +274,17 @@
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [
-    121648874015261506
+    121648874015261506,
+    4022893133229700797
   ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
     3700233555744549527,
     7788919287754757403,
-    4659670827029778035
+    4659670827029778035,
+    6852247997759590650,
+    1746992985605304413,
+    3512963349698658758
   ],
   "retiredRelationUids": [],
   "version": 1

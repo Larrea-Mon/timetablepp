@@ -18,7 +18,6 @@ import 'Models/holidayperiod.dart';
 import 'Models/lesson.dart';
 import 'Models/settingsbatch.dart';
 import 'Models/subject.dart';
-import 'Models/subjecttime.dart';
 import 'Models/termperiod.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
@@ -124,30 +123,6 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(6, 2056781321402505831),
             name: 'color',
             type: 9,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(5, 4022893133229700797),
-      name: 'SubjectTime',
-      lastPropertyId: const obx_int.IdUid(3, 3512963349698658758),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 6852247997759590650),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 1746992985605304413),
-            name: 'hour',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 3512963349698658758),
-            name: 'minute',
-            type: 6,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -351,12 +326,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
       lastIndexId: const obx_int.IdUid(1, 8338900709183299503),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [121648874015261506],
+      retiredEntityUids: const [121648874015261506, 4022893133229700797],
       retiredIndexUids: const [],
       retiredPropertyUids: const [
         3700233555744549527,
         7788919287754757403,
-        4659670827029778035
+        4659670827029778035,
+        6852247997759590650,
+        1746992985605304413,
+        3512963349698658758
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -397,7 +375,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
               : DateTime.fromMillisecondsSinceEpoch(endValue);
           final nameParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 10, '');
-          final object = HolidayPeriod(startParam, endParam, nameParam)
+          final object = HolidayPeriod(
+              start: startParam, end: endParam, name: nameParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
@@ -423,13 +402,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
-          final object = Lesson()
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..hour = const fb.Int32Reader().vTableGet(buffer, rootOffset, 6, 0)
-            ..minute =
-                const fb.Int32Reader().vTableGet(buffer, rootOffset, 8, 0)
-            ..day = const fb.Int32Reader().vTableGet(buffer, rootOffset, 10, 0);
+          final dayParam =
+              const fb.Int32Reader().vTableGet(buffer, rootOffset, 10, 0);
+          final hourParam =
+              const fb.Int32Reader().vTableGet(buffer, rootOffset, 6, 0);
+          final minuteParam =
+              const fb.Int32Reader().vTableGet(buffer, rootOffset, 8, 0);
+          final object = Lesson(
+              day: dayParam, hour: hourParam, minute: minuteParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           object.subject.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
           object.subject.attach(store);
@@ -477,41 +458,17 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final colorParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 14, '');
           final object = Subject(
-              nameParam, abvParam, teacherParam, placeParam, colorParam)
+              name: nameParam,
+              abv: abvParam,
+              teacher: teacherParam,
+              place: placeParam,
+              color: colorParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
         }),
-    SubjectTime: obx_int.EntityDefinition<SubjectTime>(
-        model: _entities[3],
-        toOneRelations: (SubjectTime object) => [],
-        toManyRelations: (SubjectTime object) => {},
-        getId: (SubjectTime object) => object.id,
-        setId: (SubjectTime object, int id) {
-          object.id = id;
-        },
-        objectToFB: (SubjectTime object, fb.Builder fbb) {
-          fbb.startTable(4);
-          fbb.addInt64(0, object.id);
-          fbb.addInt64(1, object.hour);
-          fbb.addInt64(2, object.minute);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = SubjectTime()
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..hour = const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0)
-            ..minute =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
-
-          return object;
-        }),
     TermPeriod: obx_int.EntityDefinition<TermPeriod>(
-        model: _entities[4],
+        model: _entities[3],
         toOneRelations: (TermPeriod object) => [],
         toManyRelations: (TermPeriod object) => {},
         getId: (TermPeriod object) => object.id,
@@ -545,7 +502,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           return object;
         }),
     SettingsBatch: obx_int.EntityDefinition<SettingsBatch>(
-        model: _entities[5],
+        model: _entities[4],
         toOneRelations: (SettingsBatch object) => [],
         toManyRelations: (SettingsBatch object) => {},
         getId: (SettingsBatch object) => object.id,
@@ -714,135 +671,120 @@ class Subject_ {
       obx.QueryStringProperty<Subject>(_entities[2].properties[5]);
 }
 
-/// [SubjectTime] entity fields to define ObjectBox queries.
-class SubjectTime_ {
-  /// See [SubjectTime.id].
-  static final id =
-      obx.QueryIntegerProperty<SubjectTime>(_entities[3].properties[0]);
-
-  /// See [SubjectTime.hour].
-  static final hour =
-      obx.QueryIntegerProperty<SubjectTime>(_entities[3].properties[1]);
-
-  /// See [SubjectTime.minute].
-  static final minute =
-      obx.QueryIntegerProperty<SubjectTime>(_entities[3].properties[2]);
-}
-
 /// [TermPeriod] entity fields to define ObjectBox queries.
 class TermPeriod_ {
   /// See [TermPeriod.id].
   static final id =
-      obx.QueryIntegerProperty<TermPeriod>(_entities[4].properties[0]);
+      obx.QueryIntegerProperty<TermPeriod>(_entities[3].properties[0]);
 
   /// See [TermPeriod.start].
   static final start =
-      obx.QueryDateProperty<TermPeriod>(_entities[4].properties[1]);
+      obx.QueryDateProperty<TermPeriod>(_entities[3].properties[1]);
 
   /// See [TermPeriod.end].
   static final end =
-      obx.QueryDateProperty<TermPeriod>(_entities[4].properties[2]);
+      obx.QueryDateProperty<TermPeriod>(_entities[3].properties[2]);
 }
 
 /// [SettingsBatch] entity fields to define ObjectBox queries.
 class SettingsBatch_ {
   /// See [SettingsBatch.id].
   static final id =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[0]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[0]);
 
   /// See [SettingsBatch.appActiveTheme].
   static final appActiveTheme =
-      obx.QueryStringProperty<SettingsBatch>(_entities[5].properties[1]);
+      obx.QueryStringProperty<SettingsBatch>(_entities[4].properties[1]);
 
   /// See [SettingsBatch.widgetActiveTheme].
   static final widgetActiveTheme =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[2]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[2]);
 
   /// See [SettingsBatch.isMondayActive].
   static final isMondayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[3]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[3]);
 
   /// See [SettingsBatch.isTuesdayActive].
   static final isTuesdayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[4]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[4]);
 
   /// See [SettingsBatch.isWednesdayActive].
   static final isWednesdayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[5]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[5]);
 
   /// See [SettingsBatch.isThursdayActive].
   static final isThursdayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[6]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[6]);
 
   /// See [SettingsBatch.isFridayActive].
   static final isFridayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[7]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[7]);
 
   /// See [SettingsBatch.isSaturdayActive].
   static final isSaturdayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[8]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[8]);
 
   /// See [SettingsBatch.isSundayActive].
   static final isSundayActive =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[9]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[9]);
 
   /// See [SettingsBatch.firstDayOfTheWeek].
   static final firstDayOfTheWeek =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[10]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[10]);
 
   /// See [SettingsBatch.sendNotifsNextLesson].
   static final sendNotifsNextLesson =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[11]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[11]);
 
   /// See [SettingsBatch.timeSendNotifsNextLesson].
   static final timeSendNotifsNextLesson =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[12]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[12]);
 
   /// See [SettingsBatch.sendNotifsNextHomework].
   static final sendNotifsNextHomework =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[13]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[13]);
 
   /// See [SettingsBatch.timeSendNotifsHomeworkAfterClass].
   static final timeSendNotifsHomeworkAfterClass =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[14]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[14]);
 
   /// See [SettingsBatch.timeSendNotifsHomeworkFreeDaysHour].
   static final timeSendNotifsHomeworkFreeDaysHour =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[15]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[15]);
 
   /// See [SettingsBatch.timeSendNotifsHomeworkFreeDaysMinute].
   static final timeSendNotifsHomeworkFreeDaysMinute =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[16]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[16]);
 
   /// See [SettingsBatch.sendNotifsNextExam].
   static final sendNotifsNextExam =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[17]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[17]);
 
   /// See [SettingsBatch.daysSendNotifsNextExam].
   static final daysSendNotifsNextExam =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[18]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[18]);
 
   /// See [SettingsBatch.enableAutoSilence].
   static final enableAutoSilence =
-      obx.QueryBooleanProperty<SettingsBatch>(_entities[5].properties[19]);
+      obx.QueryBooleanProperty<SettingsBatch>(_entities[4].properties[19]);
 
   /// See [SettingsBatch.minutesAutosilence].
   static final minutesAutosilence =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[20]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[20]);
 
   /// See [SettingsBatch.lessonsPerDay].
   static final lessonsPerDay =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[21]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[21]);
 
   /// See [SettingsBatch.lessonsLength].
   static final lessonsLength =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[22]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[22]);
 
   /// See [SettingsBatch.lessonsBreak].
   static final lessonsBreak =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[23]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[23]);
 
   /// See [SettingsBatch.daysSendNotifsNextHomework].
   static final daysSendNotifsNextHomework =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[5].properties[24]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[24]);
 }
