@@ -1,7 +1,5 @@
 // ignore_for_file: , prefer_final_fields, prefer_const_constructors
 
-
-
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,6 +11,7 @@ import 'package:timetablepp/Models/settingsbatch.dart';
 import 'package:timetablepp/Models/termperiod.dart';
 
 import '../Models/subject.dart';
+
 class MainController {
   MainController._privateConstructor();
 
@@ -28,9 +27,17 @@ class MainController {
       this.subjectColorsMap = subjectColorsMap;
 
   late TermPeriod _termPeriod;
-  HolidayPeriod _currentHolidayPeriod = HolidayPeriod(null, null, '');
-  Subject _currentSubject =
-      Subject('New Subject', '', '', '', SubjectColors.sky.name);
+  HolidayPeriod _currentHolidayPeriod = HolidayPeriod(
+    start: null,
+    end: null,
+    name: '',
+  );
+  Subject _currentSubject = Subject(
+      name: 'New Subject',
+      abv: '',
+      place: '',
+      teacher: '',
+      color: SubjectColors.sky.name);
 
   // TERM PERIODS -
   TermPeriod getTermPeriod() {
@@ -89,8 +96,12 @@ class MainController {
   }
 
   void resetCurrentSubject() {
-    _currentSubject =
-        Subject('New Subject', '', '', '', SubjectColors.sky.name);
+    _currentSubject = Subject(
+        name: 'New Subject',
+        abv: '',
+        place: '',
+        teacher: '',
+        color: SubjectColors.sky.name);
   }
 
   void pushCurrentSubject() {
@@ -128,15 +139,17 @@ class MainController {
     subjectColorsMap['chocolate'] = Colors.brown[400]!;
     subjectColorsMap['wood'] = Colors.brown[700]!;
   }
-  Color getColorFromName(String name){
-    var result = subjectColorsMap[name];//TODO LUNES POR LA MAÑANA SEGUIR POR AQUI
+
+  Color getColorFromName(String name) {
+    var result = subjectColorsMap[name];
     if (result != null) {
       //DO NOTHING
     } else {
-      result =  subjectColorsMap['river'];
+      result = subjectColorsMap['river'];
     }
     return result!;
   }
+
   String? getNameForColor(Color color) {
     var orig = subjectColorsMap;
     var reversed =
@@ -156,7 +169,6 @@ class MainController {
 
     return result;
   }
-
 
   void initAll() {
     SettingsController().initSettings();

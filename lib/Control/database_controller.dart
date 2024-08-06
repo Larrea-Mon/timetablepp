@@ -1,20 +1,9 @@
-// ignore_for_file: unused_import, prefer_final_fields, prefer_const_constructors, unused_field
+// ignore_for_file:  prefer_final_fields, prefer_const_constructors, unused_field
 
-import 'dart:collection';
-import 'dart:ffi';
-
-import 'package:flex_color_picker/flex_color_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:timetablepp/Control/objectbox.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
+import 'package:timetablepp/Models/lesson.dart';
 import 'package:timetablepp/Models/settingsbatch.dart';
 import 'package:timetablepp/Models/termperiod.dart';
-
-import 'dart:async';
-
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 
 import '../Models/subject.dart';
 import '../objectbox.g.dart';
@@ -34,6 +23,7 @@ class DatabaseController {
   final Box<TermPeriod> _termPeriodBox = objectbox.store.box<TermPeriod>();
   final Box<Subject> _subjectBox = objectbox.store.box<Subject>();
   final Box<SettingsBatch> _settingsBox = objectbox.store.box<SettingsBatch>();
+  final Box<Lesson> _lessonsBox = objectbox.store.box<Lesson>();
   // TERMPERIOD
   TermPeriod getTermPeriod(int id) {
     var result = _termPeriodBox.get(id);
@@ -73,7 +63,12 @@ class DatabaseController {
     if (result != null) {
       return result;
     } else {
-      return Subject('', '', '', '', '');
+      return Subject(
+          name: '',
+          abv: '',
+          place: '',
+          teacher: '',
+          color: SubjectColors.sky.name);
     }
   }
 
@@ -100,7 +95,7 @@ class DatabaseController {
     if (result != null) {
       return result;
     } else {
-      return HolidayPeriod(null, null, '');
+      return HolidayPeriod(start: null, end: null, name: '');
     }
   }
 
@@ -121,7 +116,38 @@ class DatabaseController {
   }
 
   //Holidays
-  //WeekviewLesson 
+  //LESSON EMPIEZA AQUI
+  Lesson getLesson(int id) {
+    var result = _lessonsBox.get(id);
+    if (result != null) {
+      return result;
+    } else {
+      throw Exception(
+          '[DatabaseController]: getLesson(): La lección $id no existe');
+    }
+  }
+
+  void putLesson(Lesson lesson) {
+    _lessonsBox.put(lesson);
+  }
+
+  bool removeLesson(int id) {
+    bool result = _lessonsBox.remove(id);
+    return result;
+  }
+
+  List<Lesson> getAllLessons() {
+    var result = _lessonsBox.getAll();
+    return result;
+  }
+
+  int deleteAllLessons() {
+    return _lessonsBox.removeAll();
+  }
+
+  //LESSON ACABA AQUI
+
+  //WeekviewLesson
   /*EN DESUSO TOTAL 
   WeekviewLesson getWeekviewLesson(int id) {
     return _weekviewBox.get(id)!;

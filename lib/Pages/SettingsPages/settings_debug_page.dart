@@ -103,7 +103,6 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
   }
 }
 
-
 AppBar settingsDebugAppBar = AppBar(
   title: Text('Debug'),
 
@@ -114,39 +113,59 @@ AppBar settingsDebugAppBar = AppBar(
 
 void debugAddHolidays() {
   DatabaseController().putHolidayPeriod(HolidayPeriod(
-      DateTime.utc(2024, 12, 18),
-      DateTime.utc(2025, 01, 20),
-      'Vacaciones de Navidad'));
+      start: DateTime.utc(2024, 12, 18),
+      end: DateTime.utc(2025, 01, 20),
+      name: 'Vacaciones de Navidad'));
   DatabaseController().putHolidayPeriod(HolidayPeriod(
-      DateTime.utc(2024, 01, 06), DateTime.utc(2024, 01, 07), 'Reyes Magos'));
+      start: DateTime.utc(2024, 01, 06),
+      end: DateTime.utc(2024, 01, 07),
+      name: 'Reyes Magos'));
   DatabaseController().putHolidayPeriod(HolidayPeriod(
-      DateTime.utc(2024, 01, 01), DateTime.utc(2024, 01, 01), 'Año Nuevo'));
+      start: DateTime.utc(2024, 01, 01),
+      end: DateTime.utc(2024, 01, 01),
+      name: 'Año Nuevo'));
   DatabaseController().putHolidayPeriod(HolidayPeriod(
-      DateTime.utc(2024, 02, 14), DateTime.utc(2024, 02, 14), 'San Valentin'));
+      start: DateTime.utc(2024, 02, 14),
+      end: DateTime.utc(2024, 02, 14),
+      name: 'San Valentin'));
   DatabaseController().putHolidayPeriod(HolidayPeriod(
-      DateTime.utc(2024, 03, 23), DateTime.utc(2024, 03, 23), 'Viernes Santo'));
+      start: DateTime.utc(2024, 03, 23),
+      end: DateTime.utc(2024, 03, 23),
+      name: 'Viernes Santo'));
   DatabaseController().putHolidayPeriod(HolidayPeriod(
-      DateTime.utc(2024, 05, 01),
-      DateTime.utc(2024, 05, 01),
-      'Dia del trabajador'));
+      start: DateTime.utc(2024, 05, 01),
+      end: DateTime.utc(2024, 05, 01),
+      name: 'Dia del trabajador'));
   DatabaseController().putHolidayPeriod(HolidayPeriod(
-      DateTime.utc(2024, 10, 12),
-      DateTime.utc(2024, 10, 12),
-      'Fiesta Nacional de españa'));
+      start: DateTime.utc(2024, 10, 12),
+      end: DateTime.utc(2024, 10, 12),
+      name: 'Fiesta Nacional de españa'));
   DatabaseController().putHolidayPeriod(HolidayPeriod(
-      DateTime.utc(2024, 11, 14),
-      DateTime.utc(2024, 11, 15),
-      'Dia de la Constitución'));
+      start: DateTime.utc(2024, 11, 14),
+      end: DateTime.utc(2024, 11, 15),
+      name: 'Dia de la Constitución'));
 }
 
 void debugAddSubjects() {
-  Subject a =
-      Subject('Calculo I', 'CAL', 'Profe 1', "E301", SubjectColors.river.name);
+  Subject a = Subject(
+      name: 'Calculo I',
+      abv: 'CAL',
+      teacher: 'Profe 1',
+      place: "E301",
+      color: SubjectColors.river.name);
   debugPrint(a.toString());
 
   DatabaseController().putSubject(a);
   DatabaseController().putSubject(Subject(
-      'Estadistica ', 'STA', 'Profe 2', "E302", SubjectColors.grass.name));
+      name: 'Estadistica ',
+      abv: 'STA',
+      teacher: 'Profe 2',
+      place: "E302",
+      color: SubjectColors.grass.name));
   DatabaseController().putSubject(Subject(
-      'Programacion I', 'PRO', 'Profe 3', "E126", SubjectColors.forest.name));
+      name: 'Programacion I',
+      abv: 'PRO',
+      teacher: 'Profe 3',
+      place: "E126",
+      color: SubjectColors.forest.name));
 }
