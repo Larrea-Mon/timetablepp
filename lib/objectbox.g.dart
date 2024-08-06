@@ -55,7 +55,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(2, 3837368679985327568),
       name: 'Lesson',
-      lastPropertyId: const obx_int.IdUid(5, 6354421064310499119),
+      lastPropertyId: const obx_int.IdUid(9, 2912255091622510249),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -64,19 +64,9 @@ final _entities = <obx_int.ModelEntity>[
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 1102212534974716332),
-            name: 'hour',
-            type: 5,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 916558853735177842),
-            name: 'minute',
-            type: 5,
-            flags: 0),
-        obx_int.ModelProperty(
             id: const obx_int.IdUid(4, 5216802402994332804),
             name: 'day',
-            type: 5,
+            type: 6,
             flags: 0),
         obx_int.ModelProperty(
             id: const obx_int.IdUid(5, 6354421064310499119),
@@ -84,7 +74,27 @@ final _entities = <obx_int.ModelEntity>[
             type: 11,
             flags: 520,
             indexId: const obx_int.IdUid(1, 8338900709183299503),
-            relationTarget: 'Subject')
+            relationTarget: 'Subject'),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 7349362308517650396),
+            name: 'startHour',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 254426245378587840),
+            name: 'startMinute',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 1466570287213462325),
+            name: 'endHour',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(9, 2912255091622510249),
+            name: 'endMinute',
+            type: 6,
+            flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
@@ -334,7 +344,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
         4659670827029778035,
         6852247997759590650,
         1746992985605304413,
-        3512963349698658758
+        3512963349698658758,
+        1102212534974716332,
+        916558853735177842
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -390,12 +402,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (Lesson object, fb.Builder fbb) {
-          fbb.startTable(6);
+          fbb.startTable(10);
           fbb.addInt64(0, object.id);
-          fbb.addInt32(1, object.hour);
-          fbb.addInt32(2, object.minute);
-          fbb.addInt32(3, object.day);
+          fbb.addInt64(3, object.day);
           fbb.addInt64(4, object.subject.targetId);
+          fbb.addInt64(5, object.startHour);
+          fbb.addInt64(6, object.startMinute);
+          fbb.addInt64(7, object.endHour);
+          fbb.addInt64(8, object.endMinute);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -403,13 +417,21 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final dayParam =
-              const fb.Int32Reader().vTableGet(buffer, rootOffset, 10, 0);
-          final hourParam =
-              const fb.Int32Reader().vTableGet(buffer, rootOffset, 6, 0);
-          final minuteParam =
-              const fb.Int32Reader().vTableGet(buffer, rootOffset, 8, 0);
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          final startHourParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
+          final startMinuteParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0);
+          final endHourParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0);
+          final endMinuteParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0);
           final object = Lesson(
-              day: dayParam, hour: hourParam, minute: minuteParam)
+              day: dayParam,
+              startHour: startHourParam,
+              startMinute: startMinuteParam,
+              endHour: endHourParam,
+              endMinute: endMinuteParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           object.subject.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
@@ -627,21 +649,29 @@ class Lesson_ {
   static final id =
       obx.QueryIntegerProperty<Lesson>(_entities[1].properties[0]);
 
-  /// See [Lesson.hour].
-  static final hour =
-      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[1]);
-
-  /// See [Lesson.minute].
-  static final minute =
-      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[2]);
-
   /// See [Lesson.day].
   static final day =
-      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[3]);
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[1]);
 
   /// See [Lesson.subject].
   static final subject =
-      obx.QueryRelationToOne<Lesson, Subject>(_entities[1].properties[4]);
+      obx.QueryRelationToOne<Lesson, Subject>(_entities[1].properties[2]);
+
+  /// See [Lesson.startHour].
+  static final startHour =
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[3]);
+
+  /// See [Lesson.startMinute].
+  static final startMinute =
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[4]);
+
+  /// See [Lesson.endHour].
+  static final endHour =
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[5]);
+
+  /// See [Lesson.endMinute].
+  static final endMinute =
+      obx.QueryIntegerProperty<Lesson>(_entities[1].properties[6]);
 }
 
 /// [Subject] entity fields to define ObjectBox queries.
