@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:timetablepp/Control/weekview_backend.dart';
 import 'package:timetablepp/Pages/SettingsPages/Timetable/settings_weekview_times_page.dart';
-//import 'package:flutter_week_view/flutter_week_view.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:timetablepp/Pages/TimetablePages/Weekview_and_Lessons/add_lesson_page.dart';
 
@@ -37,7 +36,7 @@ class _WeekViewPageState extends State<WeekViewPage> {
               ),
             ).then(
               (_) => setState(() {
-                customGrid = MyCustomGrid();
+                customGrid = new MyCustomGrid();
               }),
             ),
           },
@@ -99,6 +98,7 @@ class MyCustomGridState extends State<MyCustomGrid> {
       ),
     );
     return myTimePlanner;
+
     //TODO Volver a esto en otro momento.
     /*return GridView.custom(
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 60,),

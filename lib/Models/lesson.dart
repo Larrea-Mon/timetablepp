@@ -34,9 +34,32 @@ class Lesson {
     endMinute = endTod.minute;
   }
 
+  int getDay(){
+    return this.day;
+  }
+  void setDay({required int day}){
+    this.day = day;
+  }
+
   @override
   String toString() {
     return '[Lesson]: id: $id,day: $day startHour: $startHour, startMinute $startMinute, endHour: $endHour, endMinute: $endMinute';
+  }
+  TimeOfDay getStartTimeOfDay(){
+    return TimeOfDay(hour: startHour, minute: startMinute);
+  }
+  TimeOfDay getEndTimeOfDay(){
+    return TimeOfDay(hour: endHour, minute: endMinute);
+  }
+
+  int getDuration() {
+    int result = 0;
+    result = endHour*60;
+    result = result + endMinute;
+    result = result - startMinute;
+    result = result - startHour*60;
+    debugPrint('[Lesson] lesson $id: start:${getStartTimeOfDay()} end:${getEndTimeOfDay()}. Duration is $result');
+    return result;
   }
 }
 

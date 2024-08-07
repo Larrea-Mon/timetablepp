@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:timetablepp/Control/database_controller.dart';
 import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
 import 'package:timetablepp/Control/weekview_backend.dart';
+import 'package:timetablepp/Models/lesson.dart';
+import 'package:timetablepp/Models/subject.dart';
 import 'package:timetablepp/Pages/SettingsPages/Timetable/settings_weekview_times_page.dart';
 
 class AddLessonPage extends StatefulWidget {
@@ -16,14 +18,18 @@ class AddLessonPage extends StatefulWidget {
 }
 
 class _AddLessonPageState extends State<AddLessonPage> {
-  //MATERIALES NECESARIOS PARA EL ASUNTO
-  final TextEditingController subjectController = TextEditingController();
-  final Color pickedcolor = Colors.black;
-  int pickedDayOfTheWeek = 1;
   @override
   void initState() {
     super.initState();
   }
+
+  //MATERIALES NECESARIOS PARA EL ASUNTO
+  TextEditingController subjectController = TextEditingController();
+  Color pickedcolor = Colors.black;
+  int pickedDayOfTheWeek = 1;
+  TimeOfDay pickedStartTime = TimeOfDay(hour: 10, minute: 0);
+  TimeOfDay pickedEndTime = TimeOfDay(hour: 11, minute: 0);
+  late Subject pickedSubject;
 
   late AppBar myAppBar = AppBar(
     title: Text('Nueva Clase'),
@@ -33,7 +39,31 @@ class _AddLessonPageState extends State<AddLessonPage> {
         icon: Icon(Icons.info),
       ),
       IconButton(
-        onPressed: () => debugPrint(subjectController.text),
+        onPressed: () {
+          debugPrint('[ADDLESSONPAGE]: ${subjectController.text}');
+          if (subjectController.text.trim() != '') {
+            if ((pickedStartTime.hour > pickedEndTime.hour) ||
+                ((pickedStartTime.hour == pickedEndTime.hour) &&
+                    (pickedStartTime.minute > pickedEndTime.minute))) {
+              Fluttertoast.showToast(
+                  msg: 'La hora inicio debe ser anterior a la hora final.',
+                  backgroundColor: Colors.grey);
+            } else {
+              Lesson myLesson = Lesson.asToD(
+                  day: pickedDayOfTheWeek,
+                  startTod: pickedStartTime,
+                  endTod: pickedEndTime);
+              myLesson.subject.target = pickedSubject;
+              DatabaseController().putLesson(myLesson);
+              Navigator.of(context).pop();
+              
+            }
+          } else {
+            Fluttertoast.showToast(
+                msg: 'Debes Elegir una asignatura',
+                backgroundColor: Colors.grey);
+          }
+        },
         icon: Icon(Icons.save),
       ),
     ],
@@ -43,14 +73,14 @@ class _AddLessonPageState extends State<AddLessonPage> {
     var list = WeekviewBackend().getAllSubjects();
 
     List<DropdownMenuEntry> entriesList = List.empty(growable: true);
-    for (var element in list) {
+    for (var subject in list) {
       entriesList.add(
         DropdownMenuEntry(
-          label: element.name!,
-          value: element.id,
+          label: subject.name!,
+          value: subject.id,
           leadingIcon: Icon(
             Icons.circle,
-            color: MainController().getColorFromName(element.color),
+            color: MainController().getColorFromName(subject.color),
           ),
         ),
       );
@@ -60,7 +90,9 @@ class _AddLessonPageState extends State<AddLessonPage> {
       dropdownMenuEntries: entriesList,
       controller: subjectController,
       label: Text('Asignatura'),
-      onSelected: (value) {/*TODO hacer que esto cambie de color*/},
+      onSelected: (value) {
+        pickedSubject = list.firstWhere((element) => element.id == value);
+      },
     );
     return result;
   }
@@ -79,9 +111,8 @@ class _AddLessonPageState extends State<AddLessonPage> {
     return result;
   }
 
-  Column _buildPickDayOfTheWeekTile() {
+  Column _buildPickDayOfTheWeekColumn() {
     Slider mySlider = Slider(
-      
       value: pickedDayOfTheWeek.toDouble(),
       min: 1.0,
       divisions: 6,
@@ -97,11 +128,11 @@ class _AddLessonPageState extends State<AddLessonPage> {
       },
     );
     Padding mySliderRow = Padding(
-      child: mySlider,
       padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
+      child: mySlider,
     );
 
-    ListTile myTitleTile =ListTile(
+    ListTile myTitleTile = ListTile(
       title: Text(
         'Día de la clase',
         style: TextStyle(
@@ -114,9 +145,81 @@ class _AddLessonPageState extends State<AddLessonPage> {
       children: [myTitleTile, mySliderRow],
     );
   }
-  //ListTile _buildPickStartHour() {}
+  /*ListTile _buildPickStartHour(){
+    return ListTile(title: Text(pickedStartTime.toString()),);
+  }*/
 
-  //ListTile _buildPickEndHour() {}
+  Column _buildPickHourColumn() {
+    ListTile myTitleTile = ListTile(
+      title: Text(
+        'Horas de la clase',
+        style: TextStyle(
+          color: Colors.blue,
+        ),
+      ),
+    );
+
+    Row myRow = Row(
+      children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+          child: OutlinedButton.icon(
+            onPressed: () async {
+              TimeOfDay? pickedTime = await showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return TimePickerDialog(
+                    initialTime: pickedStartTime,
+                    initialEntryMode: TimePickerEntryMode.dial,
+                  );
+                },
+              );
+              if (pickedTime != null) {
+                setState(() {
+                  pickedStartTime = pickedTime;
+                });
+              }
+            },
+            icon: Icon(Icons.access_time),
+            label: Text('Inicio: ${toDtoString(pickedStartTime)}'),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+          child: OutlinedButton.icon(
+            onPressed: () async {
+              TimeOfDay? pickedTime = await showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return TimePickerDialog(
+                    initialTime: pickedEndTime,
+                    initialEntryMode: TimePickerEntryMode.dial,
+                  );
+                },
+              );
+              if (pickedTime != null) {
+                setState(() {
+                  pickedEndTime = pickedTime;
+                });
+              }
+            }, //TODO implementar esto MAÑANA
+            icon: Icon(Icons.timelapse),
+            label: Text('Final: ${toDtoString(pickedEndTime)}'),
+          ),
+        )
+      ],
+    );
+
+    return Column(
+      children: [
+        myTitleTile,
+        Padding(
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: myRow,
+        )
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +228,8 @@ class _AddLessonPageState extends State<AddLessonPage> {
       body: Column(
         children: [
           _buildPickSubjectListTile(),
-          _buildPickDayOfTheWeekTile(),
-          //_buildPickStartHour(),
-          //_buildPickEndHour(),
+          _buildPickDayOfTheWeekColumn(),
+          _buildPickHourColumn(),
         ],
       ),
     );

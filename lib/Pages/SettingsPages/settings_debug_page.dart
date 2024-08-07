@@ -97,7 +97,31 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
                   },
                 );
               },
-            )
+            ), 
+            ListTile(
+              title: Text('Ver todas las Lessons'),
+              enabled: true,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('lessons'),
+                      content: Text(
+                          DatabaseController().getAllLessons().toString()),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('ok'))
+                      ],
+                    );
+                  },
+                );
+              },
+            ), 
           ],
         ));
   }

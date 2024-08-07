@@ -1,11 +1,12 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:timetablepp/Control/database_controller.dart';
+import 'package:timetablepp/Control/main_controller.dart';
 import 'package:timetablepp/Control/settings_controller.dart';
+import 'package:timetablepp/Models/lesson.dart';
 import 'package:timetablepp/Models/subject.dart';
-
 
 class WeekviewBackend {
   WeekviewBackend._privateConstructor();
@@ -15,8 +16,6 @@ class WeekviewBackend {
   factory WeekviewBackend() {
     return _instance;
   }
- 
-
 
   /* EN DESUSO
   int getLessonsLength() {
@@ -73,13 +72,11 @@ class WeekviewBackend {
     return SettingsController().getLessonsBreak();
   }
   
-  */
-
-
+ 
 
   int getLessonsPerDay() {
     return SettingsController().getLessonsPerDay();
-  }
+  } */
 
   List<DateTime> getDatesForWeekView() {
     //EN DESUSO TOTAL
@@ -132,7 +129,7 @@ class WeekviewBackend {
     return result;
   }
 
-  List<TimePlannerTitle>  getActiveDays() {
+  List<TimePlannerTitle> getActiveDays() {
     List<TimePlannerTitle> result = List.empty(growable: true);
 
     switch (SettingsController().getFirstDayOfTheWeek()) {
@@ -284,7 +281,7 @@ class WeekviewBackend {
     return result;
   }
 
-  List<TimePlannerTask> getTasks() {
+  List<TimePlannerTask> getTasksDummy() {
     List<TimePlannerTask> result = [
       TimePlannerTask(
         // background color for task
@@ -296,13 +293,75 @@ class WeekviewBackend {
         minutesDuration: 90,
         // Days duration of task (use for multi days task)
         daysDuration: 1,
-        onTap: () {},
+        onTap: () {
+          todoButton();
+        },
         child: Text(
           'this is a task',
           style: TextStyle(color: Colors.grey[350], fontSize: 12),
         ),
       ),
     ];
+    return result;
+  }
+
+  List<TimePlannerTask> getTasks() {
+    List<TimePlannerTask> result = List.empty(growable: true);
+
+    int counter = 0;
+    for (var i = 0; i < 6; i++) {
+      int dayMod = (i + SettingsController().getFirstDayOfTheWeek()) % 7;
+      if (SettingsController().getIsDayActive(day: dayMod)) {
+        debugPrint(
+            '[WeekviewBackend]: GetTasks: Pintando las tasks del dia de la semana: $dayMod');
+        List<Lesson> lessons = getLessonsDay(day: dayMod);
+        debugPrint(
+            '[WeekviewBackend]: GetTasks: Hay ${lessons.length} clases el día $dayMod');
+        for (var element in lessons) {
+          result.add(
+            TimePlannerTask(
+              color: MainController()
+                  .getColorFromName(element.subject.target!.color),
+              minutesDuration: element.getDuration(),
+              dateTime: TimePlannerDateTime(
+                  day: counter,
+                  hour: element.startHour,
+                  minutes: element.startMinute),
+              child: ListTile(
+                contentPadding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                isThreeLine: true,
+                title: Text(element.subject.target!.abv!),
+                subtitle: Text(element.subject.target!.place!, maxLines: 1,overflow: TextOverflow.fade, ),
+              ),
+            ),
+          );
+        }
+        counter++;
+      }
+    }
+
+    return result;
+  }
+
+  List<Lesson> getLessonsDay({required int day}) {
+    debugPrint(
+        '[WeekviewBackend]: getLessonsDay(): me han pedido el numero de clases del día de la semana:$day');
+    List<Lesson> result = List.empty(growable: true);
+    List<Lesson> lessons = DatabaseController().getActiveLessons();
+    ('[WeekviewBackend]: getLessonsDay(): Hay un total de ${lessons.length} lessons.');
+    for (var lesson in lessons) {
+      if (lesson.day == day) {
+        result.add(lesson);
+      }
+    }
+    ('[WeekviewBackend]getLessonsDay(): result contiene ${result.length} lessons.');
+    return result;
+  }
+
+  int _getRelativeLessonDay(Lesson lesson) {
+    int result = 0;
+    result = result + lesson.day;
+    result = result - SettingsController().getFirstDayOfTheWeek();
     return result;
   }
 

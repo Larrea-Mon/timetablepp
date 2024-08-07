@@ -16,14 +16,14 @@ class SettingsTimesPage extends StatefulWidget {
 }
 
 class _SettingsTimesPageState extends State<SettingsTimesPage> {
-  late int lessonsPerDay;
+  //late int lessonsPerDay;
   late int lessonsLen;
   late int lessonsBreak;
   late ListView listaInicios;
 
   @override
   void initState() {
-    lessonsPerDay = WeekviewBackend().getLessonsPerDay();
+    //lessonsPerDay = WeekviewBackend().getLessonsPerDay();
 
     super.initState();
   }

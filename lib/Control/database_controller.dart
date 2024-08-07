@@ -1,5 +1,6 @@
 // ignore_for_file:  prefer_final_fields, prefer_const_constructors, unused_field
 
+import 'package:timetablepp/Control/settings_controller.dart';
 import 'package:timetablepp/Models/holidayperiod.dart';
 import 'package:timetablepp/Models/lesson.dart';
 import 'package:timetablepp/Models/settingsbatch.dart';
@@ -139,6 +140,33 @@ class DatabaseController {
   List<Lesson> getAllLessons() {
     var result = _lessonsBox.getAll();
     return result;
+  }
+
+  List<Lesson> getActiveLessons() {
+    var lessons = getAllLessons();
+
+    if (SettingsController().getIsMondayActive() == false) {
+      lessons.removeWhere((item) => item.day == 1);
+    }
+    if (SettingsController().getIsTuesdayActive() == false) {
+      lessons.removeWhere((item) => item.day == 2);
+    }
+    if (SettingsController().getIsWednesdayActive() == false) {
+      lessons.removeWhere((item) => item.day == 3);
+    }
+    if (SettingsController().getIsThursdayActive() == false) {
+      lessons.removeWhere((item) => item.day == 4);
+    }
+    if (SettingsController().getIsFridayActive() == false) {
+      lessons.removeWhere((item) => item.day == 5);
+    }
+    if (SettingsController().getIsSaturdayActive() == false) {
+      lessons.removeWhere((item) => item.day == 6);
+    }
+    if (SettingsController().getIsSundayActive() == false) {
+      lessons.removeWhere((item) => item.day == 7);
+    }
+    return lessons;
   }
 
   int deleteAllLessons() {

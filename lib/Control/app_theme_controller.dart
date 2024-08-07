@@ -86,11 +86,18 @@ class AppThemeController {
       id: id,
       description: description,
       data: ThemeData(
-        timePickerTheme: TimePickerThemeData(
-          dayPeriodColor: secondaryColor,
-          confirmButtonStyle: ButtonStyle()
-        ),
-        checkboxTheme: CheckboxThemeData(checkColor: WidgetStatePropertyAll(secondaryColor) ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: ButtonStyle(
+              overlayColor: WidgetStatePropertyAll(secondaryColor),
+              foregroundColor: WidgetStatePropertyAll(
+                  isBright ? Colors.black : Colors.white),
+            ),
+          ),
+          timePickerTheme: TimePickerThemeData(
+              dayPeriodColor: secondaryColor,
+              confirmButtonStyle: ButtonStyle()),
+          checkboxTheme: CheckboxThemeData(
+              checkColor: WidgetStatePropertyAll(secondaryColor)),
           textButtonTheme: TextButtonThemeData(
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(primaryColor),
@@ -135,7 +142,8 @@ class AppThemeController {
             color: isBright ? Colors.grey[100] : Colors.grey[900],
           ),
           cardTheme: CardTheme(color: primaryColor, elevation: 2),
-          splashFactory: NoSplash.splashFactory, //TODO volver a esto algun moment
+          splashFactory:
+              NoSplash.splashFactory, //TODO volver a esto algun moment
           splashColor: secondaryColor.withOpacity(0.3),
           colorScheme: ColorScheme(
               brightness: _isBright(isBright),
