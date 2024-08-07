@@ -56,7 +56,9 @@ class _AddLessonPageState extends State<AddLessonPage> {
               myLesson.subject.target = pickedSubject;
               DatabaseController().putLesson(myLesson);
               Navigator.of(context).pop();
-              
+              Fluttertoast.showToast(
+                  msg: 'Recarga la página para ver tus cambios',
+                  backgroundColor: Colors.grey);
             }
           } else {
             Fluttertoast.showToast(
@@ -202,7 +204,7 @@ class _AddLessonPageState extends State<AddLessonPage> {
                   pickedEndTime = pickedTime;
                 });
               }
-            }, //TODO implementar esto MAÑANA
+            },
             icon: Icon(Icons.timelapse),
             label: Text('Final: ${toDtoString(pickedEndTime)}'),
           ),

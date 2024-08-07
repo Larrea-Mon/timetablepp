@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
+// ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,15 +16,12 @@ class SettingsTimesPage extends StatefulWidget {
 }
 
 class _SettingsTimesPageState extends State<SettingsTimesPage> {
-  //late int lessonsPerDay;
   late int lessonsLen;
   late int lessonsBreak;
   late ListView listaInicios;
 
   @override
   void initState() {
-    //lessonsPerDay = WeekviewBackend().getLessonsPerDay();
-
     super.initState();
   }
 
@@ -174,12 +171,64 @@ class _SettingsTimesPageState extends State<SettingsTimesPage> {
       children: [
         _FirstDayOfTheWeekTile(),
         _ActiveDaysRow(),
+        _TimetableTimesRow(),
       ],
     );
 
     return Scaffold(
       appBar: settingsTimesAppBar,
       body: mainColumn,
+    );
+  }
+}
+
+class _TimetableTimesRow extends StatefulWidget {
+  const _TimetableTimesRow();
+  @override
+  State<_TimetableTimesRow> createState() => _TimetableTimesRowState();
+}
+
+class _TimetableTimesRowState extends State<_TimetableTimesRow> {
+  late RangeValues currentRangeValues;
+  @override
+  void initState() {
+    currentRangeValues = RangeValues(
+        SettingsController().getWeekviewStartTime().toDouble(),
+        SettingsController().getWeekviewEndTime().toDouble());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text('Horas mostradas en el horario.'),
+          enabled: true,
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 20, 15, 0),
+          child: RangeSlider(
+              min: 0,
+              max: 24,
+              divisions: 23,
+              values: currentRangeValues,
+              labels: RangeLabels(
+                currentRangeValues.start.round().toString(),
+                currentRangeValues.end.round().toString(),
+              ),
+              onChanged: (RangeValues values) {
+                currentRangeValues = values;
+              },
+              onChangeEnd: (RangeValues values) {
+                setState(() {
+                  SettingsController()
+                      .setWeekviewStartTime(values.start.toInt());
+                  SettingsController().setWeekviewEndTime(values.end.toInt());
+                });
+              }),
+        )
+      ],
     );
   }
 }

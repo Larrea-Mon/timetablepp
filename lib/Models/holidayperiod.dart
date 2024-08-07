@@ -66,9 +66,9 @@ class HolidayPeriod {
   
   HolidayPeriod({required this.start,required this.end, required this.name});
   HolidayPeriod.clone(HolidayPeriod holidayPeriod){
-    this.start = holidayPeriod.start; 
-    this.end = holidayPeriod.end;
-    this.name=  holidayPeriod.name;
+    start = holidayPeriod.start; 
+    end = holidayPeriod.end;
+    name=  holidayPeriod.name;
   } 
 
   @override

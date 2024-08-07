@@ -45,16 +45,9 @@ class SettingsBatch {
   int minutesAutosilence = 10;
   // AUTOSILENCE
   // HORARIO
-  int lessonsPerDay = 6;
-  int lessonsLength = 60;
-  int lessonsBreak = 0;
-  /*
-  List<TimeOfDay> lessonsStartTimes = [
-    TimeOfDay(hour: 9, minute: 0),
-    TimeOfDay(hour: 10, minute: 0),
-    TimeOfDay(hour: 11, minute: 30)
-  ];
-  */
+  int weekviewStartTime = 8;
+  int weekviewEndTime = 24;
+  
   @override
   toString() {
     return "[SettingsBatch] ID: '$id' \n" +
@@ -77,9 +70,7 @@ class SettingsBatch {
         "enableAutoSilence: $enableAutoSilence\n" + 
         "minutesAutosilence: $minutesAutosilence\n"+
         "HORARIO\n" +
-        "lessonsPerDay: $lessonsPerDay\n" + 
-        "lessonsLength: $lessonsLength\n" + 
-        "lessonsBreak: $lessonsBreak\n" + 
-        "";
+        "weekviewStartTime: $weekviewStartTime\n"+
+        "weekviewEndTIme: $weekviewEndTime\n";
   }
 }

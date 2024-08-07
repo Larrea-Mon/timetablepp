@@ -164,7 +164,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(7, 1394606018714506811),
       name: 'SettingsBatch',
-      lastPropertyId: const obx_int.IdUid(25, 2872802622032652321),
+      lastPropertyId: const obx_int.IdUid(27, 4129442094788052365),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -273,23 +273,18 @@ final _entities = <obx_int.ModelEntity>[
             type: 6,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(22, 5111428637400359396),
-            name: 'lessonsPerDay',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(23, 3884263845346654801),
-            name: 'lessonsLength',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(24, 5761305450991132851),
-            name: 'lessonsBreak',
-            type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
             id: const obx_int.IdUid(25, 2872802622032652321),
             name: 'daysSendNotifsNextHomework',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(26, 1369682629366204806),
+            name: 'weekviewStartTime',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(27, 4129442094788052365),
+            name: 'weekviewEndTime',
             type: 6,
             flags: 0)
       ],
@@ -346,7 +341,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
         1746992985605304413,
         3512963349698658758,
         1102212534974716332,
-        916558853735177842
+        916558853735177842,
+        5111428637400359396,
+        3884263845346654801,
+        5761305450991132851
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -533,7 +531,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (SettingsBatch object, fb.Builder fbb) {
           final appActiveThemeOffset = fbb.writeString(object.appActiveTheme);
-          fbb.startTable(26);
+          fbb.startTable(28);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, appActiveThemeOffset);
           fbb.addInt64(2, object.widgetActiveTheme);
@@ -555,10 +553,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addInt64(18, object.daysSendNotifsNextExam);
           fbb.addBool(19, object.enableAutoSilence);
           fbb.addInt64(20, object.minutesAutosilence);
-          fbb.addInt64(21, object.lessonsPerDay);
-          fbb.addInt64(22, object.lessonsLength);
-          fbb.addInt64(23, object.lessonsBreak);
           fbb.addInt64(24, object.daysSendNotifsNextHomework);
+          fbb.addInt64(25, object.weekviewStartTime);
+          fbb.addInt64(26, object.weekviewEndTime);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -608,14 +605,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
                 const fb.BoolReader().vTableGet(buffer, rootOffset, 42, false)
             ..minutesAutosilence =
                 const fb.Int64Reader().vTableGet(buffer, rootOffset, 44, 0)
-            ..lessonsPerDay =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 46, 0)
-            ..lessonsLength =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 48, 0)
-            ..lessonsBreak =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 50, 0)
             ..daysSendNotifsNextHomework =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 52, 0);
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 52, 0)
+            ..weekviewStartTime =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 54, 0)
+            ..weekviewEndTime =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 56, 0);
 
           return object;
         })
@@ -802,19 +797,15 @@ class SettingsBatch_ {
   static final minutesAutosilence =
       obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[20]);
 
-  /// See [SettingsBatch.lessonsPerDay].
-  static final lessonsPerDay =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[21]);
-
-  /// See [SettingsBatch.lessonsLength].
-  static final lessonsLength =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[22]);
-
-  /// See [SettingsBatch.lessonsBreak].
-  static final lessonsBreak =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[23]);
-
   /// See [SettingsBatch.daysSendNotifsNextHomework].
   static final daysSendNotifsNextHomework =
-      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[24]);
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[21]);
+
+  /// See [SettingsBatch.weekviewStartTime].
+  static final weekviewStartTime =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[22]);
+
+  /// See [SettingsBatch.weekviewEndTime].
+  static final weekviewEndTime =
+      obx.QueryIntegerProperty<SettingsBatch>(_entities[4].properties[23]);
 }

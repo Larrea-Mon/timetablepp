@@ -204,6 +204,29 @@ class SettingsController {
 
   //SILENCIO AUTOMATICO HASTA AQUÍ
   //HORARIO EMPIEZA AQUI
+  int getWeekviewStartTime(){
+    int result = _settings.weekviewStartTime;
+    debugPrint('[SettingsController]:getWeekviewStartTime: $result');
+    return result;
+  }
+  void setWeekviewStartTime(int startTime){
+    _settings.weekviewStartTime = startTime;
+    debugPrint('[SettingsController]: setWeekviewStartTime: $startTime');
+    pushSettings();
+  }
+  int getWeekviewEndTime(){
+    int result = _settings.weekviewEndTime;
+    debugPrint('[SettingsController]:getWeekviewEndTime: $result');
+    return result;
+  }
+  void setWeekviewEndTime(int endTime){
+    _settings.weekviewEndTime = endTime;
+    debugPrint('[SettingsController]: setWeekviewEndTime: $endTime');
+    pushSettings();
+  }
+
+  
+
   bool getIsDayActive({required int day}) {
     switch (day) {
       case 1:
@@ -342,46 +365,7 @@ class SettingsController {
     return result;
   }
 
-  /*  **EN DESUSO**
-  int getLessonsPerDay() {
-    int result = _settings.lessonsPerDay;
-    debugPrint('[SettingsController]: getLessonsPerDay: $result');
-    return result;
-  }
-
-  void setLessonsPerDay(int lessonsPerDay) {
-    _settings.lessonsPerDay = lessonsPerDay;
-    debugPrint('[SettingsController]: setLessonsPerDay: $lessonsPerDay');
-    pushSettings();
-  }
   
-  
-  int getLessonsLength() {
-    int result = _settings.lessonsLength;
-    debugPrint('[SettingsController]:lessonsLength: $result');
-    return result;
-  }
-
-  void setLessonsLength(int lessonsLength) {
-    _settings.lessonsLength = lessonsLength;
-    debugPrint('[SettingsController]: setLessonsLength: $lessonsLength');
-    pushSettings();
-  }
-  */
-  /*   **EN DESUSO**
-  int getLessonsBreak() {
-    int result = _settings.lessonsBreak;
-    debugPrint('[SettingsController]:lessonsBreak: $result');
-    return result;
-  }
-
-  void setLessonsBreak(int lessonsBreak) {
-    _settings.lessonsBreak = lessonsBreak;
-    debugPrint('[SettingsController]: setLessonsBreak: $lessonsBreak');
-    pushSettings();
-  } */
-
-  //HORARIO Termina AQUI
 }
 
 String toDtoString(TimeOfDay timeOfDay) {

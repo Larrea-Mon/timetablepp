@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:timetablepp/Control/settings_controller.dart';
 
 import 'package:timetablepp/Control/weekview_backend.dart';
 import 'package:timetablepp/Pages/SettingsPages/Timetable/settings_weekview_times_page.dart';
@@ -22,43 +24,58 @@ class _WeekViewPageState extends State<WeekViewPage> {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    AppBar weekViewAppBar = AppBar(
+  IconButton buildSettingsIconButton() {
+    return IconButton(
+      onPressed: () async {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SettingsTimesPage(),
+          ),
+        )
+            .then(
+          (_) => setState(() {}),
+        )
+            .then(
+          (value) {
+            Fluttertoast.showToast(
+                msg: 'Recarga la página para ver tus cambios',
+                backgroundColor: Colors.grey);
+          },
+        );
+      },
+      icon: Icon(Icons.settings),
+    );
+  }
+
+  IconButton buildAddLessonIconButton() {
+    return IconButton(
+      onPressed: () async {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AddLessonPage(),
+          ),
+        ).then((_) => setState(() {}));
+      },
+      icon: Icon(Icons.add_box),
+    );
+  }
+
+  AppBar buildWeekViewAppBar() {
+    return AppBar(
       title: Text('Vista Semanal'),
       actions: <Widget>[
-        IconButton(
-          onPressed: () => {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SettingsTimesPage(),
-              ),
-            ).then(
-              (_) => setState(() {
-                customGrid = new MyCustomGrid();
-              }),
-            ),
-          },
-          icon: Icon(Icons.settings),
-        ),
-        IconButton(
-          onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddLessonPage(),
-              ),
-            );
-            ((_) => setState(() {}));
-          },
-          icon: Icon(Icons.add_box),
-        )
+        buildSettingsIconButton(),
+        buildAddLessonIconButton(),
       ],
     );
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: weekViewAppBar,
+      appBar: buildWeekViewAppBar(),
       body: customGrid,
     );
   }
@@ -71,44 +88,26 @@ class MyCustomGrid extends StatefulWidget {
 }
 
 class MyCustomGridState extends State<MyCustomGrid> {
-  late List<TimePlannerTitle> headers;
-  late List<TimePlannerTask> tasks;
+  //late List<TimePlannerTitle> headers;
+  //late List<TimePlannerTask> tasks;
   @override
   void initState() {
-    headers = WeekviewBackend().getActiveDays();
-    tasks = WeekviewBackend().getTasks();
+    //headers = WeekviewBackend().getActiveDays();
+    //tasks = WeekviewBackend().getTasks();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    //return Placeholder();
-    // List<DateTime> dates = WeekviewBackend().getDatesForWeekView();
-    //WeekView myWeekView = WeekView(dates: dates,);
-
     TimePlanner myTimePlanner = TimePlanner(
-      startHour: 8,
-      endHour: 23,
+      startHour: SettingsController().getWeekviewStartTime(),
+      endHour: SettingsController().getWeekviewEndTime(),
       use24HourFormat: true,
-      headers: headers,
-      tasks: tasks,
-      style: TimePlannerStyle(
-        showScrollBar: true,
-        cellWidth: 65,
-      ),
+      headers: WeekviewBackend().getActiveDays(),
+      tasks: WeekviewBackend().getTasks(),
+      style:
+          TimePlannerStyle(showScrollBar: true, cellWidth: 65, cellHeight: 65),
     );
     return myTimePlanner;
-
-    //TODO Volver a esto en otro momento.
-    /*return GridView.custom(
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 60,),
-      childrenDelegate: SliverChildBuilderDelegate((context, index) => ,),
-
-      physics: ScrollPhysics(),
-      scrollDirection: Axis.vertical,
-
-      
-    );
-    */
   }
 }

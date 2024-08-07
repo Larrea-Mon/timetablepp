@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_import
+// ignore_for_file: prefer_const_constructors, unused_import, unused_element
 
 import 'package:flutter/material.dart';
 import 'package:time_planner/time_planner.dart';
@@ -17,66 +17,6 @@ class WeekviewBackend {
     return _instance;
   }
 
-  /* EN DESUSO
-  int getLessonsLength() {
-    return SettingsController().getLessonsLength();
-  }
-  */
-
-  /* EN DESUSO
-  void setLessonsLength(int len) {
-    if (len > lessons.length) {
-      debugPrint('[WeekviewBackend][INFO]:setLessonsLength: el numero introducido es mayor que el actual');
-      int first = SettingsController().getLessonsLength();
-      int second = SettingsController().getLessonsBreak();
-      for (var i = 1; i < lessons.length; i++) {
-        int total = first + second;
-        int hours = total ~/ 60;
-        int minutes = total % 60;
-        lessons.add(
-          WeekviewLesson.asToD(
-            TimeOfDay(
-              hour: (lessons[i - 1].startHour + hours),
-              minute: lessons[i - 1].startMinute + minutes,
-            ),
-          ),
-        );
-      }
-    } if (len < lessons.length) {
-      debugPrint('[WeekviewBackend][INFO]:setLessonsLength: el numero introducido es menor que el actual');
-      int first = SettingsController().getLessonsLength();
-      int second = SettingsController().getLessonsBreak();
-      for (var i = 1; i < lessons.length; i++) {
-        int total = first + second;
-        int hours = total ~/ 60;
-        int minutes = total % 60;
-        lessons.add(
-          WeekviewLesson.asToD(
-            TimeOfDay(
-              hour: (lessons[i - 1].startHour + hours),
-              minute: lessons[i - 1].startMinute + minutes,
-            ),
-          ),
-        );
-      }
-    }
-  }
-   */
-
-  /* EN DESUSO
-  void setLessonsBreak(int lessonsBreak) {
-    SettingsController().setLessonsBreak(lessonsBreak);
-    //TAMBIEN CAMBIAR OTRAS COSAS
-  }
-   int getLessonsBreak() {
-    return SettingsController().getLessonsBreak();
-  }
-  
- 
-
-  int getLessonsPerDay() {
-    return SettingsController().getLessonsPerDay();
-  } */
 
   List<DateTime> getDatesForWeekView() {
     //EN DESUSO TOTAL

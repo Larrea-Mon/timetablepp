@@ -35,7 +35,7 @@ class Lesson {
   }
 
   int getDay(){
-    return this.day;
+    return day;
   }
   void setDay({required int day}){
     this.day = day;
