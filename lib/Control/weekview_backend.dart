@@ -328,7 +328,7 @@ class WeekviewBackend {
                   hour: element.startHour,
                   minutes: element.startMinute),
               child: ListTile(
-                contentPadding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                contentPadding: EdgeInsets.fromLTRB(5, 0, 5, 5),
                 isThreeLine: true,
                 title: Text(element.subject.target!.abv!),
                 subtitle: Text(element.subject.target!.place!, maxLines: 1,overflow: TextOverflow.fade, ),

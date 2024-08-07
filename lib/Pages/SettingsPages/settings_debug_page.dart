@@ -97,6 +97,18 @@ class _SettingsDebugPageState extends State<SettingsDebugPage> {
                   },
                 );
               },
+            ),
+            ListTile(
+              title: Text('Borra todas las Lessons'),
+              //subtitle: Text('TODO Light'),
+              enabled: true,
+              onTap: () {
+                int i = DatabaseController().deleteAllLessons();
+
+                Fluttertoast.showToast(
+                  msg: 'Eliminadas $i Lessons',
+                );
+              },
             ), 
             ListTile(
               title: Text('Ver todas las Lessons'),
